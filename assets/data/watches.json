@@ -1,0 +1,53 @@
+[
+  {
+    "id": "daydate",
+    "name": "Rolex Day-Date",
+    "collection": "Classic",
+    "price": 850000,
+    "currency": "INR",
+    "movement": "Calibre 3255",
+    "powerReserve": "70 Hours",
+    "case": "40 mm",
+    "waterResistance": "100 m",
+    "image": "assets/images/hero1.png",
+    "rating": 4.9,
+    "reviews": 245,
+    "badge": "Best Seller",
+    "description": "A timeless symbol of prestige and excellence worn by world leaders."
+  },
+
+  {
+    "id": "skydweller",
+    "name": "Rolex Sky-Dweller",
+    "collection": "Traveller",
+    "price": 920000,
+    "currency": "INR",
+    "movement": "Calibre 9002",
+    "powerReserve": "72 Hours",
+    "case": "42 mm",
+    "waterResistance": "100 m",
+    "image": "assets/images/hero2.png",
+    "rating": 4.8,
+    "reviews": 182,
+    "badge": "Premium",
+    "description": "Luxury dual-time watch engineered for international travellers."
+  },
+
+  {
+    "id": "seadweller",
+    "name": "Rolex Sea-Dweller",
+    "collection": "Professional",
+    "price": 980000,
+    "currency": "INR",
+    "movement": "Calibre 3235",
+    "powerReserve": "70 Hours",
+    "case": "43 mm",
+    "waterResistance": "1220 m",
+    "image": "assets/images/hero3.png",
+    "rating": 5.0,
+    "reviews": 321,
+    "badge": "Diver",
+    "description": "Built for professional saturation diving with unmatched durability."
+  }
+]
+

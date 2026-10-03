@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the Venturo Chronométrie watch collection. Timeless horology and master craftsmanship.">
+
+    <title>Venturo Chronométrie | The Collection</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- AOS -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body class="collection-page-body">
+
+<div id="scroll-progress"></div>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar" id="navbar">
+    <div class="navbar-inner">
+        <!-- Left: Hamburger Menu Button -->
+        <div class="nav-left">
+            <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="navMenuPanel">
+                <span class="hamburger-lines">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                </span>
+                <span class="menu-label">Menu</span>
+            </button>
+        </div>
+
+        <!-- Center: Crown Symbol Only -->
+        <div class="nav-center">
+            <a href="index.html" class="brand-crown-only" aria-label="Venturo Home">
+                <i class="fa-solid fa-crown" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <!-- Right: Search, Wishlist, and Cart Icons -->
+        <div class="nav-right">
+            <button type="button" class="header-icon-btn search-trigger-btn" id="searchTriggerBtn" aria-label="Open search" aria-haspopup="dialog" aria-expanded="false" aria-controls="searchOverlay">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
+
+            <a href="#products" class="wishlist-counter" id="wishlistTrigger" aria-label="View Wishlist">
+                <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                <span id="wishlistCount">0</span>
+            </a>
+
+            <div class="nav-icons">
+                <button id="cartBtn" class="icon-btn" aria-label="View Shopping Cart">
+                    <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                    <span id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ================= SEARCH OVERLAY ================= -->
+<div class="search-overlay" id="searchOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search Luxury Watches">
+    <div class="search-overlay-panel">
+        
+        <div class="search-overlay-top">
+            <button type="button" class="search-close-btn" id="closeSearchBtn" aria-label="Close search">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <a href="index.html" class="search-overlay-crown" aria-label="Home">
+                <i class="fa-solid fa-crown" aria-hidden="true"></i>
+            </a>
+
+            <div class="search-top-spacer" aria-hidden="true"></div>
+        </div>
+
+        <div class="search-overlay-content">
+            <div class="search-input-wrap search-box">
+                <i class="fa-solid fa-magnifying-glass search-field-icon" aria-hidden="true"></i>
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search watches"
+                    autocomplete="off"
+                    aria-label="Search watches">
+            </div>
+
+            <div class="search-shortcuts">
+                <h3 class="shortcuts-heading">Shortcuts</h3>
+                <ul class="shortcuts-list">
+                    <li><a href="collection.html" class="shortcut-link">Explore the collection</a></li>
+                    <li><a href="index.html#about" class="shortcut-link">Our story</a></li>
+                    <li><a href="index.html#contact" class="shortcut-link">Care & service</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= EXPANDED NAVIGATION MENU ================= -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <div class="nav-menu-panel" id="navMenuPanel" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+        
+        <button class="nav-close-btn" id="closeMenuBtn" aria-label="Close navigation menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="nav-menu-layout">
+            <div class="nav-menu-left">
+                <span class="menu-category-title">Featured</span>
+
+                <ul class="nav-menu-list">
+                    <li><a href="index.html" class="menu-nav-link">Home</a></li>
+                    <li><a href="collection.html" class="menu-nav-link active-link">The Collection</a></li>
+                    <li><a href="index.html#about" class="menu-nav-link">Our Story</a></li>
+                    <li><a href="index.html#storytelling" class="menu-nav-link">Watchmaking</a></li>
+                    <li><a href="index.html#contact" class="menu-nav-link">Care & Service</a></li>
+                    <li><a href="index.html#contact" class="menu-nav-link">Contact</a></li>
+                </ul>
+
+                <div class="menu-secondary-group">
+                    <a href="collection.html" class="menu-sub-link">Configure your Venturo</a>
+                    <a href="index.html#contact" class="menu-sub-link">Store locator</a>
+                </div>
+
+                <div class="menu-footer-info">
+                    <div class="menu-country">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>India</span>
+                    </div>
+                    <div class="menu-brand-mark">
+                        <i class="fa-solid fa-crown"></i>
+                        <span class="menu-brand-name">VENTURO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-menu-right">
+                <div class="menu-tiles-grid">
+                    <a href="watch.html?product=datejust" class="nav-menu-tile" aria-label="Featured Datejust">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero1.png" alt="Venturo Datejust watch">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>Featured Datejust</span>
+                        </div>
+                    </a>
+
+                    <a href="index.html#storytelling" class="nav-menu-tile" aria-label="The Art of Watchmaking">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero2.png" alt="Venturo Sky-Dweller watch">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>The Art of Watchmaking</span>
+                        </div>
+                    </a>
+
+                    <a href="watch.html?product=seadweller" class="nav-menu-tile" aria-label="Sea-Dweller">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero3.png" alt="Venturo Sea-Dweller diver">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>Deep Sea Saturation</span>
+                        </div>
+                    </a>
+
+                    <a href="index.html#about" class="nav-menu-tile" aria-label="Maison Venturo & Story">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero1.png" alt="Venturo Atelier and heritage">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>Maison Venturo & Story</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= COLLECTION HERO HEADER ================= -->
+<section class="collection-hero-section">
+    <div class="collection-hero-inner" data-aos="fade-up">
+        <span class="collection-eyebrow">VENTURO CHRONOMÉTRIE</span>
+        <h1 class="collection-main-title">The Collection</h1>
+        <p class="collection-main-subtitle">
+            Explore the pinnacle of Swiss precision, timeless aesthetics, and uncompromising horological excellence.
+        </p>
+
+        <!-- Category Filters -->
+        <div class="collection-filter-bar">
+            <button type="button" class="filter-btn active" data-filter="all">All Models</button>
+            <button type="button" class="filter-btn" data-filter="classic">Classic</button>
+            <button type="button" class="filter-btn" data-filter="traveller">Traveller</button>
+            <button type="button" class="filter-btn" data-filter="professional">Professional</button>
+        </div>
+    </div>
+</section>
+
+<!-- ================= COLLECTION PRODUCT GRID ================= -->
+<section id="products" class="products-section collection-page-section">
+
+    <div class="product-grid">
+
+        <!-- 1. DAY-DATE / DATEJUST -->
+        <div class="product-card glass hover-card reveal" data-product="daydate" data-category="classic">
+            <button class="wishlist-btn" data-id="daydate" aria-label="Save Day-Date to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <div class="product-card-thumb">
+                <img src="assets/images/hero1.png" alt="Venturo Day-Date watch">
+            </div>
+            <h3>Day-Date</h3>
+            <span class="product-card-tag">Chronométrie Royale</span>
+            <span class="product-card-price">₹8,50,000</span>
+            <div class="product-card-actions">
+                <span class="view-details-hint">Tap for details</span>
+            </div>
+        </div>
+
+        <div class="product-details" id="daydate">
+            <img src="assets/images/hero1.png" class="product-img" alt="Venturo Day-Date watch">
+            <p>
+                The Day-Date has been associated with worldwide leaders, visionaries and pioneers. A timeless symbol of excellence.
+            </p>
+            <ul>
+                <li>Movement : Calibre 3255</li>
+                <li>Power Reserve : 70 Hours</li>
+                <li>Case : 40 mm</li>
+                <li>Water Resistance : 100 m</li>
+            </ul>
+            <div class="details-cta-group">
+                <button class="add-cart-btn" data-id="daydate">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Add To Cart
+                </button>
+                <a href="watch.html?product=datejust" class="discover-model-btn">
+                    <span>Full Specification</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 2. SKY-DWELLER -->
+        <div class="product-card glass hover-card reveal" data-product="skydweller" data-category="traveller">
+            <button class="wishlist-btn" data-id="skydweller" aria-label="Save Sky-Dweller to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <div class="product-card-thumb">
+                <img src="assets/images/hero2.png" alt="Venturo Sky-Dweller watch">
+            </div>
+            <h3>Sky-Dweller</h3>
+            <span class="product-card-tag">Annual Calendar Dual-Time</span>
+            <span class="product-card-price">₹9,20,000</span>
+            <div class="product-card-actions">
+                <span class="view-details-hint">Tap for details</span>
+            </div>
+        </div>
+
+        <div class="product-details" id="skydweller">
+            <img src="assets/images/hero2.png" class="product-img" alt="Venturo Sky-Dweller watch">
+            <p>
+                The Sky-Dweller combines dual time functionality with an annual calendar, making it the ideal companion for international travelers.
+            </p>
+            <ul>
+                <li>Movement : Calibre 9002</li>
+                <li>Power Reserve : 72 Hours</li>
+                <li>Case : 42 mm</li>
+                <li>Water Resistance : 100 m</li>
+            </ul>
+            <div class="details-cta-group">
+                <button class="add-cart-btn" data-id="skydweller">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Add To Cart
+                </button>
+                <a href="watch.html?product=skydweller" class="discover-model-btn">
+                    <span>Full Specification</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- 3. SEA-DWELLER -->
+        <div class="product-card glass hover-card reveal" data-product="seadweller" data-category="professional">
+            <button class="wishlist-btn" data-id="seadweller" aria-label="Save Sea-Dweller to Wishlist">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <div class="product-card-thumb">
+                <img src="assets/images/hero3.png" alt="Venturo Sea-Dweller watch">
+            </div>
+            <h3>Sea-Dweller</h3>
+            <span class="product-card-tag">Saturation Diver 1,220m</span>
+            <span class="product-card-price">₹9,80,000</span>
+            <div class="product-card-actions">
+                <span class="view-details-hint">Tap for details</span>
+            </div>
+        </div>
+
+        <div class="product-details" id="seadweller">
+            <img src="assets/images/hero3.png" class="product-img" alt="Venturo Sea-Dweller watch">
+            <p>
+                Engineered for professional divers, the Sea-Dweller withstands extreme underwater conditions while maintaining exceptional precision.
+            </p>
+            <ul>
+                <li>Movement : Calibre 3235</li>
+                <li>Power Reserve : 70 Hours</li>
+                <li>Case : 43 mm</li>
+                <li>Water Resistance : 1220 m</li>
+            </ul>
+            <div class="details-cta-group">
+                <button class="add-cart-btn" data-id="seadweller">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Add To Cart
+                </button>
+                <a href="watch.html?product=seadweller" class="discover-model-btn">
+                    <span>Full Specification</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= LEGAL & LICENSE INFORMATION ================= -->
+<section id="legal" class="legal-info-section">
+    <div class="legal-container">
+        <p class="legal-text">
+            Venturo Chronométrie Genève S.A. operates as an independent haute horlogerie atelier. All designs, movements, caliber references, and dial craftsmanship are proprietary to Venturo Chronométrie. Official warranty and chronometric certification provided with all timepieces.
+        </p>
+    </div>
+</section>
+
+<button id="backToTop" aria-label="Back To Top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- ================= CART DRAWER ================= -->
+<div id="cartDrawer" class="cart-drawer">
+    <div class="cart-header">
+        <h2>Shopping Cart</h2>
+        <button id="closeCart" aria-label="Close cart">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-footer">
+        <h3>
+            Total :
+            ₹<span id="cartTotal">0</span>
+        </h3>
+        <button id="checkoutBtn">
+            Checkout
+        </button>
+    </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="fade-up">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <i class="fa-solid fa-crown footer-crown" aria-hidden="true"></i>
+            <span class="footer-brand-title">VENTURO CHRONOMÉTRIE</span>
+        </div>
+        <div class="footer-links">
+            <a href="collection.html">The Collection</a>
+            <a href="watch.html?product=datejust">Featured Datejust</a>
+            <a href="index.html#about">Our Story</a>
+            <a href="index.html#contact">Care & Service</a>
+            <a href="#legal">Legal & Certification</a>
+        </div>
+        <p class="copyright">
+            © 2026 Venturo Chronométrie. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+
+<!-- ================= LIBRARIES ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+
+<script>
+AOS.init({
+    duration: 900,
+    once: true
+});
+
+// Category filtering on collection page
+document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const filter = btn.dataset.filter;
+        document.querySelectorAll(".product-card").forEach(card => {
+            const cat = card.dataset.category;
+            if (filter === "all" || cat === filter) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+                const prodId = card.dataset.product;
+                const detail = document.getElementById(prodId);
+                if (detail) detail.style.display = "none";
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>

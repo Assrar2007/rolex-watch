@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Venturo Chronométrie</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- AOS -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- Swiper -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+
+</head>
+
+<body>
+
+<div id="loader">
+    <div class="loader-logo">
+        Venturo Chronométrie
+    </div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar" id="navbar">
+    <div class="navbar-inner">
+        <!-- Left: Hamburger Menu Button -->
+        <div class="nav-left">
+            <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="navMenuPanel">
+                <span class="hamburger-lines">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                </span>
+                <span class="menu-label">Menu</span>
+            </button>
+        </div>
+
+        <!-- Center: Crown Symbol Only (No brand text) -->
+        <div class="nav-center">
+            <a href="#home" class="brand-crown-only" aria-label="Home">
+                <i class="fa-solid fa-crown" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <!-- Right: Search, Wishlist, and Cart Icons -->
+        <div class="nav-right">
+            <button type="button" class="header-icon-btn search-trigger-btn" id="searchTriggerBtn" aria-label="Open search" aria-haspopup="dialog" aria-expanded="false" aria-controls="searchOverlay">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
+
+            <a href="#products" class="wishlist-counter" id="wishlistTrigger" aria-label="View Wishlist">
+                <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                <span id="wishlistCount">0</span>
+            </a>
+
+            <div class="nav-icons">
+                <button id="cartBtn" class="icon-btn" aria-label="View Shopping Cart">
+                    <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                    <span id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ================= SEARCH OVERLAY ================= -->
+<div class="search-overlay" id="searchOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search Luxury Watches">
+    <div class="search-overlay-panel">
+        
+        <!-- Header row of search overlay: Close X on the left, Crown centered -->
+        <div class="search-overlay-top">
+            <button type="button" class="search-close-btn" id="closeSearchBtn" aria-label="Close search">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <a href="#home" class="search-overlay-crown" aria-label="Home">
+                <i class="fa-solid fa-crown" aria-hidden="true"></i>
+            </a>
+
+            <div class="search-top-spacer" aria-hidden="true"></div>
+        </div>
+
+        <!-- Search Content Area -->
+        <div class="search-overlay-content">
+            <!-- Wide Rounded Search Field -->
+            <div class="search-input-wrap search-box">
+                <i class="fa-solid fa-magnifying-glass search-field-icon" aria-hidden="true"></i>
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search"
+                    autocomplete="off"
+                    aria-label="Search watches">
+            </div>
+
+            <!-- Shortcuts Section -->
+            <div class="search-shortcuts">
+                <h3 class="shortcuts-heading">Shortcuts</h3>
+                <ul class="shortcuts-list">
+                    <li><a href="collection.html" class="shortcut-link">Explore the collection</a></li>
+                    <li><a href="#about" class="shortcut-link">Our story</a></li>
+                    <li><a href="#contact" class="shortcut-link">Care & service</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= EXPANDED NAVIGATION MENU ================= -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <div class="nav-menu-panel" id="navMenuPanel" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+        
+        <!-- Close Button (matches top-right circular button in reference) -->
+        <button class="nav-close-btn" id="closeMenuBtn" aria-label="Close navigation menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="nav-menu-layout">
+            <!-- Left Column: Navigation List & Utility Links -->
+            <div class="nav-menu-left">
+                <span class="menu-category-title">Featured</span>
+
+                <ul class="nav-menu-list">
+                    <li><a href="#home" class="menu-nav-link">Home</a></li>
+                    <li><a href="collection.html" class="menu-nav-link">The Collection</a></li>
+                    <li><a href="#about" class="menu-nav-link">Our Story</a></li>
+                    <li><a href="#storytelling" class="menu-nav-link">Watchmaking</a></li>
+                    <li><a href="#contact" class="menu-nav-link">Care & Service</a></li>
+                    <li><a href="#contact" class="menu-nav-link">Contact</a></li>
+                </ul>
+
+                <div class="menu-secondary-group">
+                    <a href="collection.html" class="menu-sub-link">Configure your Venturo</a>
+                    <a href="#contact" class="menu-sub-link">Store locator</a>
+                </div>
+
+                <div class="menu-footer-info">
+                    <div class="menu-country">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>India</span>
+                    </div>
+                    <div class="menu-brand-mark">
+                        <i class="fa-solid fa-crown"></i>
+                        <span class="menu-brand-name">VENTURO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: 2x2 Refined Grid of Image Tiles -->
+            <div class="nav-menu-right">
+                <div class="menu-tiles-grid">
+                    <!-- Tile 1: Explore Collection -->
+                    <a href="collection.html" class="nav-menu-tile" data-product="daydate" aria-label="Explore the Collection - Day-Date">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero1.png" alt="Venturo Day-Date watch">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>Explore the Collection</span>
+                        </div>
+                    </a>
+
+                    <!-- Tile 2: Art of Watchmaking -->
+                    <a href="#storytelling" class="nav-menu-tile" aria-label="The Art of Watchmaking - Sky-Dweller">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero2.png" alt="Venturo Sky-Dweller watchmaking">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>The Art of Watchmaking</span>
+                        </div>
+                    </a>
+
+                    <!-- Tile 3: Saturation Diver -->
+                    <a href="watch.html?product=seadweller" class="nav-menu-tile" data-product="seadweller" aria-label="Deep Sea Saturation - Sea-Dweller">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero3.png" alt="Venturo Sea-Dweller diver">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>Deep Sea Saturation</span>
+                        </div>
+                    </a>
+
+                    <!-- Tile 4: Maison Story -->
+                    <a href="#about" class="nav-menu-tile" aria-label="Maison Venturo & Story">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero1.png" alt="Venturo Atelier and heritage">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>Maison Venturo & Story</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="slide active"
+        style="background-image:url('assets/images/hero1.png');">
+
+        <div class="hero-left-content" data-aos="fade-up">
+
+            <span class="hero-eyebrow">CHRONOMÉTRIE ROYALE</span>
+
+            <h1 class="hero-title">Datejust</h1>
+
+            <a href="watch.html?product=datejust" class="hero-discover-btn ripple-btn" aria-label="Discover Datejust">
+                Discover more
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="slide"
+        style="background-image:url('assets/images/hero2.png');">
+
+        <div class="hero-left-content" data-aos="fade-up">
+
+            <span class="hero-eyebrow">ANNUAL CALENDAR</span>
+
+            <h1 class="hero-title">Sky-Dweller</h1>
+
+            <a href="watch.html?product=skydweller" class="hero-discover-btn ripple-btn" aria-label="Discover Sky-Dweller">
+                Discover more
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="slide"
+        style="background-image:url('assets/images/hero3.png');">
+
+        <div class="hero-left-content" data-aos="fade-up">
+
+            <span class="hero-eyebrow">SATURATION DIVER</span>
+
+            <h1 class="hero-title">Sea-Dweller</h1>
+
+            <a href="watch.html?product=seadweller" class="hero-discover-btn ripple-btn" aria-label="Discover Sea-Dweller">
+                Discover more
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="slide-indicator">
+
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+
+    </div>
+
+</section>
+
+<!-- ================= STORYTELLING SECTION ================= -->
+<section id="storytelling" class="story-pinned-section">
+
+    <div class="story-sticky-stage" id="storyStickyStage">
+
+        <!-- Pinned Video Background Container -->
+        <div class="story-video-container" id="storyVideoContainer">
+            <video id="storyVideo" muted playsinline loop preload="auto" class="story-pinned-video">
+                <source src="assets/video/showcase.mp4" type="video/mp4">
+            </video>
+            <div class="story-video-dim" id="storyVideoDim"></div>
+        </div>
+
+        <!-- Foreground Content with 3 Sequential Rising Photo Cards -->
+        <div class="story-panels-container" id="storyPanelsContainer">
+            <div class="story-panels-header" id="storyPanelsHeader">
+                <span class="story-section-tag">THE ART OF WATCHMAKING</span>
+                <h2 class="story-section-title">Enduring Artistry in Motion</h2>
+            </div>
+
+            <div class="story-panels-grid">
+                <!-- Card 1: Fluted Bezel -->
+                <div class="story-panel-card" id="story-panel-1">
+                    <div class="story-panel-media">
+                        <img src="assets/images/hero1.png" alt="Venturo Fluted Bezel Precision">
+                    </div>
+                    <div class="story-panel-caption">
+                        <span class="story-panel-tag">FLUTED BEZEL</span>
+                        <h3 class="story-panel-title">Brilliant like no other</h3>
+                    </div>
+                </div>
+
+                <!-- Card 2: Atelier & Heritage -->
+                <div class="story-panel-card" id="story-panel-2">
+                    <div class="story-panel-media">
+                        <img src="assets/images/hero2.png" alt="Venturo Horology & Story">
+                    </div>
+                    <div class="story-panel-caption">
+                        <span class="story-panel-tag">ATELIER & STORY</span>
+                        <h3 class="story-panel-title">Inspiring emotion</h3>
+                    </div>
+                </div>
+
+                <!-- Card 3: Master Craftsmen -->
+                <div class="story-panel-card" id="story-panel-3">
+                    <div class="story-panel-media">
+                        <img src="assets/images/hero3.png" alt="Venturo Master Craftsmen">
+                    </div>
+                    <div class="story-panel-caption">
+                        <span class="story-panel-tag">MASTER CRAFTSMEN</span>
+                        <h3 class="story-panel-title">A legacy of precision</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WELCOME BACK FEATURE ================= -->
+<section id="welcome-back" class="welcome-back-section">
+    <div class="welcome-back-feature">
+        <img src="assets/images/welcome-back.png" alt="Venturo Chronométrie Rose Gold Timepiece" class="welcome-back-bg-img">
+        <div class="welcome-back-overlay">
+            <span class="welcome-back-label">Resume your visit</span>
+            <h2 class="welcome-back-title">Welcome back</h2>
+            <a href="collection.html" class="welcome-back-btn" id="continueBrowsingBtn" aria-label="Continue browsing the collection">
+                Continue browsing
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about"
+    class="about-section reveal">
+
+    <h2 class="section-title"
+        data-aos="fade-up">
+
+        About Us
+
+    </h2>
+
+    <p>
+
+        Venturo Chronométrie is driven by a singular
+        mission—to craft luxury timepieces that transcend
+        generations. Every watch is designed with precision,
+        elegance and durability, blending timeless artistry
+        with modern engineering.
+
+        Our commitment to excellence ensures every creation
+        reflects the heritage of fine Swiss-inspired
+        horology while delivering exceptional performance
+        for today's collectors and enthusiasts.
+
+    </p>
+
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact"
+    class="contact-section reveal">
+
+    <h2 class="section-title">
+
+        Contact
+
+    </h2>
+
+    <p>
+
+        <i class="fa-solid fa-envelope"></i>
+
+        support@venturo.com
+
+    </p>
+
+</section>
+
+<button id="backToTop" aria-label="Back To Top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- ================= CART DRAWER ================= -->
+
+<div id="cartDrawer" class="cart-drawer">
+
+    <div class="cart-header">
+
+        <h2>Shopping Cart</h2>
+
+        <button id="closeCart">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+    <div id="cartItems">
+
+    </div>
+
+    <div class="cart-footer">
+
+        <h3>
+
+            Total :
+            ₹<span id="cartTotal">0</span>
+
+        </h3>
+
+        <button id="checkoutBtn">
+
+            Checkout
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= LEGAL & LICENSE INFORMATION ================= -->
+<section id="legal" class="legal-info-section">
+    <div class="legal-container">
+        <p class="legal-text">
+            Venturo Chronométrie Genève S.A. operates as an independent haute horlogerie atelier. All designs, movements, caliber references, and dial craftsmanship are proprietary to Venturo Chronométrie. Official warranty and chronometric certification provided with all timepieces.
+        </p>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="fade-up">
+
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <i class="fa-solid fa-crown footer-crown" aria-hidden="true"></i>
+            <span class="footer-brand-title">VENTURO CHRONOMÉTRIE</span>
+        </div>
+        <div class="footer-links">
+            <a href="collection.html">The Collection</a>
+            <a href="watch.html?product=datejust">Featured Datejust</a>
+            <a href="#about">Our Story</a>
+            <a href="#contact">Care & Service</a>
+            <a href="#legal">Legal & Certification</a>
+        </div>
+        <p class="copyright">
+            © 2026 Venturo Chronométrie. All Rights Reserved.
+        </p>
+    </div>
+
+</footer>
+
+<!-- ================= LIBRARIES ================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- ================= JS FILES ================= -->
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+
+
+
+<script>
+AOS.init({
+    duration:1000,
+    once:true
+});
+</script>
+
+</body>
+
+</html>

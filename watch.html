@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover Venturo Chronométrie - Timeless horology and master craftsmanship.">
+
+    <title>Venturo Chronométrie | Timepiece Detail</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- AOS -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body class="watch-page-body">
+
+<div id="scroll-progress"></div>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar" id="navbar">
+    <div class="navbar-inner">
+        <!-- Left: Hamburger Menu Button -->
+        <div class="nav-left">
+            <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="navMenuPanel">
+                <span class="hamburger-lines">
+                    <span class="line line-1"></span>
+                    <span class="line line-2"></span>
+                </span>
+                <span class="menu-label">Menu</span>
+            </button>
+        </div>
+
+        <!-- Center: Crown Symbol Only -->
+        <div class="nav-center">
+            <a href="index.html" class="brand-crown-only" aria-label="Venturo Home">
+                <i class="fa-solid fa-crown" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <!-- Right: Search, Wishlist, and Cart Icons -->
+        <div class="nav-right">
+            <button type="button" class="header-icon-btn search-trigger-btn" id="searchTriggerBtn" aria-label="Open search" aria-haspopup="dialog" aria-expanded="false" aria-controls="searchOverlay">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
+
+            <a href="index.html#products" class="wishlist-counter" id="wishlistTrigger" aria-label="View Wishlist">
+                <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                <span id="wishlistCount">0</span>
+            </a>
+
+            <div class="nav-icons">
+                <button id="cartBtn" class="icon-btn" aria-label="View Shopping Cart">
+                    <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                    <span id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ================= SEARCH OVERLAY ================= -->
+<div class="search-overlay" id="searchOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search Luxury Watches">
+    <div class="search-overlay-panel">
+        
+        <div class="search-overlay-top">
+            <button type="button" class="search-close-btn" id="closeSearchBtn" aria-label="Close search">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+
+            <a href="index.html" class="search-overlay-crown" aria-label="Home">
+                <i class="fa-solid fa-crown" aria-hidden="true"></i>
+            </a>
+
+            <div class="search-top-spacer" aria-hidden="true"></div>
+        </div>
+
+        <div class="search-overlay-content">
+            <div class="search-input-wrap search-box">
+                <i class="fa-solid fa-magnifying-glass search-field-icon" aria-hidden="true"></i>
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search watches"
+                    autocomplete="off"
+                    aria-label="Search watches">
+            </div>
+
+            <div class="search-shortcuts">
+                <h3 class="shortcuts-heading">Shortcuts</h3>
+                <ul class="shortcuts-list">
+                    <li><a href="collection.html" class="shortcut-link">Explore the collection</a></li>
+                    <li><a href="index.html#about" class="shortcut-link">Our story</a></li>
+                    <li><a href="index.html#contact" class="shortcut-link">Care & service</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= EXPANDED NAVIGATION MENU ================= -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <div class="nav-menu-panel" id="navMenuPanel" role="dialog" aria-modal="true" aria-label="Navigation Menu">
+        
+        <button class="nav-close-btn" id="closeMenuBtn" aria-label="Close navigation menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="nav-menu-layout">
+            <div class="nav-menu-left">
+                <span class="menu-category-title">Featured</span>
+
+                <ul class="nav-menu-list">
+                    <li><a href="index.html" class="menu-nav-link">Home</a></li>
+                    <li><a href="collection.html" class="menu-nav-link">The Collection</a></li>
+                    <li><a href="index.html#about" class="menu-nav-link">Our Story</a></li>
+                    <li><a href="index.html#storytelling" class="menu-nav-link">Watchmaking</a></li>
+                    <li><a href="index.html#contact" class="menu-nav-link">Care & Service</a></li>
+                    <li><a href="index.html#contact" class="menu-nav-link">Contact</a></li>
+                </ul>
+
+                <div class="menu-secondary-group">
+                    <a href="collection.html" class="menu-sub-link">Configure your Venturo</a>
+                    <a href="index.html#contact" class="menu-sub-link">Store locator</a>
+                </div>
+
+                <div class="menu-footer-info">
+                    <div class="menu-country">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>India</span>
+                    </div>
+                    <div class="menu-brand-mark">
+                        <i class="fa-solid fa-crown"></i>
+                        <span class="menu-brand-name">VENTURO</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-menu-right">
+                <div class="menu-tiles-grid">
+                    <a href="collection.html" class="nav-menu-tile" aria-label="Explore Collection">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero1.png" alt="Venturo Datejust watch">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>The Collection</span>
+                        </div>
+                    </a>
+
+                    <a href="index.html#storytelling" class="nav-menu-tile" aria-label="The Art of Watchmaking">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero2.png" alt="Venturo Sky-Dweller watch">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>The Art of Watchmaking</span>
+                        </div>
+                    </a>
+
+                    <a href="watch.html?product=seadweller" class="nav-menu-tile" aria-label="Sea-Dweller">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero3.png" alt="Venturo Sea-Dweller diver">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>Deep Sea Saturation</span>
+                        </div>
+                    </a>
+
+                    <a href="index.html#about" class="nav-menu-tile" aria-label="Maison Venturo & Story">
+                        <div class="tile-image-wrapper">
+                            <img src="assets/images/hero1.png" alt="Venturo Atelier and heritage">
+                        </div>
+                        <div class="tile-caption-pill">
+                            <span>Maison Venturo & Story</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= FEATURED WATCH HERO ================= -->
+<section id="watch-hero" class="featured-watch-section">
+
+    <div class="featured-watch-wrapper" id="watchHeroWrapper">
+        <picture class="featured-watch-picture">
+            <source id="watchHeroSource" media="(max-width: 768px)" srcset="assets/images/hero4.png">
+            <img id="watchHeroImg" src="assets/images/hero6.png" alt="Venturo Green Dial Datejust Watch" class="featured-watch-img">
+        </picture>
+
+        <!-- Top Header Overlay matching reference -->
+        <div class="featured-watch-header-overlay">
+            <div class="featured-watch-text-group">
+                <span class="featured-eyebrow" id="watchEyebrow">CHRONOMÉTRIE ROYALE</span>
+                <h1 class="featured-title" id="watchTitle">Datejust</h1>
+            </div>
+
+            <button type="button" class="featured-configure-btn add-cart-btn" id="heroConfigureBtn" data-id="daydate" aria-label="Configure and Add Datejust to Cart">
+                Configure
+            </button>
+        </div>
+
+        <!-- Scroll down indicator -->
+        <a href="#specs" class="watch-scroll-indicator" aria-label="Scroll to discover specifications">
+            <span class="scroll-indicator-text">Discover specifications</span>
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </a>
+    </div>
+
+</section>
+
+<!-- ================= TECHNICAL SPECIFICATIONS ================= -->
+<section id="specs" class="watch-specs-section">
+    <div class="specs-container">
+        
+        <div class="specs-header" data-aos="fade-up">
+            <span class="specs-tag">TIMEPIECE SPECIFICATIONS</span>
+            <h2 class="specs-title" id="specsTitle">Datejust Technical Profile</h2>
+            <p class="specs-description" id="specsDescription">
+                The archetype of the classic watch, celebrated for its timeless aesthetics and distinguished fluted bezel in an emerald sunray dial.
+            </p>
+        </div>
+
+        <div class="specs-grid" data-aos="fade-up">
+            <div class="spec-card">
+                <span class="spec-label">Calibre</span>
+                <span class="spec-val" id="specCalibre">Calibre 3255</span>
+                <span class="spec-note">Perpetual, mechanical, self-winding</span>
+            </div>
+
+            <div class="spec-card">
+                <span class="spec-label">Power Reserve</span>
+                <span class="spec-val" id="specReserve">70 Hours</span>
+                <span class="spec-note">High-capacity barrel architecture</span>
+            </div>
+
+            <div class="spec-card">
+                <span class="spec-label">Case Architecture</span>
+                <span class="spec-val" id="specCase">41 mm, Oystersteel & Gold</span>
+                <span class="spec-note">Monobloc middle case, screw-down back</span>
+            </div>
+
+            <div class="spec-card">
+                <span class="spec-label">Water Resistance</span>
+                <span class="spec-val" id="specWater">100 m / 330 ft</span>
+                <span class="spec-note">Twinlock double waterproofness system</span>
+            </div>
+
+            <div class="spec-card">
+                <span class="spec-label">Dial & Display</span>
+                <span class="spec-val" id="specDial">Mint Green Sunray</span>
+                <span class="spec-note">Highly legible Chromalight with blue glow</span>
+            </div>
+
+            <div class="spec-card">
+                <span class="spec-label">Bracelet</span>
+                <span class="spec-val" id="specBracelet">Jubilee Five-Piece</span>
+                <span class="spec-note">Concealed Crownclasp folding mechanism</span>
+            </div>
+        </div>
+
+        <div class="watch-purchase-bar" data-aos="fade-up">
+            <div class="purchase-price-group">
+                <span class="price-label">Official Venturo Retail</span>
+                <span class="price-value" id="watchPrice">₹8,50,000</span>
+            </div>
+
+            <div class="purchase-actions-group">
+                <button type="button" class="action-btn buy-now-btn add-cart-btn ripple-btn" id="specsAddToCartBtn" data-id="daydate">
+                    <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                    <span>Add to Cart</span>
+                </button>
+
+                <button type="button" class="action-btn wishlist-action-btn wishlist-btn" id="specsWishlistBtn" data-id="daydate" aria-label="Save to Wishlist">
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                    <span>Save</span>
+                </button>
+
+                <a href="collection.html" class="action-btn return-collection-btn">
+                    <span>All Collections</span>
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= LEGAL & LICENSE INFORMATION ================= -->
+<section id="legal" class="legal-info-section">
+    <div class="legal-container">
+        <p class="legal-text">
+            Venturo Chronométrie Genève S.A. operates as an independent haute horlogerie atelier. All designs, movements, caliber references, and dial craftsmanship are proprietary to Venturo Chronométrie. Official warranty and chronometric certification provided with all timepieces.
+        </p>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="fade-up">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <i class="fa-solid fa-crown footer-crown" aria-hidden="true"></i>
+            <span class="footer-brand-title">VENTURO CHRONOMÉTRIE</span>
+        </div>
+        <div class="footer-links">
+            <a href="collection.html">The Collection</a>
+            <a href="watch.html?product=datejust">Featured Datejust</a>
+            <a href="index.html#about">Our Story</a>
+            <a href="index.html#contact">Care & Service</a>
+            <a href="#legal">Legal & Certification</a>
+        </div>
+        <p class="copyright">
+            © 2026 Venturo Chronométrie. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+
+<!-- ================= LIBRARIES ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/wishlist.js"></script>
+
+<script>
+AOS.init({
+    duration: 900,
+    once: true
+});
+</script>
+
+</body>
+</html>
