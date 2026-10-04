@@ -516,15 +516,44 @@ function initStorytellingScroll() {
         };
     });
 
-    // Mobile / Reduced-Motion: Natural scroll, no pinning, elements visible
+    // Mobile / Reduced-Motion: Natural scroll, no pinning, elements visible with gentle fades
     mm.add("(max-width: 992px), (prefers-reduced-motion: reduce)", () => {
-        if (video) video.play().catch(() => {});
+        if (video) {
+            video.play().catch(() => {});
+        }
         gsap.set(header, { opacity: 1, y: 0, clearProps: "all" });
-        cards.forEach(card => {
-            gsap.set(card, { opacity: 1, y: 0, clearProps: "all" });
+        if (videoContainer) gsap.set(videoContainer, { scale: 1, borderRadius: "18px", clearProps: "transform" });
+        if (videoDim) gsap.set(videoDim, { opacity: 0, display: "none" });
+
+        const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const mobileTriggers = [];
+
+        cards.forEach((card) => {
+            if (isReduced) {
+                gsap.set(card, { opacity: 1, y: 0, clearProps: "all" });
+            } else {
+                gsap.set(card, { opacity: 0, y: 28 });
+                const st = ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 88%",
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(card, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.75,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+                mobileTriggers.push(st);
+            }
         });
-        if (videoContainer) gsap.set(videoContainer, { scale: 1, borderRadius: "0px", clearProps: "all" });
-        if (videoDim) gsap.set(videoDim, { opacity: 0, clearProps: "all" });
+
+        return () => {
+            mobileTriggers.forEach(st => st.kill());
+            cards.forEach(card => gsap.set(card, { clearProps: "all" }));
+        };
     });
 
     // Recalculate ScrollTrigger on full window load to guarantee pinpoint accuracy
