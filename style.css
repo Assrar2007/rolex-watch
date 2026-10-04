@@ -491,6 +491,232 @@ body.search-open{
 }
 
 /* =====================================================
+   DATEJUST SEAMLESS SINGLE-IMAGE SCROLL-DRIVEN EXPERIENCE
+   Master Photographic Hero: hero4.png
+===================================================== */
+
+.datejust-scroll-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #3e564f;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.datejust-scroll-section.is-scroll-active {
+    height: 250vh;
+    overflow: visible;
+    background: #3e564f;
+    display: block;
+}
+
+.datejust-scroll-section .datejust-sticky-stage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: block;
+    overflow: hidden;
+    background: #3e564f;
+}
+
+.datejust-scroll-section.is-scroll-active .datejust-sticky-stage {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: block;
+    z-index: 2;
+    background: #3e564f;
+}
+
+/* Master Single-Image Media Stage */
+.datejust-scroll-section .featured-watch-wrapper,
+.datejust-scroll-section.is-scroll-active .featured-watch-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    display: block;
+    z-index: 1;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.datejust-media-stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+    background: #3e564f;
+}
+
+/* Disable universal transition on GSAP scrubbed elements to prevent animation lag */
+.datejust-scroll-section,
+.datejust-scroll-section .featured-watch-wrapper,
+.datejust-scroll-section .datejust-media-stage,
+.datejust-scroll-section .datejust-master-photo,
+.datejust-scroll-section .featured-watch-header-overlay,
+.datejust-scroll-section .featured-watch-text-group,
+.datejust-scroll-section .watch-story-overlay,
+.datejust-scroll-section .watch-scroll-indicator {
+    transition: none !important;
+}
+
+.datejust-master-photo {
+    width: 100%;
+    height: 165vh;
+    min-height: 165vh;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transform-origin: center top;
+    will-change: transform;
+    -webkit-mask-image: linear-gradient(to bottom, #000000 0%, #000000 82%, rgba(0,0,0,0) 99%);
+    mask-image: linear-gradient(to bottom, #000000 0%, #000000 82%, rgba(0,0,0,0) 99%);
+}
+
+/* Opening Introduction Overlay */
+.featured-watch-header-overlay {
+    position: absolute;
+    top: 96px;
+    left: 0;
+    width: 100%;
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 10;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.featured-watch-text-group {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    max-width: 680px;
+    width: 90%;
+}
+
+.featured-eyebrow {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.featured-title {
+    font-size: 56px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    margin: 0 0 12px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+.featured-intro-desc {
+    font-size: 16px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 580px;
+    margin: 0 auto;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+    font-weight: 400;
+}
+
+/* Story View Overlay */
+.watch-story-overlay {
+    position: absolute;
+    bottom: 10vh;
+    left: 0;
+    width: 100%;
+    padding: 0 60px;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(35px);
+    pointer-events: none;
+    will-change: opacity, transform;
+}
+
+.watch-story-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.watch-story-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.watch-story-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: #cadfd2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.watch-story-headline {
+    font-size: 42px;
+    line-height: 1.18;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+.watch-story-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.watch-story-lead {
+    font-size: 20px;
+    line-height: 1.55;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+.watch-story-body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 400;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    margin: 0;
+}
+
+/* =====================================================
    STORYTELLING SECTION (STICKY VIDEO & CONTINUOUS FLOW)
    Video Background with 3 Sequential Sliding Panels
 ===================================================== */

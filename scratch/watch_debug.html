@@ -377,5 +377,35 @@ AOS.init({
 });
 </script>
 
+
+<script>
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const r = (id) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const b = el.getBoundingClientRect();
+      const s = getComputedStyle(el);
+      return { id, top: b.top, left: b.left, width: b.width, height: b.height, bottom: b.bottom, pos: s.position, topS: s.top, disp: s.display, trans: s.transform, overflow: s.overflow };
+    };
+    const rep = [
+      r("navbar"),
+      r("watch-hero"),
+      r("datejustStickyStage"),
+      r("watchHeroWrapper"),
+      r("datejustMediaStage"),
+      r("watchHeroImg"),
+      r("watchHeaderOverlay"),
+      r("watchTitleGroup"),
+      r("heroConfigureBtn"),
+      r("watchStoryOverlay")
+    ];
+    const div = document.createElement("div");
+    div.id = "LAYOUT_DUMP";
+    div.textContent = JSON.stringify(rep);
+    document.body.appendChild(div);
+  }, 600);
+});
+</script>
 </body>
 </html>

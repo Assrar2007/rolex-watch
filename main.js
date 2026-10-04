@@ -123,15 +123,16 @@ function initWatchDetailPage() {
 
         datejust: {
             id: "daydate",
-            eyebrow: "CHRONOMÉTRIE ROYALE",
+            eyebrow: "VENTURO CHRONOMÉTRIE",
             title: "Datejust",
-            bgGradient: "radial-gradient(circle at 50% 50%, #768c81 0%, #3e4f46 100%)",
-            desktopImg: "assets/images/hero6.png",
+            bgGradient: "transparent",
+            desktopImg: "assets/images/hero4.png",
+            teaserImg: "assets/images/hero4.png",
             mobileImg: "assets/images/hero4.png",
             alt: "Venturo Green Dial Datejust Watch",
             price: "₹8,50,000",
             specsTitle: "Datejust Technical Profile",
-            specsDesc: "The archetype of the classic watch, celebrated for its timeless aesthetics and distinguished fluted bezel in an emerald sunray dial.",
+            specsDesc: "The archetype of the classic watch, celebrated for its timeless aesthetics, distinguished fluted bezel, and vibrant mint green sunray dial.",
             calibre: "Calibre 3255",
             reserve: "70 Hours",
             case: "41 mm, Oystersteel & Gold",
@@ -142,15 +143,16 @@ function initWatchDetailPage() {
 
         daydate: {
             id: "daydate",
-            eyebrow: "CHRONOMÉTRIE ROYALE",
+            eyebrow: "VENTURO CHRONOMÉTRIE",
             title: "Datejust",
-            bgGradient: "radial-gradient(circle at 50% 50%, #768c81 0%, #3e4f46 100%)",
-            desktopImg: "assets/images/hero6.png",
+            bgGradient: "transparent",
+            desktopImg: "assets/images/hero4.png",
+            teaserImg: "assets/images/hero4.png",
             mobileImg: "assets/images/hero4.png",
             alt: "Venturo Green Dial Datejust Watch",
             price: "₹8,50,000",
             specsTitle: "Datejust Technical Profile",
-            specsDesc: "The archetype of the classic watch, celebrated for its timeless aesthetics and distinguished fluted bezel in an emerald sunray dial.",
+            specsDesc: "The archetype of the classic watch, celebrated for its timeless aesthetics, distinguished fluted bezel, and vibrant mint green sunray dial.",
             calibre: "Calibre 3255",
             reserve: "70 Hours",
             case: "41 mm, Oystersteel & Gold",
@@ -206,13 +208,32 @@ function initWatchDetailPage() {
     document.title = `Venturo Chronométrie | ${data.title}`;
 
     const heroSection = document.getElementById("watch-hero");
-    if (heroSection) heroSection.style.background = data.bgGradient;
+    if (heroSection) {
+        if (paramKey === "datejust" || paramKey === "daydate") {
+            heroSection.style.background = "";
+        } else {
+            heroSection.style.background = data.bgGradient;
+        }
+    }
 
     const eyebrow = document.getElementById("watchEyebrow");
     if (eyebrow) eyebrow.textContent = data.eyebrow;
 
     const title = document.getElementById("watchTitle");
     if (title) title.textContent = data.title;
+
+    const introDesc = document.getElementById("watchIntroDesc");
+    if (introDesc) introDesc.textContent = data.specsDesc;
+
+    const imgTeaser = document.getElementById("watchImgTeaser");
+    if (imgTeaser) {
+        if (data.teaserImg) {
+            imgTeaser.src = data.teaserImg;
+            imgTeaser.style.display = "";
+        } else {
+            imgTeaser.style.display = "none";
+        }
+    }
 
     const heroImg = document.getElementById("watchHeroImg");
     if (heroImg) {
@@ -259,6 +280,143 @@ function initWatchDetailPage() {
 
     const specsWishlistBtn = document.getElementById("specsWishlistBtn");
     if (specsWishlistBtn) specsWishlistBtn.setAttribute("data-id", data.id);
+
+    // Initialize smooth scroll-driven feature for green Datejust watch
+    if (paramKey === "datejust" || paramKey === "daydate") {
+        initDatejustScrollExperience();
+    } else if (heroSection) {
+        heroSection.classList.remove("is-scroll-active");
+    }
+
+}
+
+/*=========================================================
+ DATEJUST SCROLL-DRIVEN EXPERIENCE
+ - Single continuous master photographic hero (hero4.png)
+ - Opening view: Upper half of watch enters from bottom, title & desc visible in upper viewport
+ - Scroll transition: Same continuous image glides smoothly upward through viewport
+ - Story view: Watch travels toward/past top of viewport as horology story appears beneath it
+ - Reversible bidirectional scrub, responsive & accessible fallback
+=========================================================*/
+
+function initDatejustScrollExperience() {
+
+    const heroSection = document.getElementById("watch-hero");
+    const heroImg = document.getElementById("watchHeroImg");
+    const headerOverlay = document.getElementById("watchHeaderOverlay");
+    const titleGroup = document.getElementById("watchTitleGroup");
+    const storyOverlay = document.getElementById("watchStoryOverlay");
+    const scrollIndicator = document.getElementById("watchScrollIndicator");
+
+    if (!heroSection || !heroImg) return;
+
+    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+        return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Responsive and reduced-motion handling
+    const mm = gsap.matchMedia();
+
+    mm.add({
+        isDesktop: "(min-width: 993px) and (prefers-reduced-motion: no-preference)",
+        isMobileOrReduced: "(max-width: 992px), (prefers-reduced-motion: reduce)"
+    }, (context) => {
+        const { isDesktop } = context.conditions;
+
+        if (isDesktop) {
+            heroSection.classList.add("is-scroll-active");
+
+            // Initial baseline state:
+            // Single master image hero4.png is anchored at top: 0 with natural height
+            gsap.set(heroImg, {
+                yPercent: 0,
+                scale: 1.0,
+                transformOrigin: "center top"
+            });
+
+            if (headerOverlay) {
+                gsap.set(headerOverlay, { opacity: 1, y: 0 });
+            }
+
+            if (scrollIndicator) {
+                gsap.set(scrollIndicator, { opacity: 1, y: 0 });
+            }
+
+            if (storyOverlay) {
+                gsap.set(storyOverlay, {
+                    opacity: 0,
+                    y: 40
+                });
+            }
+
+            // Master continuous scrubbed timeline tied directly to scroll progress
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: heroSection,
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 0.6,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            // 1. Opening composition -> Scroll begins:
+            // Fade out the header overlay (title, intro desc, configure btn) and scroll indicator cleanly
+            if (headerOverlay) {
+                tl.to(headerOverlay, {
+                    opacity: 0,
+                    y: -35,
+                    duration: 0.22,
+                    ease: "power1.out"
+                }, 0.02);
+            }
+
+            if (scrollIndicator) {
+                tl.to(scrollIndicator, {
+                    opacity: 0,
+                    y: 18,
+                    duration: 0.16,
+                    ease: "power1.out"
+                }, 0.02);
+            }
+
+            // 2. Continuous upward movement of the SAME continuous photograph:
+            // As visitor scrolls down, the image moves smoothly upward to reveal the rest
+            // of the watch face, fluted bezel, and lower bracelet progressively, then travels
+            // into the upper viewport so only the bracelet tip remains visible at the top.
+            tl.to(heroImg, {
+                yPercent: -68,
+                duration: 0.95,
+                ease: "power1.inOut"
+            }, 0);
+
+            // 3. Story View:
+            // As the watch travels toward the top of the viewport,
+            // the authentic Venturo horology story appears naturally beneath it.
+            if (storyOverlay) {
+                tl.to(storyOverlay, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.40,
+                    ease: "power2.out"
+                }, 0.52);
+            }
+
+        } else {
+            // Mobile or reduced motion: clean natural-scroll layout without pinned effects
+            heroSection.classList.remove("is-scroll-active");
+            gsap.set([heroImg, titleGroup, headerOverlay, storyOverlay, scrollIndicator], {
+                clearProps: "all"
+            });
+        }
+    });
+
+    // Ensure ScrollTrigger measures proper layout dimensions
+    requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+    });
 
 }
 
