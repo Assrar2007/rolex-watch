@@ -16,27 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
 =========================================================*/
 
 function initWishlist() {
-
-    const buttons = document.querySelectorAll(".wishlist-btn");
-
-    if (!buttons.length) return;
-
     loadWishlist();
-
-    buttons.forEach(button => {
-
-        button.addEventListener("click", function (e) {
-
-            e.stopPropagation();
-
-            const id = this.dataset.id;
-
-            toggleWishlist(id, this);
-
-        });
-
+    document.addEventListener("click", event => {
+        const button = event.target.closest(".wishlist-btn");
+        if (!button) return;
+        event.stopPropagation();
+        toggleWishlist(button.dataset.id, button);
     });
-
 }
 
 /*=========================================================
@@ -85,9 +71,9 @@ function toggleWishlist(id, button) {
 
         button.classList.remove("active");
 
-        icon.classList.remove("fa-solid");
+        icon?.classList.remove("fa-solid");
 
-        icon.classList.add("fa-regular");
+        icon?.classList.add("fa-regular");
 
         showWishlistMessage("Removed from Wishlist");
 
@@ -99,9 +85,9 @@ function toggleWishlist(id, button) {
 
         button.classList.add("active");
 
-        icon.classList.remove("fa-regular");
+        icon?.classList.remove("fa-regular");
 
-        icon.classList.add("fa-solid");
+        icon?.classList.add("fa-solid");
 
         animateHeart(button);
 
@@ -133,9 +119,9 @@ function loadWishlist() {
 
             button.classList.add("active");
 
-            icon.classList.remove("fa-regular");
+            icon?.classList.remove("fa-regular");
 
-            icon.classList.add("fa-solid");
+            icon?.classList.add("fa-solid");
 
         }
 

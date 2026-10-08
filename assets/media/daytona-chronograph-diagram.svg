@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Chronograph layout diagram</title>
+  <desc id="desc">A generic, non-photographic chronograph diagram with three counters, timing pushers and a tachymetric bezel. It is not a product image or a specific watch configuration.</desc>
+  <rect width="800" height="800" fill="#101c19"/>
+  <circle cx="400" cy="400" r="302" fill="#c9b77a"/>
+  <circle cx="400" cy="400" r="278" fill="#172622" stroke="#e5d9b2" stroke-width="3"/>
+  <circle cx="400" cy="400" r="226" fill="#f0ede3"/>
+  <circle cx="400" cy="400" r="210" fill="none" stroke="#273a33" stroke-width="2"/>
+  <g fill="#273a33" font-family="Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle">
+    <text x="400" y="204">TACHYMETRIC SCALE</text><text x="400" y="617">CHRONOGRAPH · SCHEMATIC</text>
+  </g>
+  <g fill="#d5d0c4" stroke="#273a33" stroke-width="5">
+    <circle cx="400" cy="315" r="50"/><circle cx="326" cy="437" r="50"/><circle cx="474" cy="437" r="50"/>
+  </g>
+  <g stroke="#273a33" stroke-width="4" stroke-linecap="round">
+    <path d="M400 281v28m0 12v26M292 437h27m12 0h26M444 437h27m12 0h26"/>
+  </g>
+  <g fill="#273a33"><circle cx="400" cy="315" r="6"/><circle cx="326" cy="437" r="6"/><circle cx="474" cy="437" r="6"/></g>
+  <g stroke="#a23b2d" stroke-width="6" stroke-linecap="round"><path d="M400 400V279"/><path d="M400 400l106 62"/></g>
+  <circle cx="400" cy="400" r="12" fill="#c9b77a" stroke="#273a33" stroke-width="4"/>
+  <g fill="#c9b77a"><rect x="694" y="320" width="55" height="28" rx="9"/><rect x="694" y="452" width="55" height="28" rx="9"/><circle cx="730" cy="400" r="25"/></g>
+</svg>

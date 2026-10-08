@@ -136,11 +136,15 @@ function initWatchDetailPage() {
 
     const paramKey = (new URLSearchParams(window.location.search).get("product") || "datejust").toLowerCase();
     const data = window.VenturoCatalog.get(paramKey) || window.VenturoCatalog.get("datejust");
-    const title = data.variant;
-    const description = data.description;
+    const isDaytona = data.family === "Cosmograph Daytona";
+    const title = isDaytona ? "Cosmograph Daytona" : data.variant;
+    const description = isDaytona
+        ? `Rolex ref. ${data.exactReference}: ${data.material}, ${data.size}. Photo shows family reference 126528LN, not this model. Reference research only; no Venturo stock or offer.`
+        : data.description;
 
-    document.title = `Venturo Chronométrie | ${title}`;
+    document.title = `Venturo Chronométrie | ${title}${isDaytona ? ` · Ref. ${data.exactReference}` : ""}`;
     document.body.setAttribute("data-product", data.canonicalId);
+    document.body.classList.toggle("reference-only-route", data.saleStatus === "unavailable");
 
     const heroSection = document.getElementById("watch-hero");
     if (heroSection) {
@@ -159,35 +163,59 @@ function initWatchDetailPage() {
     if (introDesc) introDesc.textContent = description;
 
     const imgTeaser = document.getElementById("watchImgTeaser");
+    const daytonaDiagram = isDaytona ? "assets/media/daytona-chronograph-diagram.svg" : null;
+    const daytonaFamilyPhoto = isDaytona ? "assets/media/daytona-126528ln-hero.jpg" : null;
     if (imgTeaser) {
-        imgTeaser.src = data.image;
-        imgTeaser.alt = `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
-        imgTeaser.style.display = "";
+        const teaserMedia = data.image || daytonaDiagram;
+        if (teaserMedia) {
+            imgTeaser.src = teaserMedia;
+            imgTeaser.style.display = "";
+        } else {
+            imgTeaser.removeAttribute("src");
+            imgTeaser.style.display = "none";
+        }
+        imgTeaser.alt = daytonaDiagram ? "Generic three-counter chronograph diagram; not product photography or a specific model configuration" : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
     }
 
     const heroImg = document.getElementById("watchHeroImg");
     if (heroImg) {
-        if (data.image) {
-            heroImg.src = data.image;
+        const heroMedia = data.image || daytonaFamilyPhoto || daytonaDiagram;
+        if (heroMedia) {
+            heroImg.src = heroMedia;
             heroImg.hidden = false;
         } else {
             heroImg.removeAttribute("src");
             heroImg.hidden = true;
         }
-        heroImg.alt = `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
+        heroImg.alt = isDaytona
+            ? `Rolex Cosmograph Daytona reference 126528LN in a motorsport-context photograph. The selected reference is ${data.exactReference}; this image does not depict that exact reference.`
+            : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
     }
 
     const heroSource = document.getElementById("watchHeroSource");
-    if (heroSource) heroSource.srcset = data.image;
+    if (heroSource) heroSource.srcset = data.image || daytonaFamilyPhoto || daytonaDiagram || "";
+
+    const heroAttribution = document.getElementById("watchHeroAttribution");
+    if (heroAttribution) {
+        if (isDaytona) {
+            heroAttribution.innerHTML = `Family-context photo: Rolex Cosmograph Daytona reference 126528LN. Selected reference ${data.exactReference} is not shown. Photo by Verygoodlord, Wikimedia Commons, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Rolex_Le_Mans_Daytona_126528LN.jpg" target="_blank" rel="noopener noreferrer">Source and licence</a>`;
+            heroAttribution.hidden = false;
+        } else {
+            heroAttribution.textContent = "";
+            heroAttribution.hidden = true;
+        }
+    }
 
     const price = document.getElementById("watchPrice");
     if (price) price.textContent = window.VenturoCatalog.money(data);
 
     const specsTitle = document.getElementById("specsTitle");
-    if (specsTitle) specsTitle.textContent = `${data.variant} Technical Profile`;
+    if (specsTitle) specsTitle.textContent = `${isDaytona ? `${title} · ${data.exactReference}` : data.variant} Technical Profile`;
 
     const specsDesc = document.getElementById("specsDescription");
-    if (specsDesc) specsDesc.textContent = description;
+    if (specsDesc) specsDesc.textContent = data.family === "Cosmograph Daytona"
+        ? `${description} Rolex India source reviewed 8 October 2026.`
+        : description;
 
     const storyHeadline = document.getElementById("watchStoryHeadline");
     if (storyHeadline) storyHeadline.textContent = data.storyHeadline || "A refined watch story";
@@ -207,7 +235,7 @@ function initWatchDetailPage() {
     if (specReserve) specReserve.textContent = data.powerReserve;
 
     const specCase = document.getElementById("specCase");
-    if (specCase) specCase.textContent = `${data.size}, ${data.material}`;
+    if (specCase) specCase.textContent = [data.size, data.material].filter(Boolean).join(", ") || "Not available in this reference record";
 
     const specWater = document.getElementById("specWater");
     if (specWater) specWater.textContent = data.waterResistance;
@@ -224,8 +252,19 @@ function initWatchDetailPage() {
         heroBtn.setAttribute("aria-label", `Add ${data.variant} to Cart`);
         const unavailable = data.saleStatus === "unavailable";
         heroBtn.disabled = unavailable;
+        heroBtn.hidden = unavailable;
         heroBtn.textContent = unavailable ? "Reference only" : "Add to saved cart";
     }
+
+    const referenceConfigLink = document.getElementById("referenceConfigLink");
+    if (referenceConfigLink) referenceConfigLink.hidden = data.family !== "Cosmograph Daytona";
+    const finderLink = document.getElementById("watchFinderLink");
+    if (finderLink) finderLink.hidden = data.family !== "Cosmograph Daytona";
+    const enquiryLink = document.getElementById("watchEnquiryLink");
+    if (enquiryLink) enquiryLink.hidden = data.saleStatus === "unavailable";
+    const priceLabel = document.querySelector(".purchase-price-group .price-label");
+    if (priceLabel && data.family === "Cosmograph Daytona") priceLabel.textContent = "Venturo price";
+    if (price && data.family === "Cosmograph Daytona") price.textContent = "Not offered";
 
     const specsCartBtn = document.getElementById("specsAddToCartBtn");
     if (specsCartBtn) {
@@ -251,18 +290,21 @@ function initWatchDetailPage() {
 
     const galleryImage = document.getElementById("galleryImage");
     if (galleryImage) {
-        if (data.image) {
-            galleryImage.src = data.image;
+        const galleryMedia = data.image || daytonaDiagram;
+        if (galleryMedia) {
+            galleryImage.src = galleryMedia;
             galleryImage.hidden = false;
         } else {
             galleryImage.removeAttribute("src");
             galleryImage.hidden = true;
         }
-        galleryImage.alt = `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
+        galleryImage.alt = daytonaDiagram ? "Original three-counter chronograph schematic; not product photography and not a specific variant" : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
     }
 
     const galleryCaption = document.getElementById("galleryCaption");
-    if (galleryCaption) galleryCaption.textContent = data.galleryCaption || "Reference photograph; exact identity and reuse permission remain unverified.";
+    if (galleryCaption) galleryCaption.textContent = daytonaDiagram ? "Original Venturo schematic for chronograph orientation only; it is not a Rolex product image and does not show this model’s configuration." : (data.galleryCaption || "Reference photograph; exact identity and reuse permission remain unverified.");
+    const galleryEyebrow = document.getElementById("galleryEyebrow");
+    if (galleryEyebrow && daytonaDiagram) galleryEyebrow.textContent = "SCHEMATIC · NOT PRODUCT PHOTOGRAPHY";
 
     ["1", "2", "3"].forEach(index => {
         const featureTitle = document.getElementById(`featureTitle${index}`);
@@ -280,6 +322,47 @@ function initWatchDetailPage() {
     const contextLink = document.getElementById("contextLink");
     if (contextLink) {
         contextLink.href = data.referenceUrl || "https://www.rolex.com/en-in/watches/datejust";
+    }
+
+    if (isDaytona) {
+        if (galleryTitle) galleryTitle.textContent = "Chronograph layout schematic";
+        if (galleryDescription) galleryDescription.textContent = "An original Venturo diagram explains the three-counter chronograph. It is a function illustration, not a Rolex product photograph or a selectable reference configuration.";
+        if (galleryCaption) galleryCaption.textContent = "Original schematic for chronograph orientation only; not product photography and not a model-specific configuration.";
+        if (galleryEyebrow) galleryEyebrow.textContent = "CHRONOGRAPH FUNCTION · SCHEMATIC";
+        const storyTag = document.getElementById("watchStoryTag");
+        if (storyTag) storyTag.textContent = "ROLEX REFERENCE CONTEXT";
+        const storyOverlay = document.getElementById("watchStoryOverlay");
+        if (storyOverlay) storyOverlay.setAttribute("aria-label", `Rolex Cosmograph Daytona reference story ${data.exactReference}`);
+        const related = document.getElementById("watchRelatedLinks");
+        if (related) related.innerHTML = `
+            <a href="cosmograph-daytona.html">Cosmograph Daytona family <span aria-hidden="true">→</span></a>
+            <a href="finder.html?family=Cosmograph%20Daytona">Find Daytona references <span aria-hidden="true">→</span></a>
+            <a href="configure.html?family=cosmograph-daytona&amp;product=${data.canonicalId}">Explore reference options <span aria-hidden="true">→</span></a>
+            <a href="https://www.rolex.com/en-in/watches/cosmograph-daytona/features" target="_blank" rel="noopener noreferrer">Rolex chronograph features <span aria-hidden="true">↗</span></a>
+            <a href="https://www.rolex.com/en-in/watches/cosmograph-daytona/beyond-the-racetrack" target="_blank" rel="noopener noreferrer">Rolex motorsport story <span aria-hidden="true">↗</span></a>`;
+        const legal = document.getElementById("watchLegalText");
+        if (legal) legal.textContent = `Rolex reference ${data.exactReference} and specifications, accessed 8 October 2026. Reference research only: Venturo does not manufacture, certify, stock or sell this watch. No Venturo price or exact-variant product photograph is supplied.`;
+        const contextDisclaimer = document.getElementById("watchContextDisclaimer");
+        if (contextDisclaimer) contextDisclaimer.textContent = `This page presents Rolex reference ${data.exactReference} for research. The photograph above shows a different Daytona reference (126528LN) for family context; it is not an image of reference ${data.exactReference}. Venturo does not manufacture, certify, stock or sell Rolex watches.`;
+        const cartDrawer = document.getElementById("cartDrawer");
+        if (cartDrawer) cartDrawer.hidden = true;
+        const cartButton = document.getElementById("cartBtn");
+        if (cartButton) cartButton.hidden = true;
+    }
+
+    if (data.family === "Cosmograph Daytona") {
+        const titleTag = document.getElementById("specCalibre")?.closest(".spec-card")?.querySelector(".spec-note");
+        if (titleTag) titleTag.textContent = "Rolex reference specification";
+        const reserveTag = document.getElementById("specReserve")?.closest(".spec-card")?.querySelector(".spec-note");
+        if (reserveTag) reserveTag.textContent = "Approximately 72 hours; Rolex model-page specification";
+        const caseTag = document.getElementById("specCase")?.closest(".spec-card")?.querySelector(".spec-note");
+        if (caseTag) caseTag.textContent = `Exact Rolex reference ${data.exactReference}; not Venturo inventory`;
+        const waterTag = document.getElementById("specWater")?.closest(".spec-card")?.querySelector(".spec-note");
+        if (waterTag) waterTag.textContent = "Rolex model-page specification; not a Venturo product claim";
+        const dialTag = document.getElementById("specDial")?.closest(".spec-card")?.querySelector(".spec-note");
+        if (dialTag) dialTag.textContent = "Reference-page description; exact-variant image is not supplied";
+        const braceletTag = document.getElementById("specBracelet")?.closest(".spec-card")?.querySelector(".spec-note");
+        if (braceletTag) braceletTag.textContent = "Rolex model-page description; see linked source";
     }
 
     if (["datejust", "daydate", "datejust-rose", "airking"].includes(data.canonicalId)) {

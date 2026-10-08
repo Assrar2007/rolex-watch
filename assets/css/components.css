@@ -716,6 +716,26 @@ label{
 
 }
 
+.daytona-favourite{
+    position:static;
+    display:inline-flex;
+    width:auto;
+    height:auto;
+    margin:0 0 14px;
+    padding:9px 12px;
+    border:1px solid #a99a66;
+    border-radius:0;
+    background:#fffdfa;
+    color:#31483d;
+    font-weight:650;
+    cursor:pointer;
+    align-items:center;
+    gap:8px;
+}
+
+.daytona-favourite.active{background:#e5dcc0;color:#17211e;}
+.daytona-favourite i,.daytona-favourite span{pointer-events:none;}
+
 .wishlist-counter{
     display:flex;
     align-items:center;

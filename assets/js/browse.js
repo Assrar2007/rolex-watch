@@ -46,13 +46,14 @@
     function card(record) {
         const media = record.image
             ? `<img src="${record.image}" alt="${record.brand} ${record.variant} reference image" loading="lazy">`
-            : `<div class="browse-media-unavailable" role="img" aria-label="Air-King reference photography unavailable">Reference image unavailable</div>`;
-        const specs = [record.size, record.material, record.movement].filter(value => value && !value.startsWith("Not specified")).join(" · ");
+            : `<div class="browse-media-unavailable" role="img" aria-label="Exact-variant photography unavailable">Exact-variant photography unavailable</div>`;
+        const specs = [record.exactReference ? `Ref. ${record.exactReference}` : "", record.size, record.material, record.movement].filter(value => value && !value.startsWith("Not specified")).join(" · ");
         return `<article class="browse-model-card">
             ${media}
-            <div><span>${record.eyebrow}</span><h3>${record.variant}</h3>
+            <div><button class="daytona-favourite wishlist-btn" data-id="${record.canonicalId}" aria-label="Save Rolex reference ${record.exactReference} to Venturo favourites">Save to favourites</button>
+            <span>${record.eyebrow}</span><h3>${record.variant}</h3>
             <p>${specs || "Reference specifications unavailable"}</p>
-            <strong>${catalog.money(record)}</strong>
+            <strong>${record.saleStatus === "unavailable" ? "Reference only · no Venturo price" : catalog.money(record)}</strong>
             <a href="watch.html?product=${record.canonicalId}">View specification</a></div>
         </article>`;
     }
@@ -110,10 +111,26 @@
     function initFamilyCards() {
         const target = document.querySelector("[data-family-grid]");
         if (!target) return;
-        target.innerHTML = catalog.families.map(family => `<a class="family-card ${family.status}" href="${family.id === "air-king" ? "air-king.html" : `finder.html?family=${family.name}`}">
+        target.innerHTML = catalog.families.map(family => `<a class="family-card ${family.status}" href="${family.id === "air-king" ? "air-king.html" : family.id === "cosmograph-daytona" ? "cosmograph-daytona.html" : `finder.html?family=${encodeURIComponent(family.name)}`}">
             <span>${family.status === "reference-only" ? "Reference only" : "Project records"}</span>
             <h3>${family.name}</h3><p>${family.attribution}</p>
         </a>`).join("");
+    }
+
+    function initDaytonaFamily() {
+        const target = document.querySelector("[data-daytona-models]");
+        if (!target) return;
+        const records = catalog.records.filter(record => record.family === "Cosmograph Daytona");
+        target.innerHTML = records.map(record => `<article class="browse-model-card daytona-model-card">
+            <div class="browse-media-unavailable" role="img" aria-label="Exact-variant Rolex reference photograph unavailable">Exact-variant photograph unavailable</div>
+            <div><button class="daytona-favourite wishlist-btn" data-id="${record.canonicalId}" aria-label="Save Rolex reference ${record.exactReference} to Venturo favourites"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save to favourites</span></button>
+            <span>${record.eyebrow}</span><h3>${record.variant}</h3>
+            <p>Rolex reference ${record.exactReference} · ${record.size} · ${record.material} · ${record.movement}</p>
+            <p class="browse-source-date">Rolex source checked ${record.sourceAccessed || "date unavailable"}</p>
+            <strong>Reference only · no Venturo inventory or price</strong>
+            <a href="watch.html?product=${record.canonicalId}">Open attributed reference detail</a>
+            <a href="${record.referenceUrl}" target="_blank" rel="noopener noreferrer">Check the Rolex model page <span aria-hidden="true">↗</span></a></div>
+        </article>`).join("");
     }
 
     function initStandalone() {
@@ -137,11 +154,13 @@
         if (type === "themes") {
             target.querySelector("[data-finder-results]").innerHTML = themes.map(theme => `<article class="browse-model-card"><div><span>Theme</span><h3>${theme.name}</h3><p>${theme.description}</p><strong>${theme.ids.length ? `${theme.ids.length} project records` : "Reference navigation only"}</strong></div></article>`).join("");
         }
+        if (type === "daytona-family") initDaytonaFamily();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
         initCollection();
         initFamilyCards();
         initStandalone();
+        initDaytonaFamily();
     });
 })();

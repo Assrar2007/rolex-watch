@@ -1,0 +1,84 @@
+/* Daytona detail hero extends the shared watch-page layout. */
+.watch-page-body[data-product^="daytona-"] .datejust-media-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(5, 13, 11, .62) 0%, rgba(5, 13, 11, .14) 50%, rgba(5, 13, 11, .08) 100%);
+}
+
+.watch-page-body[data-product^="daytona-"] .datejust-master-photo {
+    object-position: center top;
+}
+
+.watch-page-body[data-product^="daytona-"] .featured-title {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(40px, 4.5vw, 58px);
+}
+
+.watch-page-body[data-product^="daytona-"] .featured-watch-header-overlay {
+    top: 56px;
+}
+
+.watch-page-body[data-product^="daytona-"] .featured-intro-desc {
+    max-width: 620px;
+}
+
+.watch-hero-attribution[hidden] {
+    display: none;
+}
+
+.watch-hero-attribution {
+    position: absolute;
+    z-index: 12;
+    left: 50%;
+    bottom: 56px;
+    width: min(calc(100% - 40px), 760px);
+    margin: 0;
+    padding: 9px 14px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(255, 255, 255, .24);
+    border-radius: 8px;
+    background: rgba(7, 15, 13, .76);
+    color: rgba(255, 255, 255, .94);
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.watch-hero-attribution a {
+    color: #f0d998;
+    text-underline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .watch-page-body[data-product^="daytona-"] .featured-title {
+        max-width: 340px;
+        font-size: clamp(30px, 7.5vw, 38px) !important;
+        line-height: 1.08;
+    }
+
+    .watch-page-body[data-product^="daytona-"] .featured-intro-desc {
+        max-width: 340px;
+        font-size: 13px;
+        line-height: 1.42;
+    }
+
+    .watch-page-body[data-product^="daytona-"] .featured-watch-header-overlay {
+        top: 32px !important;
+    }
+
+    .watch-page-body[data-product^="daytona-"] .datejust-master-photo {
+        object-position: center top !important;
+    }
+
+    .watch-hero-attribution {
+        bottom: 54px;
+        width: calc(100% - 28px);
+        padding: 8px 10px;
+        font-size: 10px;
+    }
+}

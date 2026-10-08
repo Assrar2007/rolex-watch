@@ -180,6 +180,48 @@
       "focalPoint": "not applicable",
       "intendedSection": "Research only; not integrated",
       "status": "research-only"
+    },
+    {
+      "id": "daytona-chronograph-diagram",
+      "localPaths": [
+        "assets/media/daytona-chronograph-diagram.svg"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Venturo project illustration",
+      "license": "Original project schematic; no external source used",
+      "permissionBasis": "Created as code-native explanatory art in this stage; not a photograph or exact watch rendering.",
+      "attribution": "Venturo schematic: generic three-counter chronograph layout; not a Rolex product image or configuration.",
+      "subject": "Generic chronograph function diagram",
+      "productReference": null,
+      "dimensions": {
+        "svg": "800x800 viewBox"
+      },
+      "focalPoint": "center",
+      "intendedSection": "Daytona detail gallery function illustration only; the shared opening hero uses the separately credited 126528LN family-context photograph",
+      "status": "integrated-original-illustration"
+    },
+    {
+      "id": "daytona-126528ln-commons",
+      "localPaths": [
+        "assets/media/daytona-126528ln-commons.jpg",
+        "assets/media/daytona-126528ln-hero.jpg"
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Rolex_Le_Mans_Daytona_126528LN.jpg",
+      "sourceFile": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Rolex_Le_Mans_Daytona_126528LN.jpg/960px-Rolex_Le_Mans_Daytona_126528LN.jpg",
+      "creator": "Verygoodlord",
+      "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "permissionBasis": "Wikimedia Commons file page identifies the uploader as copyright holder and lists CC BY-SA 4.0; attribution and share-alike terms retained.",
+      "attribution": "Rolex Le Mans Daytona 126528LN, photo by Verygoodlord, 20 November 2024, Wikimedia Commons, CC BY-SA 4.0; the detail hero is a local crop (x=0, y=260, width=960, height=910) of the licensed Commons image.",
+      "subject": "Rolex Le Mans Cosmograph Daytona reference 126528LN",
+      "productReference": "126528LN",
+      "dimensions": {
+        "sourceJpg": "960x1440",
+        "detailHeroCrop": "960x910"
+      },
+      "focalPoint": "Original: centered; detail crop: source y=260-1170, centered on the watch",
+      "intendedSection": "Family page and opening hero on Daytona detail routes as family context only; caption identifies 126528LN and states that the selected reference is not shown; never used as a model-card or exact-variant image",
+      "status": "integrated-licensed-editorial"
     }
   ]
 }

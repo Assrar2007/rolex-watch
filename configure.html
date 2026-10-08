@@ -9,13 +9,25 @@
 </head>
 <body class="browse-page">
 <main class="configure-page">
-    <nav class="site-breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="air-king.html">Air-King</a><span>/</span><span aria-current="page">Configurator</span></nav>
-    <section class="browse-page-hero">
+    <nav class="site-breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="air-king.html" id="configureFamilyLink">Air-King</a><span>/</span><span aria-current="page">Reference explorer</span></nav>
+    <section class="browse-page-hero" id="airKingConfig">
         <span>LOCAL-ONLY CONFIGURATOR</span>
         <h1>Air-King reference configuration</h1>
         <p>This interface records exploration only. It does not quote a price, claim inventory, or create an order.</p>
     </section>
-    <section class="watch-editorial-section">
+    <section class="browse-page-hero daytona-config-section" id="daytonaConfig" hidden>
+        <span>LOCAL REFERENCE EXPLORER · NO ORDER OR QUOTE</span>
+        <h1>Cosmograph Daytona reference options</h1>
+        <p>Choose an attributed Rolex model reference to open its detail state. This control does not change a product image, simulate an unavailable dial or bracelet, quote a price, or imply Venturo inventory.</p>
+        <div class="daytona-config-controls">
+            <label for="daytonaReferenceSelect">Rolex reference</label>
+            <select id="daytonaReferenceSelect"></select>
+            <p id="daytonaReferenceSummary" aria-live="polite"></p>
+            <a class="action-btn" id="daytonaReferenceOpen" href="watch.html?product=daytona-126500ln">Open attributed detail</a>
+        </div>
+        <p class="browse-empty">No exact-variant imagery is available in this explorer. Each selected record remains a text-only reference state.</p>
+    </section>
+    <section class="watch-editorial-section" id="genericConfig">
         <div class="watch-editorial-inner">
             <label for="airKingMaterial">Material reference</label>
             <select id="airKingMaterial"><option>Oystersteel — attributed reference description</option></select>
@@ -26,5 +38,39 @@
         </div>
     </section>
 </main>
+<script src="assets/js/catalog.js"></script>
+<script>
+(() => {
+    const params = new URLSearchParams(location.search);
+    const isDaytona = params.get("family") === "cosmograph-daytona" || (params.get("product") || "").startsWith("daytona-");
+    if (!isDaytona) return;
+    document.getElementById("airKingConfig").hidden = true;
+    document.getElementById("genericConfig").hidden = true;
+    document.getElementById("daytonaConfig").hidden = false;
+    const familyLink = document.getElementById("configureFamilyLink");
+    familyLink.href = "cosmograph-daytona.html";
+    familyLink.textContent = "Cosmograph Daytona";
+    const models = window.VenturoCatalog.records.filter(record => record.family === "Cosmograph Daytona");
+    const select = document.getElementById("daytonaReferenceSelect");
+    const openLink = document.getElementById("daytonaReferenceOpen");
+    const summary = document.getElementById("daytonaReferenceSummary");
+    models.forEach(record => {
+        const option = document.createElement("option");
+        option.value = record.canonicalId;
+        option.textContent = `Rolex ${record.exactReference} · ${record.material}`;
+        select.append(option);
+    });
+    const requested = params.get("product");
+    if (models.some(record => record.canonicalId === requested)) select.value = requested;
+    function update() {
+        const record = window.VenturoCatalog.get(select.value);
+        summary.textContent = `${record.variant} — ${record.size}, ${record.material}. No Venturo stock or price is claimed.`;
+        openLink.href = `watch.html?product=${record.canonicalId}`;
+    }
+    select.addEventListener("change", update);
+    update();
+    document.title = "Venturo Chronométrie | Cosmograph Daytona reference explorer";
+})();
+</script>
 </body>
 </html>

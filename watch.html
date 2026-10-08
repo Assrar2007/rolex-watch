@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/daytona-detail.css">
 </head>
 
 <body class="watch-page-body">
@@ -210,6 +211,7 @@
     <a href="watch.html?product=daydate">Day-Date 40</a>
     <a href="watch.html?product=datejust-rose">Datejust 36</a>
     <a href="watch.html?product=airking">Air-King 40</a>
+    <a href="cosmograph-daytona.html">Cosmograph Daytona</a>
 </nav>
 
 <!-- ================= FEATURED WATCH HERO ================= -->
@@ -229,6 +231,7 @@
                      loading="eager" 
                      fetchpriority="high">
             </div>
+            <p class="watch-hero-attribution" id="watchHeroAttribution" hidden></p>
         </div>
 
         <!-- Opening Viewport Product Introduction Overlay -->
@@ -244,13 +247,14 @@
             <button type="button" class="featured-configure-btn add-cart-btn" id="heroConfigureBtn" data-id="datejust-rose" aria-label="Add Datejust 36 Everose Rolesor to Cart">
                 Add to saved cart
             </button>
+            <a class="featured-configure-btn action-btn" id="referenceConfigLink" href="configure.html?family=cosmograph-daytona" hidden>Explore reference options</a>
         </div>
 
         <!-- Story View Overlay (Transitions in during scroll into warm metal section) -->
         <div class="watch-story-overlay" id="watchStoryOverlay" aria-label="Datejust 36 Reference Story">
             <div class="watch-story-container">
                 <div class="watch-story-left">
-                    <span class="watch-story-tag">PROJECT POSITIONING</span>
+                    <span class="watch-story-tag" id="watchStoryTag">PROJECT POSITIONING</span>
                     <h2 class="watch-story-headline" id="watchStoryHeadline">Proportion, warmth and a darker dial</h2>
                 </div>
                 <div class="watch-story-right">
@@ -341,7 +345,7 @@
                     <span>Save</span>
                 </button>
 
-                <a href="index.html#contact" class="action-btn return-collection-btn">
+                <a id="watchEnquiryLink" href="index.html#contact" class="action-btn return-collection-btn">
                     <span>Make an enquiry</span>
                     <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
@@ -349,6 +353,9 @@
                 <a href="collection.html" class="action-btn return-collection-btn">
                     <span>All Collections</span>
                     <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </a>
+                <a id="watchFinderLink" href="finder.html?family=Cosmograph%20Daytona" class="action-btn return-collection-btn" hidden>
+                    <span>Find Daytona references</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
@@ -359,7 +366,7 @@
 <section class="watch-editorial-section watch-gallery-section" id="gallery" aria-labelledby="galleryTitle">
     <div class="watch-editorial-inner">
         <div class="watch-editorial-heading">
-            <span class="specs-tag">ONE MASTER PHOTOGRAPH</span>
+            <span class="specs-tag" id="galleryEyebrow">ONE MASTER PHOTOGRAPH</span>
             <h2 id="galleryTitle">A darker Datejust expression</h2>
             <p id="galleryDescription">Hero3 is retained as one inspected reference photograph. It visually agrees with the dark dial, date window and fluted-bezel direction of this project record, but its exact model, size and alloy are not verified.</p>
         </div>
@@ -401,7 +408,7 @@
         </div>
         <div>
             <p id="contextBody">Rolex presents the Datejust family as a long-running design with a date display and multiple case, dial, bezel and bracelet combinations. This page uses that history only as attributed context.</p>
-            <p>Venturo does not claim to have created, manufactured, certified or retailed this watch. The current local record is a demo/reference entry for interface testing.</p>
+            <p id="watchContextDisclaimer">Venturo does not claim to have created, manufactured, certified or retailed this watch. The current local record is a demo/reference entry for interface testing.</p>
             <a class="text-link" id="contextLink" href="https://www.rolex.com/en-in/watches/datejust" target="_blank" rel="noopener noreferrer">Read the attributed reference page <span aria-hidden="true">↗</span></a>
         </div>
     </div>
@@ -413,7 +420,7 @@
             <span class="specs-tag">CONTINUE EXPLORING</span>
             <h2 id="relatedTitle">Other models and stories</h2>
         </div>
-        <div class="watch-related-links">
+        <div class="watch-related-links" id="watchRelatedLinks">
             <a href="watch.html?product=datejust">Explore Datejust 41 <span aria-hidden="true">→</span></a>
             <a href="watch.html?product=datejust-rose">Explore Datejust 36 <span aria-hidden="true">→</span></a>
             <a href="index.html#storytelling">Read the watchmaking stories <span aria-hidden="true">→</span></a>
@@ -440,7 +447,7 @@
 <!-- ================= LEGAL & LICENSE INFORMATION ================= -->
 <section id="legal" class="legal-info-section">
     <div class="legal-container">
-        <p class="legal-text">
+        <p class="legal-text" id="watchLegalText">
             Catalog prices and specifications on this demo are project reference inputs, not verified official retail facts. Product photography and reference names remain subject to source and permission review.
         </p>
     </div>

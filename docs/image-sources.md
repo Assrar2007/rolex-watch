@@ -64,3 +64,54 @@ composition was preserved as requested.
   `docs/media-manifest.json` as user-provided with rights pending. The image
   remains attributed to Rolex and is not presented as Venturo manufacture or
   inventory. Confirm public reuse permission before deployment.
+
+
+### Cosmograph Daytona family research and media
+
+Official Rolex India pages were inspected on 8 October 2026:
+
+- Family overview: <https://www.rolex.com/en-in/watches/cosmograph-daytona>.
+  It describes the Cosmograph Daytona as launched in 1963, shows the family
+  presentation, and links to its features, story and model selector.
+- Features: <https://www.rolex.com/en-in/watches/cosmograph-daytona/features>.
+  Observed topics include calibre 4131, the chronograph counters, tachymetric
+  scale, Cerachrom bezel and Oysterflex bracelet.
+- Motorsport story: <https://www.rolex.com/en-in/watches/cosmograph-daytona/beyond-the-racetrack>.
+  Observed historical milestones include Daytona Speedway's 1959 opening,
+  the 1963 Cosmograph launch, later chronograph movement updates and the 2023
+  calibre 4131 generation.
+- Current model listing: <https://www.rolex.com/en-in/watches/cosmograph-daytona/all-models>.
+  The listing exposed 47 results. This implementation samples five exact,
+  linked model references rather than claiming to reproduce all 47 variants.
+- Exact model pages checked: m126500ln-0001, m126518ln-0012,
+  m126509-0001, m126505-0005, and m126506-0001. The five detail links
+  and access date are stored per record in assets/data/watches.json.
+- 2026 announcement: <https://www.rolex.com/en-in/watches/new-watches/cosmograph-daytona>.
+  The overview describes a new Rolesium combination of Oystersteel and
+  platinum, but no exact reference was visible in the inspected overview;
+  it is linked as a story and not made a selectable model record.
+
+The original Daytona diagram at assets/media/daytona-chronograph-diagram.svg
+is a Venturo-made schematic of chronograph counters and pushers, not product
+photography, an exact model rendering, or a selectable visual configuration.
+
+The one integrated photograph is assets/media/daytona-126528ln-commons.jpg.
+Its Wikimedia Commons page identifies the subject as a Rolex Le Mans Daytona
+reference 126528LN, credits Verygoodlord, gives the photograph date as
+20 November 2024, and licenses it CC BY-SA 4.0. It appears as a credited
+family-context image on the family page and as the opening editorial image on
+Daytona detail pages. The visible caption identifies 126528LN and states that
+the selected reference is not shown. It is not represented as one of the five
+current model cards or as their model photography.
+Source page: <https://commons.wikimedia.org/wiki/File:Rolex_Le_Mans_Daytona_126528LN.jpg>.
+The original source image is not hotlinked. The family page uses the local
+960x1440 Commons derivative; the detail hero uses
+`assets/media/daytona-126528ln-hero.jpg`, a 960x910 crop taken from x=0,
+y=260 of that source. Both files keep the visible credit and CC BY-SA 4.0
+license terms recorded in the media manifest.
+
+Exact-variant photographs for the five listed model references were not
+cleared, so their cards use a text status and their detail galleries use a
+generic chronograph schematic. The detail-page hero uses the distinct,
+explicitly captioned 126528LN family-context photograph. Rolex product
+photography remains limited to this licensed reference image.

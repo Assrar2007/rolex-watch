@@ -7,7 +7,7 @@ window.VenturoCatalog = (() => {
         currency: "INR",
         families: [
             { id: "air-king", name: "Air-King", status: "reference-only", attribution: "Rolex reference family; no Venturo record" },
-            { id: "cosmograph-daytona", name: "Cosmograph Daytona", status: "reference-only", attribution: "Rolex reference family; no Venturo record" },
+                { id: "cosmograph-daytona", name: "Cosmograph Daytona", status: "reference-only", attribution: "Five sourced Rolex model references; no Venturo inventory" },
             { id: "datejust", name: "Datejust", status: "demo-reference", attribution: "Venturo project reference records" },
             { id: "lady-datejust", name: "Lady-Datejust", status: "reference-only", attribution: "Rolex reference family; no Venturo record" },
             { id: "day-date", name: "Day-Date", status: "demo-reference", attribution: "Venturo project reference records" },
@@ -164,13 +164,71 @@ window.VenturoCatalog = (() => {
                 contextHeading: "A reference family with an aviation vocabulary",
                 contextBody: "The Air-King name and history belong to Rolex. The current family page links its black dial and minutes scale to aviation-oriented legibility; this Venturo route presents only attributed reference research.",
                 referenceUrl: "https://www.rolex.com/en-in/watches/air-king"
-            }
+            },
+            ...[
+                { ref: "126500LN", route: "m126500ln-0001", id: "daytona-126500ln", material: "Oystersteel", dial: "White dial with black counter rings", bracelet: "Oyster bracelet", image: null },
+                { ref: "126518LN", route: "m126518ln-0012", id: "daytona-126518ln", material: "18 ct yellow gold", dial: "Golden and bright black", bracelet: "Oysterflex bracelet", image: null },
+                { ref: "126509", route: "m126509-0001", id: "daytona-126509", material: "18 ct white gold", dial: "Bright black and steel", bracelet: "Oyster bracelet", image: null },
+                { ref: "126505", route: "m126505-0005", id: "daytona-126505", material: "18 ct Everose gold", dial: "Bright chocolate and black", bracelet: "Oyster bracelet", image: null },
+                { ref: "126506", route: "m126506-0001", id: "daytona-126506", material: "950 platinum", dial: "Ice blue with chestnut-brown counter rings", bracelet: "Oyster bracelet", image: null }
+            ].map(model => ({
+                brand: "Rolex",
+                family: "Cosmograph Daytona",
+                canonicalId: model.id,
+                exactReference: model.ref,
+                variant: `Cosmograph Daytona Oyster 40 mm · ${model.ref}`,
+                material: model.material,
+                size: "40 mm",
+                movement: "Calibre 4131; self-winding mechanical chronograph",
+                powerReserve: "Approximately 72 hours",
+                waterResistance: "100 m",
+                price: null,
+                currency: "INR",
+                priceProvenance: "Not offered by Venturo; no Venturo price or availability claimed",
+                imageIds: [],
+                image: model.image,
+                sourceUrls: [
+                    `https://www.rolex.com/en-in/watches/cosmograph-daytona/${model.route}`,
+                    "https://www.rolex.com/en-in/watches/cosmograph-daytona"
+                ],
+                sourceAccessed: "2026-10-08",
+                contentStatus: "reference-only",
+                saleStatus: "unavailable",
+                description: `Rolex reference ${model.ref}: ${model.material}, 40 mm, with the Cosmograph Daytona chronograph. This is attributed reference information, not Venturo manufacture, stock or an offer for sale.`,
+                category: "professional",
+                eyebrow: `ROLEX REFERENCE ${model.ref}`,
+                dial: model.dial,
+                bracelet: model.bracelet,
+                badge: "Rolex reference",
+                imageMatchStatus: "No exact-variant photograph is integrated. The separately labelled 126528LN Commons image is not used as this model’s image.",
+                storyHeadline: "Time measured against the circuit",
+                storyLead: "Rolex introduced the Cosmograph Daytona in 1963 for motor-racing professionals. Its chronograph, three counters and tachymetric scale connect elapsed time with average speed.",
+                storyBody: `Rolex lists reference ${model.ref} as a 40 mm Cosmograph Daytona in ${model.material}. The model page describes calibre 4131, an approximately 72-hour power reserve and 100 m water resistance. No Venturo stock or price is represented.`,
+                galleryTitle: `Rolex ${model.ref} reference photography`,
+                galleryDescription: "Exact-variant photography is unavailable here. The reference identifier links to the official Rolex model page; the family diagram is illustrative only.",
+                galleryCaption: "Rolex model reference; no product photograph is supplied for this variant.",
+                featureTitle1: "Three-counter chronograph",
+                featureBody1: "The Rolex model page describes elapsed-time measurement through the central chronograph seconds hand, 30-minute counter and 12-hour counter.",
+                featureTitle2: "Tachymetric scale",
+                featureBody2: "The tachymetric bezel is used with elapsed time to read average speed over a measured distance. This description is attributed to Rolex.",
+                featureTitle3: "Calibre 4131",
+                featureBody3: "Rolex identifies calibre 4131 as the self-winding mechanical chronograph movement for this reference family.",
+                contextHeading: "Built around elapsed time",
+                contextBody: "Rolex’s Cosmograph Daytona story traces the family from its 1963 launch and its links to motor sport. The family identity, specifications and history on this page belong to Rolex; Venturo is presenting reference research only.",
+                referenceUrl: `https://www.rolex.com/en-in/watches/cosmograph-daytona/${model.route}`,
+                referenceOnly: true
+            }))
         ],
         compatibilityAliases: {
             datejust: "datejust",
             daydate: "daydate",
             "datejust-rose": "datejust-rose",
             airking: "airking",
+            "daytona-126500ln": "daytona-126500ln",
+            "daytona-126518ln": "daytona-126518ln",
+            "daytona-126509": "daytona-126509",
+            "daytona-126505": "daytona-126505",
+            "daytona-126506": "daytona-126506",
             skydweller: "datejust-rose",
             seadweller: "daydate"
         }
@@ -196,7 +254,7 @@ window.VenturoCatalog = (() => {
 
         grid.innerHTML = catalog.records.map(record => `
             <div class="product-card glass hover-card reveal" data-product="${record.canonicalId}" data-category="${record.category}">
-                <button class="wishlist-btn" data-id="${record.canonicalId}" aria-label="Save ${record.variant} to Wishlist">
+                    <button class="wishlist-btn" data-id="${record.canonicalId}" aria-label="Save ${record.variant} to Wishlist">
                     <i class="fa-regular fa-heart"></i>
                 </button>
                 <div class="product-card-thumb">
@@ -206,7 +264,7 @@ window.VenturoCatalog = (() => {
                 </div>
                 <h3>${record.variant}</h3>
                 <span class="product-card-tag">${record.eyebrow}</span>
-                <span class="product-card-price">${money(record)}</span>
+                <span class="product-card-price">${record.saleStatus === "unavailable" ? "Not available from Venturo" : money(record)}</span>
                 <div class="product-card-actions">
                     <span class="view-details-hint">Tap for details</span>
                 </div>
@@ -223,9 +281,7 @@ window.VenturoCatalog = (() => {
                     <li>Water resistance: ${record.waterResistance}</li>
                 </ul>
                 <div class="details-cta-group">
-                    <button class="add-cart-btn" data-id="${record.canonicalId}" aria-label="Add ${record.variant} to cart">
-                        <i class="fa-solid fa-cart-shopping"></i> Add To Cart
-                    </button>
+                    ${record.saleStatus === "unavailable" ? `<span class="reference-only-label">Reference only · not available from Venturo</span>` : `<button class="add-cart-btn" data-id="${record.canonicalId}" aria-label="Add ${record.variant} to cart"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</button>`}
                     <a href="watch.html?product=${record.canonicalId}" class="discover-model-btn">
                         <span>Full Specification</span>
                         <i class="fa-solid fa-arrow-right"></i>

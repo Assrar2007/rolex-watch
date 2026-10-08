@@ -1552,6 +1552,49 @@ body.search-open{
     margin-left:28px;
 }
 
+/* Cosmograph Daytona family reference page */
+.daytona-family-page{background:#f2f1ea;color:#17211e;}
+.daytona-family-page .daytona-hero{background:linear-gradient(120deg,#14231f,#253d34 64%,#7a6c48);color:#f6f3e9;}
+.daytona-family-page .daytona-hero p{max-width:760px;color:#e1e3d9;}
+.daytona-hero .browse-page-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
+.daytona-hero .action-btn{border-color:#cbb77a;color:#fff;background:transparent;}
+.daytona-hero .action-btn:hover,.daytona-hero .action-btn:focus-visible{background:#cbb77a;color:#17211e;}
+.daytona-intro-grid,.daytona-photo-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,7vw,110px);align-items:center;}
+.daytona-intro-grid h2,.daytona-photo-grid h2{max-width:470px;font-size:clamp(2rem,4vw,3.6rem);line-height:1.08;}
+.daytona-intro-grid p,.daytona-photo-grid p{line-height:1.8;}
+.daytona-intro-grid .text-link,.daytona-photo-grid .text-link{display:block;margin-top:14px;color:#315443;font-weight:650;}
+.daytona-photo-grid{grid-template-columns:1fr 1fr;align-items:start;}
+.daytona-photo-grid figure{margin:0;background:#e2ded2;}
+.daytona-photo-grid img{display:block;width:100%;max-height:700px;object-fit:cover;object-position:center 57%;}
+.daytona-photo-grid figcaption{padding:16px 18px;color:#4f5c54;font-size:.83rem;line-height:1.6;}
+.daytona-models-section .section-heading{max-width:850px;margin:0 auto 36px;text-align:center;}
+.daytona-model-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:1200px;margin:0 auto;}
+.daytona-model-card{display:grid;grid-template-columns:minmax(150px,.72fr) 1.28fr;align-items:stretch;min-width:0;}
+.daytona-model-card .browse-media-unavailable{display:flex;min-height:230px;align-items:center;justify-content:center;padding:24px;background:linear-gradient(145deg,#202f2a,#405148);color:#f2efe4;text-align:center;font-size:.9rem;}
+.daytona-model-card > div:last-child{padding:26px;}
+.daytona-model-card p{line-height:1.6;}
+.daytona-model-card strong{display:block;margin:14px 0;color:#6d5a28;font-size:.88rem;}
+.daytona-model-card a{display:inline-block;margin:8px 14px 0 0;color:#315443;font-weight:650;}
+.daytona-favourite{position:static;display:inline-flex;width:auto;height:auto;margin:0 0 14px;padding:9px 12px;border:1px solid #a99a66;border-radius:0;background:#fffdfa;color:#31483d;font-weight:650;cursor:pointer;align-items:center;gap:8px;}
+.daytona-favourite.active{background:#e5dcc0;color:#17211e;}
+.daytona-favourite i,.daytona-favourite span{pointer-events:none;}
+.daytona-config-section[hidden],#airKingConfig[hidden]{display:none;}
+.daytona-config-controls{display:grid;gap:12px;max-width:600px;margin:30px 0;}
+.daytona-config-controls select{min-height:48px;padding:10px;border:1px solid #89968d;background:#fff;color:#17211e;font:inherit;}
+.daytona-attribution{max-width:1120px;margin:0 auto;padding:36px 24px 56px;color:#5c655e;font-size:.9rem;line-height:1.7;}
+.daytona-chronograph-diagram{width:min(100%,600px);height:auto;filter:drop-shadow(0 18px 32px #101b1955);}
+.daytona-diagram-label{display:block;max-width:520px;margin:12px auto;color:#f4f0e6;font-size:.84rem;text-align:center;}
+.reference-only-label{color:#74643a;font-weight:650;}
+.reference-only-route #cartBtn,.reference-only-route #cartDrawer{display:none!important;}
+.reference-only-route .featured-configure-btn[hidden],
+.reference-only-route .purchase-actions-group [hidden]{display:none!important;}
+@media(max-width:760px){
+    .daytona-intro-grid,.daytona-photo-grid{grid-template-columns:1fr;gap:24px;}
+    .daytona-model-grid{grid-template-columns:1fr;}
+    .daytona-model-card{grid-template-columns:1fr;}
+    .daytona-model-card .browse-media-unavailable{min-height:160px;}
+}
+
 /* ===========================
    COMMON SECTION
 =========================== */

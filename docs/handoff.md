@@ -559,3 +559,115 @@ only after asset licensing and catalog provenance decisions are recorded.
   attributed to Rolex; confirm rights before deployment.
 - Official retail price, complete variant matrix and additional model pages
   remain unavailable and are not fabricated.
+
+## Stage 12-02 Cosmograph Daytona family handoff
+
+### Delivered
+
+- Added the canonical Rolex reference family page at
+  [`cosmograph-daytona.html`](../cosmograph-daytona.html), with chronograph
+  function and motorsport context, the official features/history links, related
+  source links, and local finder/reference-explorer entry points.
+- Added five reference-only model records with exact Rolex identities and local
+  detail states: 126500LN, 126518LN, 126509, 126505 and 126506. New canonical
+  IDs are `daytona-126500ln`, `daytona-126518ln`, `daytona-126509`,
+  `daytona-126505` and `daytona-126506`; existing featured IDs and the legacy
+  `skydweller`/`seadweller` aliases were preserved.
+- Added a text-only Daytona reference explorer in
+  [`configure.html`](../configure.html). Selecting a record opens its matching
+  detail route; unavailable imagery is not simulated. Generic unrelated
+  configurator controls are hidden for this family.
+- Added an original chronograph schematic and sourced one Wikimedia Commons
+  CC BY-SA 4.0 photo of separate reference 126528LN. It appears on the family
+  page and as the opening image on the shared Daytona detail layout, with a
+  visible caption that names the photographed reference and says the selected
+  model is not shown. The schematic stays in the gallery as a function
+  illustration. Source/license details and use limits are in
+  `docs/image-sources.md` and `docs/media-manifest.json`.
+- Added a 960x910 crop of the licensed source for the detail hero so the watch
+  enters the opening frame on narrow screens; the full source remains on the
+  family story section. The crop retains the same CC BY-SA 4.0 credit.
+- Updated catalogue/detail/finder/wishlist behavior for unpriced Rolex
+  reference records. No cart, stock, or Venturo sale is claimed.
+- Added explicit local-only favourite buttons to all five family model cards.
+  Each button stores the record's canonical Daytona ID and keeps the Rolex
+  reference-only attribution visible.
+- Aligned the detail hero to the existing watch-page format: a shorter
+  Cosmograph Daytona heading, reference eyebrow, readable dark photo scrim,
+  family-photo credit, matching content width and existing specs/story/gallery
+  sections. The opening description and caption both distinguish the photo's
+  126528LN identity from the selected model reference.
+- Rebuilt the family landing from scratch to match the image-led neighboring
+  family pages: a cinematic credited hero, five data-driven reference cards,
+  chronograph function copy, a motorsport timeline and a related-tools rail.
+  The family photo remains context-only; exact variant cards remain text-led.
+
+### Browser observations
+
+- Inspected the official Rolex India family overview, features page, “Born to
+  race” story, all-models page and representative model routes for references
+  126500LN, 126518LN, 126509, 126505 and 126506. The official model references
+  and technical claims were reviewed on 8 October 2026. The 2026 Rolesium
+  announcement was linked as a source story because its exact reference was
+  not exposed; no selectable model was invented for it.
+- Local browser verified the family landing, five individual detail deep links,
+  finder query and reference-explorer query. Each detail showed the requested
+  reference identity and attributed specifications, with no purchase/stock
+  controls. The finder showed all five records. The explorer selected 126506
+  from its query and linked to the matching detail; its other, unrelated
+  configurator controls were removed from the Daytona state.
+- Follow-up local browser review confirmed the revised Daytona hero and shared
+  specifications, schematic gallery, feature, attributed-context and related
+  link sections at desktop width and the narrow in-app viewport. The 126528LN
+  photo and credit appear in the hero; all five selected-reference states keep
+  their own identity and the warning that this family image is not that model.
+- Controlled browser verification passed at 1440x900 and 390x844. Saved
+  screenshots are `scratch/stage12-03-daytona-desktop.png` and
+  `scratch/stage12-03-daytona-phone.png`.
+- The rebuilt family page loads the credited 126528LN image, renders five
+  reference cards and six related links, and keeps its image-led hero distinct
+  from exact model imagery.
+- All five family cards expose distinct favourite buttons. Clicking the first
+  stored canonical ID `daytona-126500ln`; keyboard focus reached its accessible
+  name. Reduced-motion emulation reported no hero animation and no horizontal
+  overflow was present at 390px.
+- `git diff --check`, JSON parsing for the catalogue/media manifest, and
+  `node --check` for the changed JavaScript passed. The inline configurator
+  script was exercised in the browser. No push or deployment was performed.
+
+### Stage 12-02 restart verification
+
+- The earlier Daytona page pass was replaced in place rather than carried
+  forward as a new family route. The landing now cache-busts its browse script,
+  shows the `2026-10-08` Rolex source date on each of the five data-driven
+  cards, and keeps the official related rail to observed overview, feature,
+  story and all-models routes.
+- Browser verification was repeated on 8 October 2026 at desktop and phone
+  widths. The family hero image loaded at 390px, the page had no horizontal
+  overflow, reduced-motion emulation remained readable, and keyboard focus
+  reached the Home link. Finder returned all five references and its favourite
+  control persisted `daytona-126500ln` in `venturoWishlist` after the missing
+  wishlist script was wired in. The explorer selected `daytona-126506` and
+  opened its matching detail route; the detail retained the 126528LN
+  family-context warning and five related links.
+- The retained evidence captures are
+  `scratch/stage12-03-daytona-desktop.png` and
+  `scratch/stage12-03-daytona-phone.png`; the restart-specific source-date
+  and favourite checks were recorded from the live browser run above.
+  Validation passed with `node --check` for the changed JavaScript and
+  `git diff --check`.
+
+### Stage 12-02 blockers
+
+- Exact-variant licensed/model-matched photography is unavailable for the five
+  selectable records; cards use explicit placeholders and detail galleries use
+  an original schematic, not a visual configuration. The opening photo is a
+  separately identified family-context reference.
+- The Le Mans 126528LN photo documents a different reference and remains
+  limited to its visibly attributed family-context use under CC BY-SA 4.0.
+- Official retail prices and some complete variant availability are unknown
+  and omitted. The records remain Rolex reference research, not Venturo
+  inventory.
+
+Stop here after this stage. Do not begin the next family until the blockers
+above are addressed.
