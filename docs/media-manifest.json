@@ -222,6 +222,47 @@
       "focalPoint": "Original: centered; detail crop: source y=260-1170, centered on the watch",
       "intendedSection": "Family page and opening hero on Daytona detail routes as family context only; caption identifies 126528LN and states that the selected reference is not shown; never used as a model-card or exact-variant image",
       "status": "integrated-licensed-editorial"
+    },
+    {
+      "id": "lady-datejust-1987-commons",
+      "localPaths": [
+        "assets/media/lady-datejust-1987-commons.jpg"
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Rolex_watch_ladies_Datejust_1987.jpg",
+      "sourceFile": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Rolex_watch_ladies_Datejust_1987.jpg/1280px-Rolex_watch_ladies_Datejust_1987.jpg",
+      "creator": "Jonathan Mauer",
+      "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "permissionBasis": "Wikimedia Commons file page identifies the uploader as copyright holder and lists CC BY-SA 4.0. Visible credit and license link are provided; the unchanged source image remains under its share-alike terms.",
+      "attribution": "Rolex ladies Datejust made in 1987, photo by Jonathan Mauer, Wikimedia Commons, CC BY-SA 4.0; no modifications.",
+      "subject": "Historical Rolex ladies Datejust in stainless steel and yellow gold with diamond dial, made in 1987",
+      "productReference": "Not established; not a current selectable model",
+      "dimensions": {
+        "jpg": "1280x1280",
+        "sourceOriginal": "2000x2000"
+      },
+      "focalPoint": "center; full image, no crop",
+      "intendedSection": "Not used on the site since 9 October 2026 at the user request; local file retained, unreferenced, for provenance audit only.",
+      "status": "retained-not-used"
+    },
+    {
+      "id": "lady-datejust-user-supplied",
+      "localPaths": [
+        "assets/media/lady-datejust-user-supplied.png"
+      ],
+      "sourcePage": "User-provided chat attachment",
+      "sourceFile": "User-provided chat attachment",
+      "creator": "User supplied; creator not identified",
+      "license": "User directly requested use in this website; separate license terms not provided",
+      "permissionBasis": "Image supplied by the user in this conversation with a direct request to add it to the site.",
+      "attribution": "User-supplied Lady-Datejust family image; exact model and reference are not verified.",
+      "subject": "Rolex Lady-Datejust family visual; model/reference identity unverified",
+      "productReference": "Not established; not mapped to a selectable model",
+      "dimensions": {
+        "png": "1672x941"
+      },
+      "focalPoint": "Centered watch; full frame",
+      "intendedSection": "Lady-Datejust family hero and shared detail hero as family-level context only; not used on model cards or as verified selected-model imagery.",
+      "status": "integrated-user-supplied-family-context"
     }
   ]
 }

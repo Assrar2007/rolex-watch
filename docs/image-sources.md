@@ -115,3 +115,22 @@ cleared, so their cards use a text status and their detail galleries use a
 generic chronograph schematic. The detail-page hero uses the distinct,
 explicitly captioned 126528LN family-context photograph. Rolex product
 photography remains limited to this licensed reference image.
+
+
+### Lady-Datejust family research and media (9 October 2026)
+
+Official Rolex India pages were followed from the watch-family hub in the browser:
+
+- Family overview: <https://www.rolex.com/en-in/watches/lady-datejust>. It describes the family as introduced in 1957, with a current 28 mm case, and links to Features, Inspiring women and all models.
+- Features: <https://www.rolex.com/en-in/watches/lady-datejust/features>. Verified 28 mm Oyster case, calibre 2236, a broad range of bezels/dials/bracelets, and feature sections for the date display, President bracelet and movement.
+- Story: <https://www.rolex.com/en-in/watches/lady-datejust/inspiring-women>. The current overview links to this attributed Rolex story. The chronology is additionally checked against the Rolex newsroom family history below.
+- Current model listing: <https://www.rolex.com/en-in/watches/lady-datejust/all-models>. Browser showed 56 results and filters for materials, domed/fluted/gem-set bezels, Oyster/President/Jubilee bracelets, and light/coloured/dark/gem-set/diamond-paved dials. This stage samples four verified references; it does not claim to reproduce all 56 listings.
+- Representative individual model routes opened successfully: `m279160-0013` (ref. 279160; Oystersteel, pink dial, Jubilee bracelet), `m279174-0020` (ref. 279174; White Rolesor, white dial, Oyster bracelet), `m279173-0007` (ref. 279173; Yellow Rolesor, silver diamond-set dial, Jubilee bracelet), and `m279459rbr-0001` (ref. 279459RBR; 18 ct white gold, diamond-paved dial and President bracelet). Each route and access date are stored in `assets/data/watches.json`. No price is copied into the Venturo reference record.
+- Rolex newsroom history: <https://newsroom.rolex.com/watches/oyster-collection/lady-datejust>. It says the Lady-Datejust launched at 25 mm in 1957 and increased to 28 mm in 2015; it also describes the Oyster, Jubilee and President families and calibre 2236.
+
+Retired contextual photograph: `assets/media/lady-datejust-1987-commons.jpg` is no longer displayed or referenced by the Lady-Datejust pages as of 9 October 2026. The local file remains in the repository because file deletion was blocked; it is unreferenced by site code. Provenance retained for audit: <https://commons.wikimedia.org/wiki/File:Rolex_watch_ladies_Datejust_1987.jpg> identifies the 1987 Rolex ladies Datejust photo by Jonathan Mauer and its CC BY-SA 4.0 license.
+
+Exact-current-reference Rolex photographs were not cleared for reuse. The user supplied a separate Lady-Datejust family image now used on family and detail heroes; its precise model/reference is unverified, so model cards and configuration states remain text-led. Prices remain omitted.
+
+
+User-supplied Lady-Datejust family image: `assets/media/lady-datejust-user-supplied.png`, 1672×941, copied unchanged from the image attachment in the user request on 9 October 2026. It is used only as family-level hero context; no exact reference is identified, and it is not shown as a configured variant.
