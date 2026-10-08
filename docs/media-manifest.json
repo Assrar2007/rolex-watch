@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-08",
+  "assets": [
+    {
+      "id": "watchmaker-cc0",
+      "localPaths": [
+        "assets/media/watchmaker-cc0.webp",
+        "assets/media/watchmaker-cc0.jpg"
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Watchmaker.jpg",
+      "sourceFile": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Watchmaker.jpg",
+      "creator": "BfW",
+      "license": "CC0 1.0 / public domain dedication",
+      "permissionBasis": "Wikimedia Commons file metadata lists CC0 and no attribution requirement",
+      "attribution": "Watchmaker, BfW, Wikimedia Commons, CC0",
+      "subject": "Modern watchmaker at work",
+      "productReference": null,
+      "dimensions": {
+        "jpg": "448x293",
+        "webp": "448x293"
+      },
+      "focalPoint": "center",
+      "intendedSection": "Homepage watchmaking story card",
+      "status": "integrated"
+    },
+    {
+      "id": "hero4-project-reference",
+      "localPaths": [
+        "assets/images/hero4.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Unknown",
+      "license": "Unknown",
+      "permissionBasis": "Inherited project asset; no source or permission record",
+      "attribution": "Depicts a Rolex Datejust; retain Rolex attribution",
+      "subject": "Rolex Datejust green-dial watch photograph",
+      "productReference": "Rolex Datejust; exact reference not established by image alone",
+      "dimensions": {
+        "png": "567x767"
+      },
+      "focalPoint": "center",
+      "intendedSection": "Datejust demo detail composition and canonical catalog reference",
+      "status": "blocked"
+    },
+    {
+      "id": "hero1-project-reference",
+      "localPaths": [
+        "assets/images/hero1.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Unknown",
+      "license": "Unknown",
+      "permissionBasis": "Inherited project asset; no source or permission record",
+      "attribution": "Product identity and reuse permission not verified",
+      "subject": "Watch product image",
+      "productReference": null,
+      "dimensions": {
+        "png": "not inspected in this stage"
+      },
+      "focalPoint": "unknown",
+      "intendedSection": "Homepage and Day-Date demo card",
+      "status": "blocked"
+    },
+    {
+      "id": "hero2-project-reference",
+      "localPaths": [
+        "assets/images/hero2.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Unknown",
+      "license": "Unknown",
+      "permissionBasis": "Inherited project asset; no source or permission record",
+      "attribution": "Product identity and reuse permission not verified",
+      "subject": "Watch product image",
+      "productReference": null,
+      "dimensions": {
+        "png": "not inspected in this stage"
+      },
+      "focalPoint": "unknown",
+      "intendedSection": "Homepage story fallback",
+      "status": "blocked"
+    },
+    {
+      "id": "hero3-project-reference",
+      "localPaths": [
+        "assets/images/hero3.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Unknown",
+      "license": "Unknown",
+      "permissionBasis": "Inherited project asset; no source or permission record",
+      "attribution": "Product identity and reuse permission not verified",
+      "subject": "Watch product image",
+      "productReference": null,
+      "dimensions": {
+        "png": "not inspected in this stage"
+      },
+      "focalPoint": "unknown",
+      "intendedSection": "Homepage and Datejust 36 demo card",
+      "status": "blocked"
+    },
+    {
+      "id": "air-king-reference-photography",
+      "localPaths": [
+        "assets/media/air-king-user-provided.png"
+      ],
+      "sourcePage": "https://www.rolex.com/en-in/watches/air-king",
+      "sourceFile": null,
+      "creator": "Rolex (reference observation only)",
+      "license": "User-provided; not independently verified",
+      "permissionBasis": "Supplied by the project user for Air-King scroll reference media. Retain attribution and confirm reuse rights before public deployment.",
+      "attribution": "Rolex Air-King reference photograph supplied by the project user; not a Venturo-made watch.",
+      "subject": "Air-King family reference photography",
+      "productReference": null,
+      "dimensions": {
+        "png": "1365x768"
+      },
+      "focalPoint": "unknown",
+      "intendedSection": "Air-King family and detail states",
+      "status": "user-provided-rights-pending"
+    },
+    {
+      "id": "welcome-back-project-reference",
+      "localPaths": [
+        "assets/images/welcome-back.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Unknown",
+      "license": "Unknown",
+      "permissionBasis": "Inherited project asset; no source or permission record",
+      "attribution": "Product identity and reuse permission not verified",
+      "subject": "Editorial watch image",
+      "productReference": null,
+      "dimensions": {
+        "png": "not inspected in this stage"
+      },
+      "focalPoint": "unknown",
+      "intendedSection": "Homepage welcome-back feature",
+      "status": "blocked"
+    },
+    {
+      "id": "showcase-video-project",
+      "localPaths": [
+        "assets/video/showcase.mp4"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Unknown",
+      "license": "Unknown",
+      "permissionBasis": "Inherited project asset; no source or permission record",
+      "attribution": "Media provenance not verified",
+      "subject": "Homepage watchmaking sequence",
+      "productReference": null,
+      "dimensions": {
+        "video": "1280x720",
+        "duration": "30.016 seconds"
+      },
+      "focalPoint": "full frame",
+      "intendedSection": "Homepage watchmaking story background",
+      "status": "retained-but-blocked"
+    },
+    {
+      "id": "rolex-datejust-official-reference",
+      "localPaths": [],
+      "sourcePage": "https://www.rolex.com/watches/datejust/m126300-0020",
+      "sourceFile": null,
+      "creator": "Rolex",
+      "license": "All rights reserved; no reuse permission established",
+      "permissionBasis": "Official Rolex page opened for identity research only",
+      "attribution": "Rolex Datejust 41, reference m126300-0020",
+      "subject": "Datejust 41 Oystersteel, mint green dial",
+      "productReference": "m126300-0020",
+      "dimensions": {},
+      "focalPoint": "not applicable",
+      "intendedSection": "Research only; not integrated",
+      "status": "research-only"
+    }
+  ]
+}

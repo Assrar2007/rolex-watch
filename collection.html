@@ -25,6 +25,11 @@
 
 <body class="collection-page-body">
 
+<nav class="skip-links" aria-label="Skip links">
+    <a href="#main-content">Skip to content</a>
+    <a href="#site-footer">Skip to footer</a>
+</nav>
+
 <div id="scroll-progress"></div>
 
 <!-- ================= NAVBAR ================= -->
@@ -167,7 +172,7 @@
                         </div>
                     </a>
 
-                    <a href="watch.html?product=seadweller" class="nav-menu-tile" aria-label="Sea-Dweller">
+                    <a href="watch.html?product=datejust-rose" class="nav-menu-tile" aria-label="Datejust 36 Everose Rolesor">
                         <div class="tile-image-wrapper">
                             <img src="assets/images/hero3.png" alt="Venturo Sea-Dweller diver">
                         </div>
@@ -191,29 +196,46 @@
     </div>
 </div>
 
+<main id="main-content">
+<nav class="site-breadcrumbs" aria-label="Breadcrumb">
+    <a href="index.html">Home</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">The Collection</span>
+</nav>
+
 <!-- ================= COLLECTION HERO HEADER ================= -->
 <section class="collection-hero-section">
     <div class="collection-hero-inner" data-aos="fade-up">
         <span class="collection-eyebrow">VENTURO CHRONOMÉTRIE</span>
         <h1 class="collection-main-title">The Collection</h1>
         <p class="collection-main-subtitle">
-            Explore the pinnacle of Swiss precision, timeless aesthetics, and uncompromising horological excellence.
+            Browse project reference records and clearly attributed family coverage without confusing reference research with Venturo inventory.
         </p>
 
-        <!-- Category Filters -->
-        <div class="collection-filter-bar">
-            <button type="button" class="filter-btn active" data-filter="all">All Models</button>
-            <button type="button" class="filter-btn" data-filter="classic">Classic</button>
-            <button type="button" class="filter-btn" data-filter="traveller">Traveller</button>
-            <button type="button" class="filter-btn" data-filter="professional">Professional</button>
+        <div class="browse-toolbar" data-browse-controls>
+            <label>Family <select data-filter="family"><option value="">All supported families</option></select></label>
+            <label>Material <select data-filter="material"><option value="">All materials</option></select></label>
+            <label>Size <select data-filter="size"><option value="">All sizes</option></select></label>
+            <label>Sort <select data-sort><option value="featured">Featured</option><option value="name-asc">Name A-Z</option><option value="price-asc">Price low to high</option><option value="price-desc">Price high to low</option></select></label>
+            <button type="button" class="browse-reset" data-reset-filters>Reset</button>
         </div>
+        <p class="browse-result-count" data-result-count aria-live="polite"></p>
     </div>
+</section>
+
+<section class="family-hub-section" aria-labelledby="family-heading">
+    <div class="section-heading">
+        <span class="collection-eyebrow">REFERENCE MAP</span>
+        <h2 id="family-heading">Explore by family</h2>
+        <p>Rolex family names are retained as attributed reference navigation. Only the three project records below are available as demo catalog data.</p>
+    </div>
+    <div class="family-card-grid" data-family-grid></div>
 </section>
 
 <!-- ================= COLLECTION PRODUCT GRID ================= -->
 <section id="products" class="products-section collection-page-section">
 
-    <div class="product-grid">
+    <div class="product-grid" data-catalog-grid>
 
         <!-- 1. DAY-DATE / DATEJUST -->
         <div class="product-card glass hover-card reveal" data-product="daydate" data-category="classic">
@@ -286,7 +308,7 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     Add To Cart
                 </button>
-                <a href="watch.html?product=skydweller" class="discover-model-btn">
+                <a href="watch.html?product=daydate" class="discover-model-btn">
                     <span>Full Specification</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -325,7 +347,7 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     Add To Cart
                 </button>
-                <a href="watch.html?product=seadweller" class="discover-model-btn">
+                <a href="watch.html?product=datejust-rose" class="discover-model-btn">
                     <span>Full Specification</span>
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -333,6 +355,7 @@
         </div>
 
     </div>
+    <p class="browse-empty" data-no-results hidden>No models match these supported filters. Reset the filters to view the catalog.</p>
 
 </section>
 
@@ -340,9 +363,16 @@
 <section id="legal" class="legal-info-section">
     <div class="legal-container">
         <p class="legal-text">
-            Venturo Chronométrie Genève S.A. operates as an independent haute horlogerie atelier. All designs, movements, caliber references, and dial craftsmanship are proprietary to Venturo Chronométrie. Official warranty and chronometric certification provided with all timepieces.
+            Catalog prices and specifications on this demo are project reference inputs, not verified official retail facts. Product photography and reference names remain subject to source and permission review.
         </p>
     </div>
+</section>
+
+<section class="browse-gateway-grid" aria-label="Browse more">
+    <a href="finder.html" class="browse-gateway-card"><span>Finder</span><strong>Find a model by supported attributes</strong></a>
+    <a href="new-watches.html" class="browse-gateway-card"><span>New watches</span><strong>View records with documented dates</strong></a>
+    <a href="accessories.html" class="browse-gateway-card"><span>Accessories</span><strong>Separate accessory data, not watch specifications</strong></a>
+    <a href="themes.html" class="browse-gateway-card"><span>Themed collections</span><strong>Browse accurate membership states</strong></a>
 </section>
 
 <button id="backToTop" aria-label="Back To Top">
@@ -372,7 +402,9 @@
 </div>
 
 <!-- ================= FOOTER ================= -->
-<footer class="fade-up">
+</main>
+
+<footer class="fade-up" id="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
             <i class="fa-solid fa-crown footer-crown" aria-hidden="true"></i>
@@ -397,10 +429,12 @@
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
 <!-- ================= SCRIPTS ================= -->
+<script src="assets/js/catalog.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/search.js"></script>
 <script src="assets/js/cart.js"></script>
 <script src="assets/js/wishlist.js"></script>
+<script src="assets/js/browse.js"></script>
 
 <script>
 AOS.init({
@@ -408,25 +442,6 @@ AOS.init({
     once: true
 });
 
-// Category filtering on collection page
-document.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const filter = btn.dataset.filter;
-        document.querySelectorAll(".product-card").forEach(card => {
-            const cat = card.dataset.category;
-            if (filter === "all" || cat === filter) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-                const prodId = card.dataset.product;
-                const detail = document.getElementById(prodId);
-                if (detail) detail.style.display = "none";
-            }
-        });
-    });
-});
 </script>
 
 </body>

@@ -26,6 +26,32 @@ function initSearch() {
 
     if (!searchInput) return;
 
+    const panel = document.querySelector("#searchOverlay .search-overlay-panel");
+    let restoreFocus = searchTriggerBtn;
+
+    function setBackgroundInert(isInert) {
+        document.querySelectorAll("body > *").forEach(element => {
+            if (element.id !== "searchOverlay" && element.id !== "navOverlay") {
+                element.inert = isInert;
+            }
+        });
+    }
+
+    function trapFocus(event) {
+        if (event.key !== "Tab" || !searchOverlay.classList.contains("open") || !panel) return;
+        const focusable = panel.querySelectorAll("a[href], button:not([disabled]), input, [tabindex]:not([tabindex='-1'])");
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
     createNoResultMessage();
     createSuggestionBox();
 
@@ -34,6 +60,8 @@ function initSearch() {
 
         if (!searchOverlay) return;
 
+        document.dispatchEvent(new CustomEvent("venturo:close-menu"));
+        restoreFocus = document.activeElement || searchTriggerBtn;
         searchOverlay.classList.add("open");
         searchOverlay.setAttribute("aria-hidden", "false");
 
@@ -44,6 +72,7 @@ function initSearch() {
         }
 
         document.body.classList.add("search-open");
+        setBackgroundInert(true);
 
         setTimeout(() => {
 
@@ -61,14 +90,11 @@ function initSearch() {
         searchOverlay.classList.remove("open");
         searchOverlay.setAttribute("aria-hidden", "true");
 
-        if (searchTriggerBtn) {
-
-            searchTriggerBtn.setAttribute("aria-expanded", "false");
-            searchTriggerBtn.focus();
-
-        }
+        if (searchTriggerBtn) searchTriggerBtn.setAttribute("aria-expanded", "false");
 
         document.body.classList.remove("search-open");
+        setBackgroundInert(false);
+        (restoreFocus || searchTriggerBtn).focus();
 
         const box = document.getElementById("searchSuggestions");
         if (box) {
@@ -84,6 +110,9 @@ function initSearch() {
         searchTriggerBtn.addEventListener("click", openSearch);
 
     }
+
+    document.addEventListener("venturo:close-search", closeSearch);
+    document.addEventListener("keydown", trapFocus);
 
     if (closeSearchBtn) {
 

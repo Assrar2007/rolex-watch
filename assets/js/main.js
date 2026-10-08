@@ -29,42 +29,57 @@ function initHeroSlider() {
 
     const slides = document.querySelectorAll(".slide");
     const dots = document.querySelectorAll(".slide-indicator .dot");
+    const previous = document.querySelector(".hero-previous");
+    const next = document.querySelector(".hero-next");
+    const pause = document.querySelector(".hero-pause");
 
     if (!slides.length) return;
 
     let currentSlide = 0;
+    let timer = null;
+    let paused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function showSlide(index) {
 
+        currentSlide = (index + slides.length) % slides.length;
         slides.forEach((slide, i) => {
-
-            slide.classList.toggle("active", i === index);
-
+            const active = i === currentSlide;
+            slide.classList.toggle("active", active);
+            slide.setAttribute("aria-hidden", String(!active));
         });
 
         dots.forEach((dot, i) => {
-
-            dot.classList.toggle("active", i === index);
-
+            const active = i === currentSlide;
+            dot.classList.toggle("active", active);
+            dot.setAttribute("aria-selected", String(active));
         });
 
     }
 
-    showSlide(currentSlide);
+    function schedule() {
+        if (timer) clearInterval(timer);
+        if (!paused) timer = setInterval(() => showSlide(currentSlide + 1), 6000);
+    }
 
-    setInterval(() => {
-
-        currentSlide++;
-
-        if (currentSlide >= slides.length) {
-
-            currentSlide = 0;
-
+    function setPaused(value) {
+        paused = value;
+        if (pause) {
+            pause.setAttribute("aria-pressed", String(paused));
+            pause.textContent = paused ? "Play" : "Pause";
+            pause.setAttribute("aria-label", `${paused ? "Play" : "Pause"} campaign rotation`);
         }
+        schedule();
+    }
 
-        showSlide(currentSlide);
-
-    }, 5000);
+    showSlide(currentSlide);
+    dots.forEach((dot, index) => dot.addEventListener("click", () => {
+        showSlide(index);
+        schedule();
+    }));
+    if (previous) previous.addEventListener("click", () => { showSlide(currentSlide - 1); schedule(); });
+    if (next) next.addEventListener("click", () => { showSlide(currentSlide + 1); schedule(); });
+    if (pause) pause.addEventListener("click", () => setPaused(!paused));
+    setPaused(paused);
 
 }
 
@@ -117,153 +132,85 @@ function initWatchDetailPage() {
 
     const heroWrapper = document.getElementById("watchHeroWrapper");
 
-    if (!heroWrapper) return; // Only execute on watch.html
+    if (!heroWrapper || !window.VenturoCatalog) return;
 
-    const watchProducts = {
+    const paramKey = (new URLSearchParams(window.location.search).get("product") || "datejust").toLowerCase();
+    const data = window.VenturoCatalog.get(paramKey) || window.VenturoCatalog.get("datejust");
+    const title = data.variant;
+    const description = data.description;
 
-        datejust: {
-            id: "daydate",
-            eyebrow: "VENTURO CHRONOMÉTRIE",
-            title: "Datejust",
-            bgGradient: "transparent",
-            desktopImg: "assets/images/hero4.png",
-            teaserImg: "assets/images/hero4.png",
-            mobileImg: "assets/images/hero4.png",
-            alt: "Venturo Green Dial Datejust Watch",
-            price: "₹8,50,000",
-            specsTitle: "Datejust Technical Profile",
-            specsDesc: "The archetype of the classic watch, celebrated for its timeless aesthetics, distinguished fluted bezel, and vibrant mint green sunray dial.",
-            calibre: "Calibre 3255",
-            reserve: "70 Hours",
-            case: "41 mm, Oystersteel & Gold",
-            water: "100 m / 330 ft",
-            dial: "Mint Green Sunray with Chromalight",
-            bracelet: "Jubilee, five-piece links"
-        },
-
-        daydate: {
-            id: "daydate",
-            eyebrow: "VENTURO CHRONOMÉTRIE",
-            title: "Datejust",
-            bgGradient: "transparent",
-            desktopImg: "assets/images/hero4.png",
-            teaserImg: "assets/images/hero4.png",
-            mobileImg: "assets/images/hero4.png",
-            alt: "Venturo Green Dial Datejust Watch",
-            price: "₹8,50,000",
-            specsTitle: "Datejust Technical Profile",
-            specsDesc: "The archetype of the classic watch, celebrated for its timeless aesthetics, distinguished fluted bezel, and vibrant mint green sunray dial.",
-            calibre: "Calibre 3255",
-            reserve: "70 Hours",
-            case: "41 mm, Oystersteel & Gold",
-            water: "100 m / 330 ft",
-            dial: "Mint Green Sunray with Chromalight",
-            bracelet: "Jubilee, five-piece links"
-        },
-
-        skydweller: {
-            id: "skydweller",
-            eyebrow: "ANNUAL CALENDAR",
-            title: "Sky-Dweller",
-            bgGradient: "radial-gradient(circle at 50% 50%, #203a58 0%, #0d1a2d 100%)",
-            desktopImg: "assets/images/hero2.png",
-            mobileImg: "assets/images/hero2.png",
-            alt: "Venturo Sky-Dweller Dual Time Watch",
-            price: "₹9,20,000",
-            specsTitle: "Sky-Dweller Technical Profile",
-            specsDesc: "The Sky-Dweller combines dual time functionality with an annual calendar, making it the ideal companion for international travelers.",
-            calibre: "Calibre 9002",
-            reserve: "72 Hours",
-            case: "42 mm, Oystersteel & White Gold",
-            water: "100 m / 330 ft",
-            dial: "Intense White with Saros calendar",
-            bracelet: "Oyster, three-piece solid links"
-        },
-
-        seadweller: {
-            id: "seadweller",
-            eyebrow: "SATURATION DIVER",
-            title: "Sea-Dweller",
-            bgGradient: "radial-gradient(circle at 50% 50%, #17384a 0%, #091a24 100%)",
-            desktopImg: "assets/images/hero3.png",
-            mobileImg: "assets/images/hero3.png",
-            alt: "Venturo Sea-Dweller Diver Watch",
-            price: "₹9,80,000",
-            specsTitle: "Sea-Dweller Technical Profile",
-            specsDesc: "Engineered for professional divers, the Sea-Dweller withstands extreme underwater conditions while maintaining exceptional precision.",
-            calibre: "Calibre 3235",
-            reserve: "70 Hours",
-            case: "43 mm, Oystersteel",
-            water: "1,220 m / 4,000 ft",
-            dial: "Black with Cerachrom ceramic bezel",
-            bracelet: "Oyster with Glidelock extension"
-        }
-
-    };
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramKey = (urlParams.get("product") || "datejust").toLowerCase();
-    const data = watchProducts[paramKey] || watchProducts.datejust;
-
-    document.title = `Venturo Chronométrie | ${data.title}`;
+    document.title = `Venturo Chronométrie | ${title}`;
+    document.body.setAttribute("data-product", data.canonicalId);
 
     const heroSection = document.getElementById("watch-hero");
     if (heroSection) {
-        if (paramKey === "datejust" || paramKey === "daydate") {
-            heroSection.style.background = "";
-        } else {
-            heroSection.style.background = data.bgGradient;
-        }
+        heroSection.style.background = "";
+        heroSection.dataset.product = data.canonicalId;
+        heroSection.classList.remove("is-scroll-active");
     }
 
     const eyebrow = document.getElementById("watchEyebrow");
     if (eyebrow) eyebrow.textContent = data.eyebrow;
 
-    const title = document.getElementById("watchTitle");
-    if (title) title.textContent = data.title;
+    const titleElement = document.getElementById("watchTitle");
+    if (titleElement) titleElement.textContent = title;
 
     const introDesc = document.getElementById("watchIntroDesc");
-    if (introDesc) introDesc.textContent = data.specsDesc;
+    if (introDesc) introDesc.textContent = description;
 
     const imgTeaser = document.getElementById("watchImgTeaser");
     if (imgTeaser) {
-        if (data.teaserImg) {
-            imgTeaser.src = data.teaserImg;
-            imgTeaser.style.display = "";
-        } else {
-            imgTeaser.style.display = "none";
-        }
+        imgTeaser.src = data.image;
+        imgTeaser.alt = `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
+        imgTeaser.style.display = "";
     }
 
     const heroImg = document.getElementById("watchHeroImg");
     if (heroImg) {
-        heroImg.src = data.desktopImg;
-        heroImg.alt = data.alt;
+        if (data.image) {
+            heroImg.src = data.image;
+            heroImg.hidden = false;
+        } else {
+            heroImg.removeAttribute("src");
+            heroImg.hidden = true;
+        }
+        heroImg.alt = `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
     }
 
     const heroSource = document.getElementById("watchHeroSource");
-    if (heroSource) heroSource.srcset = data.mobileImg;
+    if (heroSource) heroSource.srcset = data.image;
 
     const price = document.getElementById("watchPrice");
-    if (price) price.textContent = data.price;
+    if (price) price.textContent = window.VenturoCatalog.money(data);
 
     const specsTitle = document.getElementById("specsTitle");
-    if (specsTitle) specsTitle.textContent = data.specsTitle;
+    if (specsTitle) specsTitle.textContent = `${data.variant} Technical Profile`;
 
     const specsDesc = document.getElementById("specsDescription");
-    if (specsDesc) specsDesc.textContent = data.specsDesc;
+    if (specsDesc) specsDesc.textContent = description;
+
+    const storyHeadline = document.getElementById("watchStoryHeadline");
+    if (storyHeadline) storyHeadline.textContent = data.storyHeadline || "A refined watch story";
+
+    const storyLead = document.getElementById("watchStoryLead");
+    if (storyLead) storyLead.textContent = data.storyLead || description;
+
+    const storyBody = document.getElementById("watchStoryBody");
+    if (storyBody) {
+        storyBody.textContent = data.storyBody || `${data.movement}, ${data.powerReserve} power reserve, ${data.size} case in ${data.material}. ${data.bracelet} bracelet.`;
+    }
 
     const specCalibre = document.getElementById("specCalibre");
-    if (specCalibre) specCalibre.textContent = data.calibre;
+    if (specCalibre) specCalibre.textContent = data.movement;
 
     const specReserve = document.getElementById("specReserve");
-    if (specReserve) specReserve.textContent = data.reserve;
+    if (specReserve) specReserve.textContent = data.powerReserve;
 
     const specCase = document.getElementById("specCase");
-    if (specCase) specCase.textContent = data.case;
+    if (specCase) specCase.textContent = `${data.size}, ${data.material}`;
 
     const specWater = document.getElementById("specWater");
-    if (specWater) specWater.textContent = data.water;
+    if (specWater) specWater.textContent = data.waterResistance;
 
     const specDial = document.getElementById("specDial");
     if (specDial) specDial.textContent = data.dial;
@@ -271,18 +218,71 @@ function initWatchDetailPage() {
     const specBracelet = document.getElementById("specBracelet");
     if (specBracelet) specBracelet.textContent = data.bracelet;
 
-    // Synchronize action button product IDs
     const heroBtn = document.getElementById("heroConfigureBtn");
-    if (heroBtn) heroBtn.setAttribute("data-id", data.id);
+    if (heroBtn) {
+        heroBtn.setAttribute("data-id", data.canonicalId);
+        heroBtn.setAttribute("aria-label", `Add ${data.variant} to Cart`);
+        const unavailable = data.saleStatus === "unavailable";
+        heroBtn.disabled = unavailable;
+        heroBtn.textContent = unavailable ? "Reference only" : "Add to saved cart";
+    }
 
     const specsCartBtn = document.getElementById("specsAddToCartBtn");
-    if (specsCartBtn) specsCartBtn.setAttribute("data-id", data.id);
+    if (specsCartBtn) {
+        specsCartBtn.setAttribute("data-id", data.canonicalId);
+        specsCartBtn.setAttribute("aria-label", `Add ${data.variant} to Cart`);
+        specsCartBtn.disabled = data.saleStatus === "unavailable";
+        specsCartBtn.hidden = data.saleStatus === "unavailable";
+    }
 
     const specsWishlistBtn = document.getElementById("specsWishlistBtn");
-    if (specsWishlistBtn) specsWishlistBtn.setAttribute("data-id", data.id);
+    if (specsWishlistBtn) {
+        specsWishlistBtn.setAttribute("data-id", data.canonicalId);
+        specsWishlistBtn.setAttribute("aria-label", `Save ${data.variant} to Wishlist`);
+    }
 
-    // Initialize smooth scroll-driven feature for green Datejust watch
-    if (paramKey === "datejust" || paramKey === "daydate") {
+    const galleryTitle = document.getElementById("galleryTitle");
+    if (galleryTitle) galleryTitle.textContent = data.galleryTitle || `${data.variant} reference image`;
+
+    const galleryDescription = document.getElementById("galleryDescription");
+    if (galleryDescription) {
+        galleryDescription.textContent = data.galleryDescription || "The inspected reference photograph is retained as demo media until its source and permission basis are resolved.";
+    }
+
+    const galleryImage = document.getElementById("galleryImage");
+    if (galleryImage) {
+        if (data.image) {
+            galleryImage.src = data.image;
+            galleryImage.hidden = false;
+        } else {
+            galleryImage.removeAttribute("src");
+            galleryImage.hidden = true;
+        }
+        galleryImage.alt = `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
+    }
+
+    const galleryCaption = document.getElementById("galleryCaption");
+    if (galleryCaption) galleryCaption.textContent = data.galleryCaption || "Reference photograph; exact identity and reuse permission remain unverified.";
+
+    ["1", "2", "3"].forEach(index => {
+        const featureTitle = document.getElementById(`featureTitle${index}`);
+        const featureBody = document.getElementById(`featureBody${index}`);
+        if (featureTitle && data[`featureTitle${index}`]) featureTitle.textContent = data[`featureTitle${index}`];
+        if (featureBody && data[`featureBody${index}`]) featureBody.textContent = data[`featureBody${index}`];
+    });
+
+    const contextHeading = document.getElementById("contextHeading");
+    if (contextHeading) contextHeading.textContent = data.contextHeading || "Attributed reference context";
+
+    const contextBody = document.getElementById("contextBody");
+    if (contextBody) contextBody.textContent = data.contextBody || "The historical and product identity information on this page remains attributed reference material.";
+
+    const contextLink = document.getElementById("contextLink");
+    if (contextLink) {
+        contextLink.href = data.referenceUrl || "https://www.rolex.com/en-in/watches/datejust";
+    }
+
+    if (["datejust", "daydate", "datejust-rose", "airking"].includes(data.canonicalId)) {
         initDatejustScrollExperience();
     } else if (heroSection) {
         heroSection.classList.remove("is-scroll-active");
@@ -304,119 +304,60 @@ function initDatejustScrollExperience() {
     const heroSection = document.getElementById("watch-hero");
     const heroImg = document.getElementById("watchHeroImg");
     const headerOverlay = document.getElementById("watchHeaderOverlay");
-    const titleGroup = document.getElementById("watchTitleGroup");
     const storyOverlay = document.getElementById("watchStoryOverlay");
     const scrollIndicator = document.getElementById("watchScrollIndicator");
 
     if (!heroSection || !heroImg) return;
 
-    if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
-        return;
+    const desktopQuery = window.matchMedia("(min-width: 993px)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+
+    function reset() {
+        heroSection.classList.remove("is-scroll-active");
+        heroImg.style.transform = "";
+        if (headerOverlay) headerOverlay.style.cssText = "";
+        if (storyOverlay) storyOverlay.style.cssText = "";
+        if (scrollIndicator) scrollIndicator.style.cssText = "";
     }
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Responsive and reduced-motion handling
-    const mm = gsap.matchMedia();
-
-    mm.add({
-        isDesktop: "(min-width: 993px) and (prefers-reduced-motion: no-preference)",
-        isMobileOrReduced: "(max-width: 992px), (prefers-reduced-motion: reduce)"
-    }, (context) => {
-        const { isDesktop } = context.conditions;
-
-        if (isDesktop) {
-            heroSection.classList.add("is-scroll-active");
-
-            // Initial baseline state:
-            // Single master image hero4.png is anchored at top: 0 with natural height
-            gsap.set(heroImg, {
-                yPercent: 0,
-                scale: 1.0,
-                transformOrigin: "center top"
-            });
-
-            if (headerOverlay) {
-                gsap.set(headerOverlay, { opacity: 1, y: 0 });
-            }
-
-            if (scrollIndicator) {
-                gsap.set(scrollIndicator, { opacity: 1, y: 0 });
-            }
-
-            if (storyOverlay) {
-                gsap.set(storyOverlay, {
-                    opacity: 0,
-                    y: 40
-                });
-            }
-
-            // Master continuous scrubbed timeline tied directly to scroll progress
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: heroSection,
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 0.6,
-                    invalidateOnRefresh: true
-                }
-            });
-
-            // 1. Opening composition -> Scroll begins:
-            // Fade out the header overlay (title, intro desc, configure btn) and scroll indicator cleanly
-            if (headerOverlay) {
-                tl.to(headerOverlay, {
-                    opacity: 0,
-                    y: -35,
-                    duration: 0.22,
-                    ease: "power1.out"
-                }, 0.02);
-            }
-
-            if (scrollIndicator) {
-                tl.to(scrollIndicator, {
-                    opacity: 0,
-                    y: 18,
-                    duration: 0.16,
-                    ease: "power1.out"
-                }, 0.02);
-            }
-
-            // 2. Continuous upward movement of the SAME continuous photograph:
-            // As visitor scrolls down, the image moves smoothly upward to reveal the rest
-            // of the watch face, fluted bezel, and lower bracelet progressively, then travels
-            // into the upper viewport so only the bracelet tip remains visible at the top.
-            tl.to(heroImg, {
-                yPercent: -68,
-                duration: 0.95,
-                ease: "power1.inOut"
-            }, 0);
-
-            // 3. Story View:
-            // As the watch travels toward the top of the viewport,
-            // the authentic Venturo horology story appears naturally beneath it.
-            if (storyOverlay) {
-                tl.to(storyOverlay, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.40,
-                    ease: "power2.out"
-                }, 0.52);
-            }
-
-        } else {
-            // Mobile or reduced motion: clean natural-scroll layout without pinned effects
-            heroSection.classList.remove("is-scroll-active");
-            gsap.set([heroImg, titleGroup, headerOverlay, storyOverlay, scrollIndicator], {
-                clearProps: "all"
-            });
+    function render() {
+        frame = 0;
+        if (!desktopQuery.matches || reducedMotionQuery.matches) {
+            reset();
+            return;
         }
-    });
 
-    // Ensure ScrollTrigger measures proper layout dimensions
-    requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-    });
+        heroSection.classList.add("is-scroll-active");
+        const sectionTop = heroSection.getBoundingClientRect().top + window.scrollY;
+        const travel = Math.max(1, heroSection.offsetHeight - window.innerHeight);
+        const progress = Math.max(0, Math.min(1, (window.scrollY - sectionTop) / travel));
+        const storyProgress = Math.max(0, Math.min(1, (progress - 0.48) / 0.28));
+
+        heroImg.style.transform = `translate3d(0, ${progress * -68}%, 0)`;
+        if (headerOverlay) {
+            headerOverlay.style.opacity = String(1 - Math.min(1, progress * 5));
+            headerOverlay.style.transform = `translate3d(0, ${progress * -35}px, 0)`;
+        }
+        if (scrollIndicator) {
+            scrollIndicator.style.opacity = String(1 - Math.min(1, progress * 6));
+            scrollIndicator.style.transform = `translate3d(-50%, ${progress * 18}px, 0)`;
+        }
+        if (storyOverlay) {
+            storyOverlay.style.opacity = String(storyProgress);
+            storyOverlay.style.transform = `translate3d(0, ${(1 - storyProgress) * 35}px, 0)`;
+        }
+    }
+
+    function schedule() {
+        render();
+    }
+
+    desktopQuery.addEventListener("change", schedule);
+    reducedMotionQuery.addEventListener("change", schedule);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    render();
 
 }
 
@@ -434,7 +375,7 @@ function initDatejustScrollExperience() {
  - Mobile & reduced-motion: uses natural scroll without pinning
 =========================================================*/
 
-function initStorytellingScroll() {
+function initLegacyStorytellingScroll() {
 
     const storySection = document.getElementById("storytelling");
     const video = document.getElementById("storyVideo") || document.querySelector(".story-pinned-video");
@@ -693,6 +634,85 @@ function initStorytellingScroll() {
 }
 
 /*=========================================================
+ DETERMINISTIC STORY SCENE OVERRIDE
+=========================================================*/
+
+function initStorytellingScroll() {
+    const section = document.getElementById("storytelling");
+    const video = document.getElementById("storyVideo");
+    const toggle = document.getElementById("storyVideoToggle");
+    const cards = [...document.querySelectorAll(".story-panel-card")];
+    const welcomeImage = document.getElementById("welcomeBackImage");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+
+    if (!section) return;
+
+    function setVideoLabel() {
+        if (!toggle || !video) return;
+        toggle.textContent = video.paused ? "Play film" : "Pause film";
+        toggle.setAttribute("aria-pressed", String(video.paused));
+    }
+
+    function updateScene() {
+        frame = 0;
+        if (window.innerWidth <= 992 || reducedMotion.matches) {
+            section.style.setProperty("--story-progress", "1");
+            cards.forEach(card => {
+                card.setAttribute("aria-hidden", "false");
+                card.querySelectorAll("a").forEach(link => link.tabIndex = 0);
+            });
+            return;
+        }
+        const range = Math.max(1, section.offsetHeight - window.innerHeight);
+        const progress = Math.min(1, Math.max(0, -section.getBoundingClientRect().top / range));
+        section.style.setProperty("--story-progress", progress.toFixed(4));
+        cards.forEach((card, index) => {
+            const visible = progress >= [.32, .53, .74][index];
+            card.setAttribute("aria-hidden", String(!visible));
+            card.querySelectorAll("a").forEach(link => link.tabIndex = visible ? 0 : -1);
+        });
+    }
+
+    function requestUpdate() {
+        if (!frame) frame = requestAnimationFrame(updateScene);
+    }
+
+    if (video) {
+        video.addEventListener("play", setVideoLabel);
+        video.addEventListener("pause", setVideoLabel);
+        video.addEventListener("error", setVideoLabel);
+        if (toggle) toggle.addEventListener("click", () => {
+            if (video.paused) video.play().catch(() => {});
+            else video.pause();
+        });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && window.innerWidth > 992 && !reducedMotion.matches) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.15 });
+        observer.observe(video);
+        setVideoLabel();
+    }
+
+    if (welcomeImage) {
+        welcomeImage.addEventListener("error", () => {
+            welcomeImage.hidden = true;
+            welcomeImage.parentElement.classList.add("welcome-back-image-missing");
+        });
+    }
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    if (reducedMotion.addEventListener) reducedMotion.addEventListener("change", requestUpdate);
+    requestUpdate();
+}
+
+/*=========================================================
  NAVBAR EFFECTS
 =========================================================*/
 
@@ -733,12 +753,41 @@ function initNavigationMenu() {
 
     if (!menuToggle || !overlay) return;
 
+    let restoreFocus = menuToggle;
+    const panel = document.getElementById("navMenuPanel");
+
+    function setBackgroundInert(isInert) {
+        document.querySelectorAll("body > *").forEach(element => {
+            if (element !== overlay && element.id !== "searchOverlay") {
+                element.inert = isInert;
+            }
+        });
+    }
+
+    function trapFocus(event) {
+        if (event.key !== "Tab" || !overlay.classList.contains("open") || !panel) return;
+        const focusable = panel.querySelectorAll("a[href], button:not([disabled]), input, [tabindex]:not([tabindex='-1'])");
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
     function openMenu() {
 
+        document.dispatchEvent(new CustomEvent("venturo:close-search"));
+        restoreFocus = document.activeElement || menuToggle;
         overlay.classList.add("open");
         overlay.setAttribute("aria-hidden", "false");
         menuToggle.setAttribute("aria-expanded", "true");
         document.body.classList.add("menu-open");
+        setBackgroundInert(true);
 
         if (closeBtn) {
 
@@ -755,9 +804,12 @@ function initNavigationMenu() {
         menuToggle.setAttribute("aria-expanded", "false");
         document.body.classList.remove("menu-open");
 
-        menuToggle.focus();
+        setBackgroundInert(false);
+        (restoreFocus || menuToggle).focus();
 
     }
+
+    document.addEventListener("venturo:close-menu", closeMenu);
 
     menuToggle.addEventListener("click", () => {
 
@@ -800,6 +852,8 @@ function initNavigationMenu() {
             closeMenu();
 
         }
+
+        trapFocus(e);
 
     });
 
@@ -884,6 +938,9 @@ function initProductCards() {
 
     cards.forEach(card => {
 
+        if (card.dataset.detailsBound === "true") return;
+        card.dataset.detailsBound = "true";
+
         card.addEventListener("click", () => {
 
             const id = card.dataset.product;
@@ -927,6 +984,8 @@ function initProductCards() {
     });
 
 }
+
+window.initProductCards = initProductCards;
 
 /*=========================================================
  BACK TO TOP BUTTON
@@ -1349,4 +1408,3 @@ window.addEventListener("resize", () => {
     );
 
 });
-

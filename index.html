@@ -30,11 +30,10 @@
 
 <body>
 
-<div id="loader">
-    <div class="loader-logo">
-        Venturo Chronométrie
-    </div>
-</div>
+<nav class="skip-links" aria-label="Skip links">
+    <a href="#main-content">Skip to content</a>
+    <a href="#site-footer">Skip to footer</a>
+</nav>
 
 <div id="scroll-progress"></div>
 
@@ -179,19 +178,19 @@
                     </a>
 
                     <!-- Tile 2: Art of Watchmaking -->
-                    <a href="#storytelling" class="nav-menu-tile" aria-label="The Art of Watchmaking - Sky-Dweller">
+                    <a href="#storytelling" class="nav-menu-tile" aria-label="The Art of Watchmaking - Day-Date">
                         <div class="tile-image-wrapper">
-                            <img src="assets/images/hero2.png" alt="Venturo Sky-Dweller watchmaking">
+                            <img src="assets/media/watchmaker-cc0.webp" alt="Watchmaker at work; CC0 reference image">
                         </div>
                         <div class="tile-caption-pill">
                             <span>The Art of Watchmaking</span>
                         </div>
                     </a>
 
-                    <!-- Tile 3: Saturation Diver -->
-                    <a href="watch.html?product=seadweller" class="nav-menu-tile" data-product="seadweller" aria-label="Deep Sea Saturation - Sea-Dweller">
+                    <!-- Tile 3: Rose Rolesor -->
+                    <a href="watch.html?product=datejust-rose" class="nav-menu-tile" data-product="datejust-rose" aria-label="Rose Rolesor - Datejust 36">
                         <div class="tile-image-wrapper">
-                            <img src="assets/images/hero3.png" alt="Venturo Sea-Dweller diver">
+                            <img src="assets/images/hero3.png" alt="Venturo Datejust 36 Everose Rolesor reference">
                         </div>
                         <div class="tile-caption-pill">
                             <span>Deep Sea Saturation</span>
@@ -216,16 +215,17 @@
 
 <!-- ================= HERO ================= -->
 
+<main id="main-content">
 <section class="hero" id="home">
 
-    <div class="slide active"
-        style="background-image:url('assets/images/hero1.png');">
+    <div class="slide active" data-product="datejust" aria-roledescription="slide" aria-label="1 of 3">
+        <img class="hero-slide-image" src="assets/images/hero1.png" alt="Reference photograph of a Datejust 41 style watch with a green dial">
 
         <div class="hero-left-content" data-aos="fade-up">
 
-            <span class="hero-eyebrow">CHRONOMÉTRIE ROYALE</span>
-
-            <h1 class="hero-title">Datejust</h1>
+            <span class="hero-eyebrow">MINT-GREEN EXPRESSION</span>
+            <h1 class="hero-title">Datejust 41</h1>
+            <p class="hero-copy">A considered study in proportion, light and daily rhythm.</p>
 
             <a href="watch.html?product=datejust" class="hero-discover-btn ripple-btn" aria-label="Discover Datejust">
                 Discover more
@@ -235,16 +235,16 @@
 
     </div>
 
-    <div class="slide"
-        style="background-image:url('assets/images/hero2.png');">
+    <div class="slide" data-product="daydate" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true">
+        <img class="hero-slide-image" src="assets/images/hero2.png" alt="Reference photograph of a Day-Date 40 style watch in warm gold tones">
 
         <div class="hero-left-content" data-aos="fade-up">
 
-            <span class="hero-eyebrow">ANNUAL CALENDAR</span>
+            <span class="hero-eyebrow">EVEROSE STUDY</span>
 
-            <h1 class="hero-title">Sky-Dweller</h1>
+            <p class="hero-copy">Warm metal, calm geometry and a presence made for the long view.</p>
 
-            <a href="watch.html?product=skydweller" class="hero-discover-btn ripple-btn" aria-label="Discover Sky-Dweller">
+            <a href="watch.html?product=daydate" class="hero-discover-btn ripple-btn" aria-label="Discover Day-Date 40">
                 Discover more
             </a>
 
@@ -252,16 +252,16 @@
 
     </div>
 
-    <div class="slide"
-        style="background-image:url('assets/images/hero3.png');">
+    <div class="slide" data-product="datejust-rose" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">
+        <img class="hero-slide-image" src="assets/images/hero3.png" alt="Reference photograph of a Datejust 36 style watch with an Everose Rolesor finish">
 
         <div class="hero-left-content" data-aos="fade-up">
 
-            <span class="hero-eyebrow">SATURATION DIVER</span>
+            <span class="hero-eyebrow">EVEROSE ROLESOR</span>
 
-            <h1 class="hero-title">Sea-Dweller</h1>
+            <p class="hero-copy">A smaller silhouette with a precise, quietly luminous character.</p>
 
-            <a href="watch.html?product=seadweller" class="hero-discover-btn ripple-btn" aria-label="Discover Sea-Dweller">
+            <a href="watch.html?product=datejust-rose" class="hero-discover-btn ripple-btn" aria-label="Discover Datejust 36">
                 Discover more
             </a>
 
@@ -269,12 +269,15 @@
 
     </div>
 
-    <div class="slide-indicator">
-
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-
+    <div class="hero-controls" aria-label="Campaign controls">
+        <button type="button" class="hero-control hero-previous" aria-label="Previous campaign">Previous</button>
+        <div class="slide-indicator" role="tablist" aria-label="Choose campaign">
+            <button type="button" class="dot active" role="tab" aria-label="Show Datejust 41 campaign" aria-selected="true"></button>
+            <button type="button" class="dot" role="tab" aria-label="Show Day-Date 40 campaign" aria-selected="false"></button>
+            <button type="button" class="dot" role="tab" aria-label="Show Datejust 36 campaign" aria-selected="false"></button>
+        </div>
+        <button type="button" class="hero-control hero-next" aria-label="Next campaign">Next</button>
+        <button type="button" class="hero-control hero-pause" aria-label="Pause campaign rotation" aria-pressed="false">Pause</button>
     </div>
 
 </section>
@@ -286,10 +289,12 @@
 
         <!-- Pinned Video Background Container -->
         <div class="story-video-container" id="storyVideoContainer">
-            <video id="storyVideo" muted playsinline loop preload="auto" class="story-pinned-video">
+            <video id="storyVideo" muted playsinline loop preload="metadata" poster="assets/images/hero4.png" class="story-pinned-video">
                 <source src="assets/video/showcase.mp4" type="video/mp4">
+                <p class="story-video-fallback">A quiet study of time, material and motion. Video playback is unavailable in this browser.</p>
             </video>
             <div class="story-video-dim" id="storyVideoDim"></div>
+            <button type="button" class="story-video-toggle" id="storyVideoToggle" aria-pressed="false">Pause film</button>
         </div>
 
         <!-- Foreground Content with 3 Sequential Rising Photo Cards -->
@@ -297,41 +302,46 @@
             <div class="story-panels-header" id="storyPanelsHeader">
                 <span class="story-section-tag">THE ART OF WATCHMAKING</span>
                 <h2 class="story-section-title">Enduring Artistry in Motion</h2>
+                <p class="story-section-intro">Explore the details, hands and materials that give each reference its visual language.</p>
+                <a class="story-section-link" href="#about">Read the Venturo approach</a>
             </div>
 
             <div class="story-panels-grid">
                 <!-- Card 1: Fluted Bezel -->
-                <div class="story-panel-card" id="story-panel-1">
+                <article class="story-panel-card" id="story-panel-1">
                     <div class="story-panel-media">
                         <img src="assets/images/hero1.png" alt="Venturo Fluted Bezel Precision">
                     </div>
                     <div class="story-panel-caption">
                         <span class="story-panel-tag">FLUTED BEZEL</span>
-                        <h3 class="story-panel-title">Brilliant like no other</h3>
+                        <h3 class="story-panel-title">Light across the bezel</h3>
+                        <a class="story-panel-link" href="#about">Read the design note</a>
                     </div>
-                </div>
+                </article>
 
                 <!-- Card 2: Atelier & Heritage -->
-                <div class="story-panel-card" id="story-panel-2">
+                <article class="story-panel-card" id="story-panel-2">
                     <div class="story-panel-media">
                         <img src="assets/images/hero2.png" alt="Venturo Horology & Story">
                     </div>
                     <div class="story-panel-caption">
                         <span class="story-panel-tag">ATELIER & STORY</span>
-                        <h3 class="story-panel-title">Inspiring emotion</h3>
+                        <h3 class="story-panel-title">A measured rhythm</h3>
+                        <a class="story-panel-link" href="#about">Explore the approach</a>
                     </div>
-                </div>
+                </article>
 
                 <!-- Card 3: Master Craftsmen -->
-                <div class="story-panel-card" id="story-panel-3">
+                <article class="story-panel-card" id="story-panel-3">
                     <div class="story-panel-media">
                         <img src="assets/images/hero3.png" alt="Venturo Master Craftsmen">
                     </div>
                     <div class="story-panel-caption">
                         <span class="story-panel-tag">MASTER CRAFTSMEN</span>
-                        <h3 class="story-panel-title">A legacy of precision</h3>
+                        <h3 class="story-panel-title">Hands at work</h3>
+                        <a class="story-panel-link" href="collection.html">View the collection</a>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
 
@@ -342,7 +352,7 @@
 <!-- ================= WELCOME BACK FEATURE ================= -->
 <section id="welcome-back" class="welcome-back-section">
     <div class="welcome-back-feature">
-        <img src="assets/images/welcome-back.png" alt="Venturo Chronométrie Rose Gold Timepiece" class="welcome-back-bg-img">
+        <img src="assets/images/welcome-back.png" alt="Reference photograph of a rose-gold timepiece" class="welcome-back-bg-img" id="welcomeBackImage">
         <div class="welcome-back-overlay">
             <span class="welcome-back-label">Resume your visit</span>
             <h2 class="welcome-back-title">Welcome back</h2>
@@ -374,8 +384,8 @@
         with modern engineering.
 
         Our commitment to excellence ensures every creation
-        reflects the heritage of fine Swiss-inspired
-        horology while delivering exceptional performance
+        reflects a considered approach to contemporary
+        horology while delivering a clear reference point
         for today's collectors and enthusiasts.
 
     </p>
@@ -450,14 +460,16 @@
 <section id="legal" class="legal-info-section">
     <div class="legal-container">
         <p class="legal-text">
-            Venturo Chronométrie Genève S.A. operates as an independent haute horlogerie atelier. All designs, movements, caliber references, and dial craftsmanship are proprietary to Venturo Chronométrie. Official warranty and chronometric certification provided with all timepieces.
+            Catalog prices and specifications on this demo are project reference inputs, not verified official retail facts. Product photography and reference names remain subject to source and permission review.
         </p>
     </div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 
-<footer class="fade-up">
+ </main>
+
+<footer class="fade-up" id="site-footer">
 
     <div class="footer-inner">
         <div class="footer-brand">
@@ -490,6 +502,7 @@
 
 <!-- ================= JS FILES ================= -->
 
+<script src="assets/js/catalog.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/search.js"></script>
 <script src="assets/js/cart.js"></script>
