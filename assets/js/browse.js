@@ -111,7 +111,7 @@
     function initFamilyCards() {
         const target = document.querySelector("[data-family-grid]");
         if (!target) return;
-        target.innerHTML = catalog.families.map(family => `<a class="family-card ${family.status}" href="${family.id === "air-king" ? "air-king.html" : family.id === "cosmograph-daytona" ? "cosmograph-daytona.html" : `finder.html?family=${encodeURIComponent(family.name)}`}">
+        target.innerHTML = catalog.families.map(family => `<a class="family-card ${family.status}" href="${family.id === "air-king" ? "air-king.html" : family.id === "cosmograph-daytona" ? "cosmograph-daytona.html" : family.id === "lady-datejust" ? "lady-datejust.html" : `finder.html?family=${encodeURIComponent(family.name)}`}">
             <span>${family.status === "reference-only" ? "Reference only" : "Project records"}</span>
             <h3>${family.name}</h3><p>${family.attribution}</p>
         </a>`).join("");
@@ -133,6 +133,22 @@
         </article>`).join("");
     }
 
+    function initLadyDatejustFamily() {
+        const target = document.querySelector("[data-lady-datejust-models]");
+        if (!target) return;
+        const records = catalog.records.filter(record => record.family === "Lady-Datejust");
+        target.innerHTML = records.map(record => `<article class="browse-model-card lady-datejust-model-card">
+            <div class="browse-media-unavailable" role="img" aria-label="Exact Rolex reference ${record.exactReference} photograph unavailable">Exact model photo unavailable</div>
+            <div><button type="button" class="lady-favourite wishlist-btn" data-id="${record.canonicalId}" aria-label="Save Rolex Lady-Datejust reference ${record.exactReference} to Venturo favourites"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save to favourites</span></button>
+            <span>${record.eyebrow}</span><h3>${record.variant}</h3>
+            <p>28 mm · ${record.material} · ${record.dial} · ${record.bracelet}</p>
+            <p class="browse-source-date">Rolex model page checked ${record.sourceAccessed}</p>
+            <strong>Reference only · no Venturo inventory or price</strong>
+            <a href="watch.html?product=${record.canonicalId}">Open attributed reference detail</a>
+            <a href="${record.referenceUrl}" target="_blank" rel="noopener noreferrer">Check the Rolex model page <span aria-hidden="true">↗</span></a></div>
+        </article>`).join("");
+    }
+
     function initStandalone() {
         const target = document.querySelector("[data-browse-page]");
         if (!target) return;
@@ -141,7 +157,8 @@
             const grid = target.querySelector("[data-finder-results]");
             const params = queryState();
             let records = catalog.records.filter(record => !params.family || record.family === params.family);
-            target.querySelector("[data-finder-count]").textContent = `${records.length} supported project records`;
+            const isRolexReferenceSet = records.length > 0 && records.every(record => record.saleStatus === "unavailable");
+            target.querySelector("[data-finder-count]").textContent = `${records.length} ${isRolexReferenceSet ? "Rolex reference records" : "supported project records"}`;
             grid.innerHTML = records.length ? records.map(card).join("") : `<p class="browse-empty">No supported records match this family. Reference-only families do not create invented inventory.</p>`;
         }
         if (type === "new") {
@@ -155,6 +172,7 @@
             target.querySelector("[data-finder-results]").innerHTML = themes.map(theme => `<article class="browse-model-card"><div><span>Theme</span><h3>${theme.name}</h3><p>${theme.description}</p><strong>${theme.ids.length ? `${theme.ids.length} project records` : "Reference navigation only"}</strong></div></article>`).join("");
         }
         if (type === "daytona-family") initDaytonaFamily();
+        if (type === "lady-datejust-family") initLadyDatejustFamily();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -162,5 +180,6 @@
         initFamilyCards();
         initStandalone();
         initDaytonaFamily();
+        initLadyDatejustFamily();
     });
 })();

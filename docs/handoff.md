@@ -671,3 +671,100 @@ only after asset licensing and catalog provenance decisions are recorded.
 
 Stop here after this stage. Do not begin the next family until the blockers
 above are addressed.
+
+## Prompt 12-03 — Lady-Datejust family handoff
+
+### Delivered
+
+- Added a Lady-Datejust family landing page at `lady-datejust.html` with an
+  evergreen-and-cream treatment, licensed historical family-context image,
+  history notes, sourced product context, related links, finder and a
+  text-only reference explorer.
+- Added four data-driven Rolex reference records with separate canonical IDs:
+  `lady-datejust-279160`, `lady-datejust-279174`, `lady-datejust-279173`, and
+  `lady-datejust-279459rbr`. Their exact model identities and sampled
+  material/dial/bracelet pairings come from the individual Rolex India pages.
+  The records include 28 mm cases, calibre 2236, approximately 55-hour power
+  reserve and 100 m water resistance as shown on the inspected model pages.
+  No price or Venturo stock claim is included.
+- Added matching family-specific detail states in the shared watch layout.
+  Each state identifies its selected reference, displays the exact-model
+  photograph-unavailable notice and uses a separately identified 1987 image
+  only in the historical gallery context. Unavailable dial/bracelet imagery
+  does not function as visual configuration.
+- Connected the family route to the catalogue, local finder, favourites,
+  selected-reference explorer and Rolex source pages. Legacy featured-card
+  canonical identities and aliases were preserved.
+- Added attribution, creator and CC BY-SA 4.0 license details for the 1987
+  Wikimedia Commons image in `docs/image-sources.md` and
+  `docs/media-manifest.json`.
+- Updated `docs/reference-coverage.csv` with the family, four detail routes,
+  finder, explorer, verification evidence and open blockers.
+
+### Sources and verification
+
+- Rolex India routes inspected in the browser on 9 October 2026:
+  [family overview](https://www.rolex.com/en-in/watches/lady-datejust),
+  [features](https://www.rolex.com/en-in/watches/lady-datejust/features),
+  [Inspiring women](https://www.rolex.com/en-in/watches/lady-datejust/inspiring-women),
+  [all models](https://www.rolex.com/en-in/watches/lady-datejust/all-models),
+  and model pages for 279160, 279174, 279173 and 279459RBR. Rolex’s newsroom
+  history page was also reviewed for the 1957 introduction and 2015 move from
+  25 mm to 28 mm.
+- Local browser checks passed for the family landing, each of the four card
+  clicks and direct detail routes, finder query, explorer preselection, and
+  family/source links. Each selected detail had its matching canonical ID and
+  reference text; cart and enquiry actions were hidden, price read “Not
+  offered,” and the exact-model image placeholder was present.
+- Desktop browser visual review: 1440x900; document width 1432 px, no
+  horizontal overflow. Phone visual review: 390x844; document width 382 px,
+  all four cards within the 390 px viewport, historical image loaded at
+  1280 px. Keyboard focus reached the Home link. The favourite button toggled
+  active and restored to its initial state. Finder returned four references;
+  explorer preselected reference 279173 and linked to its matching detail.
+- **Screenshot evidence:** desktop and phone screenshots were displayed and
+  visually reviewed during the browser run at those viewport sizes. The
+  available browser screenshot interface returned an in-chat preview but did
+  not expose a supported file-export operation; the attempted headless browser
+  capture also did not produce image files. No screenshot file is claimed or
+  linked from this handoff.
+- Reduced-motion support is declared in `assets/css/lady-datejust.css`, but
+  the available browser controls did not expose a reduced-motion preference
+  override, so preference emulation remains unverified.
+
+### Files changed
+
+`lady-datejust.html`; `assets/css/lady-datejust.css`;
+`assets/js/catalog.js`; `assets/data/watches.json`; `assets/js/browse.js`;
+`assets/js/main.js`; `watch.html`; `configure.html`;
+`assets/media/lady-datejust-1987-commons.jpg`;
+`docs/image-sources.md`; `docs/media-manifest.json`;
+`docs/reference-coverage.csv`; and this handoff.
+
+### Blockers and stage boundary
+
+- Matching, rights-cleared photographs for the four current model references
+  were not found. Their cards and details use explicit placeholders; the
+  licensed 1987 photograph is historical family context only.
+- Rolex’s all-models page showed 56 records; this implementation verifies four
+  representative references rather than transcribing every listing.
+- No retail prices are shown. Screenshot export and live reduced-motion
+  emulation remain unverified as described above.
+- No commit, push or deployment was performed. Stop after this family; do not
+  begin the next stage.
+
+
+### Follow-up removal — 9 October 2026
+
+- Removed the historical 1987 photo, its caption and Commons source link from the Lady-Datejust landing page. Detail states no longer show it in the gallery and now state that no substitute image is shown. The hero uses a gradient.
+- Updated catalogue text, coverage, media manifest and image-source notes to remove the photo from the site experience.
+- The image file remains at `assets/media/lady-datejust-1987-commons.jpg` but is no longer referenced by page or catalogue code. Deleting it was blocked by filesystem approval policy.
+
+
+### User-supplied Lady-Datejust hero image — 9 October 2026
+
+- Added `assets/media/lady-datejust-user-supplied.png` to the Lady-Datejust family landing hero and the shared Lady-Datejust detail hero. It follows the existing watch-detail image-led layout and displays the same four reference detail states.
+- The image is user-supplied and its exact Rolex model/reference could not be verified. It is clearly labelled as family-level context, not mapped to an individual card, dial, bracelet or configurator selection. Exact-reference cards remain text-led.
+- The prior 1987 Commons image remains unreferenced; the new image replaces it visually without restoring that historical caption/source block.
+
+- Browser recheck after integration: the supplied 1672x941 PNG loaded in the family hero and all four Lady-Datejust detail heroes. Desktop (1440x900) and phone (390x844) had no horizontal overflow; the 279173 phone detail kept its selected model ID and the image caption identifies it as user-supplied family context, not an exact-reference match.

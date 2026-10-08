@@ -137,12 +137,16 @@ function initWatchDetailPage() {
     const paramKey = (new URLSearchParams(window.location.search).get("product") || "datejust").toLowerCase();
     const data = window.VenturoCatalog.get(paramKey) || window.VenturoCatalog.get("datejust");
     const isDaytona = data.family === "Cosmograph Daytona";
-    const title = isDaytona ? "Cosmograph Daytona" : data.variant;
+    const isLadyDatejust = data.family === "Lady-Datejust";
+    const isReferenceOnly = data.saleStatus === "unavailable";
+    const title = isDaytona || isLadyDatejust ? data.family : data.variant;
     const description = isDaytona
         ? `Rolex ref. ${data.exactReference}: ${data.material}, ${data.size}. Photo shows family reference 126528LN, not this model. Reference research only; no Venturo stock or offer.`
-        : data.description;
+        : isLadyDatejust
+            ? `Rolex reference ${data.exactReference} · ${data.variant.replace("Lady-Datejust · ", "")}.`
+            : data.description;
 
-    document.title = `Venturo Chronométrie | ${title}${isDaytona ? ` · Ref. ${data.exactReference}` : ""}`;
+    document.title = `Venturo Chronométrie | ${title}${isDaytona || isLadyDatejust ? ` · Ref. ${data.exactReference}` : ""}`;
     document.body.setAttribute("data-product", data.canonicalId);
     document.body.classList.toggle("reference-only-route", data.saleStatus === "unavailable");
 
@@ -154,7 +158,7 @@ function initWatchDetailPage() {
     }
 
     const eyebrow = document.getElementById("watchEyebrow");
-    if (eyebrow) eyebrow.textContent = data.eyebrow;
+    if (eyebrow) eyebrow.textContent = isLadyDatejust ? `ROLEX REFERENCE ${data.exactReference}` : data.eyebrow;
 
     const titleElement = document.getElementById("watchTitle");
     if (titleElement) titleElement.textContent = title;
@@ -165,6 +169,7 @@ function initWatchDetailPage() {
     const imgTeaser = document.getElementById("watchImgTeaser");
     const daytonaDiagram = isDaytona ? "assets/media/daytona-chronograph-diagram.svg" : null;
     const daytonaFamilyPhoto = isDaytona ? "assets/media/daytona-126528ln-hero.jpg" : null;
+    const ladyDatejustFamilyPhoto = isLadyDatejust ? data.familyContextImage : null;
     if (imgTeaser) {
         const teaserMedia = data.image || daytonaDiagram;
         if (teaserMedia) {
@@ -178,8 +183,9 @@ function initWatchDetailPage() {
     }
 
     const heroImg = document.getElementById("watchHeroImg");
+    const referencePlaceholder = document.getElementById("watchReferencePlaceholder");
     if (heroImg) {
-        const heroMedia = data.image || daytonaFamilyPhoto || daytonaDiagram;
+        const heroMedia = data.image || daytonaFamilyPhoto || ladyDatejustFamilyPhoto || daytonaDiagram;
         if (heroMedia) {
             heroImg.src = heroMedia;
             heroImg.hidden = false;
@@ -189,16 +195,24 @@ function initWatchDetailPage() {
         }
         heroImg.alt = isDaytona
             ? `Rolex Cosmograph Daytona reference 126528LN in a motorsport-context photograph. The selected reference is ${data.exactReference}; this image does not depict that exact reference.`
-            : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
+            : isLadyDatejust
+                ? "Rolex Lady-Datejust"
+                : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
+    }
+    if (referencePlaceholder) {
+        referencePlaceholder.hidden = true;
     }
 
     const heroSource = document.getElementById("watchHeroSource");
-    if (heroSource) heroSource.srcset = data.image || daytonaFamilyPhoto || daytonaDiagram || "";
+    if (heroSource) heroSource.srcset = data.image || daytonaFamilyPhoto || ladyDatejustFamilyPhoto || daytonaDiagram || "";
 
     const heroAttribution = document.getElementById("watchHeroAttribution");
     if (heroAttribution) {
         if (isDaytona) {
             heroAttribution.innerHTML = `Family-context photo: Rolex Cosmograph Daytona reference 126528LN. Selected reference ${data.exactReference} is not shown. Photo by Verygoodlord, Wikimedia Commons, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Rolex_Le_Mans_Daytona_126528LN.jpg" target="_blank" rel="noopener noreferrer">Source and licence</a>`;
+            heroAttribution.hidden = false;
+        } else if (isLadyDatejust) {
+            heroAttribution.textContent = "Lady-Datejust";
             heroAttribution.hidden = false;
         } else {
             heroAttribution.textContent = "";
@@ -257,14 +271,28 @@ function initWatchDetailPage() {
     }
 
     const referenceConfigLink = document.getElementById("referenceConfigLink");
-    if (referenceConfigLink) referenceConfigLink.hidden = data.family !== "Cosmograph Daytona";
+    if (referenceConfigLink) {
+        referenceConfigLink.hidden = !isDaytona && !isLadyDatejust;
+        if (isLadyDatejust) {
+            referenceConfigLink.href = `configure.html?family=lady-datejust&product=${data.canonicalId}`;
+            referenceConfigLink.textContent = "Explore Lady-Datejust references";
+        }
+    }
     const finderLink = document.getElementById("watchFinderLink");
-    if (finderLink) finderLink.hidden = data.family !== "Cosmograph Daytona";
+    if (finderLink) {
+        finderLink.hidden = !isDaytona && !isLadyDatejust;
+        if (isLadyDatejust) {
+            finderLink.href = "finder.html?family=Lady-Datejust";
+            finderLink.querySelector("span").textContent = "Find Lady-Datejust references";
+        }
+    }
     const enquiryLink = document.getElementById("watchEnquiryLink");
     if (enquiryLink) enquiryLink.hidden = data.saleStatus === "unavailable";
     const priceLabel = document.querySelector(".purchase-price-group .price-label");
-    if (priceLabel && data.family === "Cosmograph Daytona") priceLabel.textContent = "Venturo price";
-    if (price && data.family === "Cosmograph Daytona") price.textContent = "Not offered";
+    if (priceLabel && isDaytona) priceLabel.textContent = "Venturo price";
+    if (price && isDaytona) price.textContent = "Not offered";
+    if (priceLabel && isLadyDatejust) priceLabel.textContent = "Venturo price";
+    if (price && isLadyDatejust) price.textContent = "Not offered";
 
     const specsCartBtn = document.getElementById("specsAddToCartBtn");
     if (specsCartBtn) {
@@ -290,7 +318,7 @@ function initWatchDetailPage() {
 
     const galleryImage = document.getElementById("galleryImage");
     if (galleryImage) {
-        const galleryMedia = data.image || daytonaDiagram;
+        const galleryMedia = data.image || (isLadyDatejust ? null : daytonaDiagram);
         if (galleryMedia) {
             galleryImage.src = galleryMedia;
             galleryImage.hidden = false;
@@ -302,9 +330,11 @@ function initWatchDetailPage() {
     }
 
     const galleryCaption = document.getElementById("galleryCaption");
-    if (galleryCaption) galleryCaption.textContent = daytonaDiagram ? "Original Venturo schematic for chronograph orientation only; it is not a Rolex product image and does not show this model’s configuration." : (data.galleryCaption || "Reference photograph; exact identity and reuse permission remain unverified.");
+    if (galleryCaption) galleryCaption.textContent = isLadyDatejust ? "Exact-model photography is unavailable; no substitute image is shown." : daytonaDiagram ? "Original Venturo schematic for chronograph orientation only; it is not a Rolex product image and does not show this model’s configuration." : (data.galleryCaption || "Reference photograph; exact identity and reuse permission remain unverified.");
     const galleryEyebrow = document.getElementById("galleryEyebrow");
     if (galleryEyebrow && daytonaDiagram) galleryEyebrow.textContent = "SCHEMATIC · NOT PRODUCT PHOTOGRAPHY";
+    const gallerySection = document.getElementById("gallery");
+    if (gallerySection && isLadyDatejust) gallerySection.hidden = true;
 
     ["1", "2", "3"].forEach(index => {
         const featureTitle = document.getElementById(`featureTitle${index}`);
@@ -365,7 +395,43 @@ function initWatchDetailPage() {
         if (braceletTag) braceletTag.textContent = "Rolex model-page description; see linked source";
     }
 
-    if (["datejust", "daydate", "datejust-rose", "airking"].includes(data.canonicalId)) {
+    if (isLadyDatejust) {
+        const notes = {
+            specCalibre: "Rolex India model-page specification; accessed 9 October 2026",
+            specReserve: "Approximately 55 hours; Rolex model-page specification",
+            specCase: `Reference ${data.exactReference} · Oyster 28 mm · Rolex model-page data`,
+            specWater: "Waterproof to 100 m; Rolex model-page specification",
+            specDial: `Officially described dial for reference ${data.exactReference}; family hero image is not a verified match`,
+            specBracelet: `Officially described bracelet for reference ${data.exactReference}; see linked source`
+        };
+        Object.entries(notes).forEach(([id, note]) => {
+            const element = document.getElementById(id);
+            const noteElement = element?.closest(".spec-card")?.querySelector(".spec-note");
+            if (noteElement) noteElement.textContent = note;
+        });
+        const storyTag = document.getElementById("watchStoryTag");
+        if (storyTag) storyTag.textContent = "ROLEX REFERENCE CONTEXT";
+        const storyOverlay = document.getElementById("watchStoryOverlay");
+        if (storyOverlay) storyOverlay.setAttribute("aria-label", `Rolex Lady-Datejust reference story ${data.exactReference}`);
+        const related = document.getElementById("watchRelatedLinks");
+        if (related) related.innerHTML = `
+            <a href="lady-datejust.html">Lady-Datejust family <span aria-hidden="true">→</span></a>
+            <a href="finder.html?family=Lady-Datejust">Find Lady-Datejust references <span aria-hidden="true">→</span></a>
+            <a href="configure.html?family=lady-datejust&amp;product=${data.canonicalId}">Explore reference options <span aria-hidden="true">→</span></a>
+            <a href="https://www.rolex.com/en-in/watches/lady-datejust/features" target="_blank" rel="noopener noreferrer">Rolex features <span aria-hidden="true">↗</span></a>
+            <a href="https://www.rolex.com/en-in/watches/lady-datejust/inspiring-women" target="_blank" rel="noopener noreferrer">Rolex family story <span aria-hidden="true">↗</span></a>
+            <a href="${data.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex reference ${data.exactReference} <span aria-hidden="true">↗</span></a>`;
+        const legal = document.getElementById("watchLegalText");
+        if (legal) legal.textContent = `Rolex Lady-Datejust reference ${data.exactReference}, source pages checked 9 October 2026. Reference research only: Venturo does not manufacture, certify, stock or sell this watch. No Venturo price or exact-variant photo match is claimed; the hero image is user-supplied family context.`;
+        const contextDisclaimer = document.getElementById("watchContextDisclaimer");
+        if (contextDisclaimer) contextDisclaimer.textContent = `This detail state identifies Rolex reference ${data.exactReference}. Venturo does not manufacture, certify, stock or sell Rolex watches.`;
+        const cartDrawer = document.getElementById("cartDrawer");
+        if (cartDrawer) cartDrawer.hidden = true;
+        const cartButton = document.getElementById("cartBtn");
+        if (cartButton) cartButton.hidden = true;
+    }
+
+    if (["datejust", "daydate", "datejust-rose", "airking"].includes(data.canonicalId) || data.canonicalId.startsWith("lady-datejust-")) {
         initDatejustScrollExperience();
     } else if (heroSection) {
         heroSection.classList.remove("is-scroll-active");

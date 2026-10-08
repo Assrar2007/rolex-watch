@@ -27,6 +27,18 @@
         </div>
         <p class="browse-empty">No exact-variant imagery is available in this explorer. Each selected record remains a text-only reference state.</p>
     </section>
+    <section class="browse-page-hero lady-datejust-config-section" id="ladyDatejustConfig" hidden>
+        <span>LOCAL REFERENCE EXPLORER · NO ORDER OR QUOTE</span>
+        <h1>Lady-Datejust reference options</h1>
+        <p>Choose among verified Rolex reference records. This text-only explorer does not simulate unavailable dial, bezel or bracelet photography, quote prices or imply Venturo inventory.</p>
+        <div class="daytona-config-controls">
+            <label for="ladyDatejustReferenceSelect">Rolex reference</label>
+            <select id="ladyDatejustReferenceSelect"></select>
+            <p id="ladyDatejustReferenceSummary" aria-live="polite"></p>
+            <a class="action-btn" id="ladyDatejustReferenceOpen" href="watch.html?product=lady-datejust-279160">Open attributed detail</a>
+        </div>
+        <p class="browse-empty">Exact-current-variant photographs are unavailable. The separate 1987 family photograph is historical context only.</p>
+    </section>
     <section class="watch-editorial-section" id="genericConfig">
         <div class="watch-editorial-inner">
             <label for="airKingMaterial">Material reference</label>
@@ -43,6 +55,7 @@
 (() => {
     const params = new URLSearchParams(location.search);
     const isDaytona = params.get("family") === "cosmograph-daytona" || (params.get("product") || "").startsWith("daytona-");
+    const isLadyDatejust = params.get("family") === "lady-datejust" || (params.get("product") || "").startsWith("lady-datejust-");
     if (!isDaytona) return;
     document.getElementById("airKingConfig").hidden = true;
     document.getElementById("genericConfig").hidden = true;
@@ -70,6 +83,38 @@
     select.addEventListener("change", update);
     update();
     document.title = "Venturo Chronométrie | Cosmograph Daytona reference explorer";
+})();
+(() => {
+    const params = new URLSearchParams(location.search);
+    const isLadyDatejust = params.get("family") === "lady-datejust" || (params.get("product") || "").startsWith("lady-datejust-");
+    if (!isLadyDatejust) return;
+    document.getElementById("airKingConfig").hidden = true;
+    document.getElementById("genericConfig").hidden = true;
+    document.getElementById("daytonaConfig").hidden = true;
+    document.getElementById("ladyDatejustConfig").hidden = false;
+    const familyLink = document.getElementById("configureFamilyLink");
+    familyLink.href = "lady-datejust.html";
+    familyLink.textContent = "Lady-Datejust";
+    const models = window.VenturoCatalog.records.filter(record => record.family === "Lady-Datejust");
+    const select = document.getElementById("ladyDatejustReferenceSelect");
+    const openLink = document.getElementById("ladyDatejustReferenceOpen");
+    const summary = document.getElementById("ladyDatejustReferenceSummary");
+    models.forEach(record => {
+        const option = document.createElement("option");
+        option.value = record.canonicalId;
+        option.textContent = `Rolex ${record.exactReference} · ${record.material} · ${record.dial} · ${record.bracelet}`;
+        select.append(option);
+    });
+    const requested = params.get("product");
+    if (models.some(record => record.canonicalId === requested)) select.value = requested;
+    function update() {
+        const record = window.VenturoCatalog.get(select.value);
+        summary.textContent = `Rolex Lady-Datejust ${record.exactReference}: ${record.size}, ${record.material}, ${record.dial}, ${record.bracelet}. No variant image or Venturo price is claimed.`;
+        openLink.href = `watch.html?product=${record.canonicalId}`;
+    }
+    select.addEventListener("change", update);
+    update();
+    document.title = "Venturo Chronométrie | Lady-Datejust reference explorer";
 })();
 </script>
 </body>
