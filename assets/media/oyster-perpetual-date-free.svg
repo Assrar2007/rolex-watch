@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="t d">
+<title id="t">Date-free three-hand dial schematic</title><desc id="d">Original illustration showing central hour, minute and seconds hands without a date window.</desc>
+<defs><radialGradient id="dial"><stop stop-color="#fff"/><stop offset="1" stop-color="#e8e5dd"/></radialGradient></defs>
+<rect width="900" height="900" fill="#e9e8e2"/><circle cx="450" cy="450" r="330" fill="#c9c7c0"/><circle cx="450" cy="450" r="305" fill="url(#dial)" stroke="#85867e" stroke-width="5"/>
+<g stroke="#303a36" stroke-width="8" stroke-linecap="round"><path d="M450 173v30M450 697v30M173 450h30M697 450h30"/><path d="M450 450V270" stroke-width="20"/><path d="M450 450l135-150" stroke-width="12"/><path d="M450 450l-20 210" stroke="#b66b4c" stroke-width="5"/></g><circle cx="450" cy="450" r="12" fill="#26312e"/>
+<text x="450" y="395" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" letter-spacing="5" fill="#33403a">THREE HANDS</text><text x="450" y="780" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" letter-spacing="3" fill="#55615a">ORIGINAL FUNCTION SCHEMATIC · NOT A PRODUCT IMAGE</text></svg>

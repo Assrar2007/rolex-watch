@@ -1,0 +1,188 @@
+/* The three original featured watches use a left-aligned hero introduction. */
+.featured-details-link { display: none; }
+
+html.hide-featured-hero-actions .datejust-scroll-section .datejust-sticky-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(90deg, rgba(11, 25, 28, .78) 0%, rgba(11, 25, 28, .48) 32%, transparent 66%);
+    pointer-events: none;
+}
+
+html.hide-featured-hero-actions .featured-details-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    margin-top: 32px;
+    padding: 12px 26px;
+    border: 1px solid rgba(255, 255, 255, .62);
+    border-radius: 999px;
+    background: #195c46;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .23);
+    pointer-events: auto;
+}
+html.hide-featured-hero-actions .featured-details-link:hover,
+html.hide-featured-hero-actions .featured-details-link:focus-visible {
+    background: #124934;
+    outline: 3px solid #e1c48e;
+    outline-offset: 3px;
+}
+html.hide-featured-hero-actions .watch-page-body[data-product="daydate"] .featured-details-link { background: #a66f35; }
+html.hide-featured-hero-actions .watch-page-body[data-product="daydate"] .featured-details-link:hover,
+html.hide-featured-hero-actions .watch-page-body[data-product="daydate"] .featured-details-link:focus-visible { background: #835321; }
+html.hide-featured-hero-actions .watch-page-body[data-product="datejust-rose"] .featured-details-link { background: #986953; }
+html.hide-featured-hero-actions .watch-page-body[data-product="datejust-rose"] .featured-details-link:hover,
+html.hide-featured-hero-actions .watch-page-body[data-product="datejust-rose"] .featured-details-link:focus-visible { background: #704735; }
+
+@media (min-width: 993px) {
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-watch-header-overlay {
+        top: clamp(48px, 7vh, 96px);
+        padding: 0 clamp(32px, 7vw, 132px);
+        display: block;
+    }
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-watch-text-group {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: min(570px, 42vw);
+        max-width: none;
+        transform: none;
+        text-align: left;
+    }
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-eyebrow {
+        margin-bottom: 16px;
+        color: #e2c995;
+    }
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-title {
+        margin: 0 0 23px;
+        font-size: clamp(46px, 4.5vw, 72px);
+        line-height: 1.03;
+    }
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-intro-desc {
+        max-width: 540px;
+        margin: 0;
+        font-size: clamp(17px, 1.35vw, 21px);
+        line-height: 1.62;
+    }
+}
+
+@media (max-width: 992px) {
+    html.hide-featured-hero-actions .datejust-scroll-section .datejust-sticky-stage::before {
+        bottom: auto;
+        height: min(700px, 100vh);
+        background: linear-gradient(90deg, rgba(11, 25, 28, .76), rgba(11, 25, 28, .28) 72%, transparent);
+    }
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-watch-header-overlay {
+        top: 58px !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        padding: 0 24px !important;
+    }
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-watch-text-group {
+        max-width: min(430px, 86vw) !important;
+        text-align: left !important;
+    }
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-title {
+        font-size: clamp(32px, 7vw, 48px) !important;
+        line-height: 1.07 !important;
+    }
+    html.hide-featured-hero-actions .datejust-scroll-section .featured-intro-desc {
+        margin: 14px 0 0 !important;
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+    }
+    html.hide-featured-hero-actions .featured-details-link { min-height: 46px; margin-top: 22px; padding: 10px 20px; font-size: 14px; }
+}
+
+/* Align the Lady-Datejust family opening with the other left-side hero stories. */
+.lady-datejust-page .lady-datejust-sticky-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(24, 28, 28, .72), rgba(24, 28, 28, .35) 38%, transparent 70%);
+    pointer-events: none;
+}
+@media (min-width: 993px) {
+    .lady-datejust-page .lady-datejust-hero.is-scroll-active .lady-datejust-sticky-stage > img { object-position: 20% top; }
+}
+.lady-datejust-page .lady-hero-content {
+    inset: clamp(46px, 7vh, 90px) auto auto clamp(32px, 7vw, 132px);
+    z-index: 2;
+    display: block;
+    width: min(570px, 42vw);
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.lady-datejust-page .lady-hero-content h1 {
+    max-width: none;
+    margin: 16px 0 22px;
+    font-size: clamp(46px, 4.5vw, 72px);
+    line-height: 1.03;
+}
+.lady-datejust-page .lady-hero-content p { max-width: 540px; margin: 0; font-size: clamp(17px, 1.35vw, 21px); line-height: 1.62; }
+.lady-datejust-page .lady-hero-actions { justify-content: flex-start; margin-top: 30px; }
+.lady-datejust-page .lady-hero-actions .action-btn,
+.explorer-page .explorer-actions .action-btn,
+.explorer-ii-page .explorer-ii-actions .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 12px 26px;
+    border: 1px solid rgba(255, 255, 255, .62);
+    border-radius: 999px;
+    background: #195c46;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .23);
+}
+.lady-datejust-page .lady-hero-actions .action-btn:hover,
+.lady-datejust-page .lady-hero-actions .action-btn:focus-visible,
+.explorer-page .explorer-actions .action-btn:hover,
+.explorer-page .explorer-actions .action-btn:focus-visible,
+.explorer-ii-page .explorer-ii-actions .action-btn:hover,
+.explorer-ii-page .explorer-ii-actions .action-btn:focus-visible { background: #124934; color: #fff; outline: 3px solid #e1c48e; outline-offset: 3px; }
+
+@media (max-width: 992px) {
+    .lady-datejust-page .lady-datejust-sticky-stage::before { background: linear-gradient(90deg, rgba(24, 28, 28, .76), rgba(24, 28, 28, .25) 78%, transparent); }
+    .lady-datejust-page .lady-hero-content {
+        inset: 42px auto auto 24px;
+        width: min(430px, calc(100% - 48px));
+        padding: 0;
+        text-align: left;
+    }
+    .lady-datejust-page .lady-hero-content h1 { font-size: clamp(34px, 8vw, 52px); }
+    .lady-datejust-page .lady-hero-content p { font-size: 15px; line-height: 1.5; }
+    .lady-datejust-page .lady-hero-actions .action-btn,
+    .explorer-page .explorer-actions .action-btn,
+    .explorer-ii-page .explorer-ii-actions .action-btn { min-height: 46px; padding: 10px 20px; font-size: 14px; }
+}
+/* Keep every family in the same single, horizontally scrollable navigation row. */
+.lady-datejust-page .lady-family-nav,
+.explorer-page .explorer-family-nav,
+.explorer-ii-page .explorer-ii-family-nav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: clamp(12px, 1.2vw, 20px);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+}
+
+.lady-datejust-page .lady-family-nav a,
+.explorer-page .explorer-family-nav a,
+.explorer-ii-page .explorer-ii-family-nav a {
+    flex: 0 0 auto;
+}

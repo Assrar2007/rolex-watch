@@ -23,6 +23,17 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/lady-datejust.css?v=12-03-scroll">
     <link rel="stylesheet" href="assets/css/daytona-detail.css">
+    <link rel="stylesheet" href="assets/css/explorer-ii.css?v=12-05-detail">
+    <link rel="stylesheet" href="assets/css/featured-left-hero.css?v=1">
+    <style>
+        html.hide-featured-hero-actions #heroConfigureBtn,
+        html.hide-featured-hero-actions #referenceConfigLink { display: none !important; }
+    </style>
+    <script>
+        if (["datejust", "daydate", "datejust-rose", "airking"].includes((new URLSearchParams(location.search).get("product") || "datejust").toLowerCase())) {
+            document.documentElement.classList.add("hide-featured-hero-actions");
+        }
+    </script>
 </head>
 
 <body class="watch-page-body">
@@ -214,6 +225,11 @@
     <a href="watch.html?product=airking">Air-King 40</a>
     <a href="cosmograph-daytona.html">Cosmograph Daytona</a>
     <a href="lady-datejust.html">Lady-Datejust</a>
+    <a href="explorer.html">Explorer</a>
+    <a href="explorer-ii.html">Explorer II</a>
+    <a href="gmt-master-ii.html">GMT-Master II</a>
+    <a href="land-dweller.html">Land-Dweller</a>
+    <a href="oyster-perpetual.html">Oyster Perpetual</a>
 </nav>
 
 <!-- ================= FEATURED WATCH HERO ================= -->
@@ -245,6 +261,7 @@
                 <p class="featured-intro-desc" id="watchIntroDesc">
                     A project reference study pairing a dark dial with a warm rose-gold appearance; exact size and alloy remain unverified.
                 </p>
+                <a class="featured-details-link" href="#specs">View details</a>
             </div>
 
             <button type="button" class="featured-configure-btn add-cart-btn" id="heroConfigureBtn" data-id="datejust-rose" aria-label="Add Datejust 36 Everose Rolesor to Cart">
@@ -485,7 +502,7 @@
 
 <!-- ================= SCRIPTS ================= -->
 <script src="assets/js/catalog.js?v=12-03-lady-datejust-d"></script>
-<script src="assets/js/main.js?v=12-03-lady-datejust-scroll"></script>
+<script src="assets/js/main.js?v=hide-featured-hero-actions"></script>
 <script src="assets/js/search.js"></script>
 <script src="assets/js/cart.js"></script>
 <script src="assets/js/wishlist.js"></script>

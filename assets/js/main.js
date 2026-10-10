@@ -138,15 +138,30 @@ function initWatchDetailPage() {
     const data = window.VenturoCatalog.get(paramKey) || window.VenturoCatalog.get("datejust");
     const isDaytona = data.family === "Cosmograph Daytona";
     const isLadyDatejust = data.family === "Lady-Datejust";
+    const isExplorer = data.family === "Explorer";
+    const isExplorerII = data.family === "Explorer II";
+    const isGMTMasterII = data.family === "GMT-Master II";
+    const isLandDweller = data.family === "Land-Dweller";
+    const isOysterPerpetual = data.family === "Oyster Perpetual";
     const isReferenceOnly = data.saleStatus === "unavailable";
-    const title = isDaytona || isLadyDatejust ? data.family : data.variant;
+    const title = isGMTMasterII || isLandDweller || isOysterPerpetual ? `${data.family} · ${data.exactReference}` : isExplorerII ? `${data.family} · ${data.dial.split(" ")[0]} dial` : isDaytona || isLadyDatejust || isExplorer ? data.family : data.variant;
     const description = isDaytona
         ? `Rolex ref. ${data.exactReference}: ${data.material}, ${data.size}. Photo shows family reference 126528LN, not this model. Reference research only; no Venturo stock or offer.`
+        : isGMTMasterII
+            ? `Rolex GMT-Master II reference ${data.exactReference} · ${data.material} · ${data.bezel} · ${data.bracelet}. The ${data.image ? "photograph" : "diagram"} identifies the reference media status below.`
+        : isOysterPerpetual
+            ? `Rolex Oyster Perpetual ref. ${data.exactReference} · ${data.size} · ${data.material} · ${data.dial} dial. Date-free three-hand reference information; not Venturo inventory.`
+        : isLandDweller
+            ? `Rolex Land-Dweller ref. ${data.exactReference} · ${data.size} · ${data.material} · ${data.dial} · ${data.bracelet}. The family-context image does not verify this exact reference.`
         : isLadyDatejust
             ? `Rolex reference ${data.exactReference} · ${data.variant.replace("Lady-Datejust · ", "")}.`
+            : isExplorerII
+                ? `Rolex Explorer II reference ${data.exactReference} · ${data.dial.split(" ")[0]} dial · ${data.size} · ${data.material}. The diagram explains the 24-hour function; exact-reference photography is unavailable.`
+            : isExplorer
+                ? `Rolex Explorer reference ${data.exactReference} · ${data.size} · ${data.material}. Archive family context only; the exact current model photo is unavailable.`
             : data.description;
 
-    document.title = `Venturo Chronométrie | ${title}${isDaytona || isLadyDatejust ? ` · Ref. ${data.exactReference}` : ""}`;
+    document.title = `Venturo Chronométrie | ${title}${isDaytona || isLadyDatejust || isExplorer || isExplorerII || isGMTMasterII || isLandDweller || isOysterPerpetual ? ` · Ref. ${data.exactReference}` : ""}`;
     document.body.setAttribute("data-product", data.canonicalId);
     document.body.classList.toggle("reference-only-route", data.saleStatus === "unavailable");
 
@@ -158,7 +173,7 @@ function initWatchDetailPage() {
     }
 
     const eyebrow = document.getElementById("watchEyebrow");
-    if (eyebrow) eyebrow.textContent = isLadyDatejust ? `ROLEX REFERENCE ${data.exactReference}` : data.eyebrow;
+    if (eyebrow) eyebrow.textContent = isLadyDatejust || isExplorer || isExplorerII || isLandDweller || isOysterPerpetual ? `ROLEX REFERENCE ${data.exactReference}` : data.eyebrow;
 
     const titleElement = document.getElementById("watchTitle");
     if (titleElement) titleElement.textContent = title;
@@ -168,10 +183,16 @@ function initWatchDetailPage() {
 
     const imgTeaser = document.getElementById("watchImgTeaser");
     const daytonaDiagram = isDaytona ? "assets/media/daytona-chronograph-diagram.svg" : null;
+    const explorerIIDiagram = isExplorerII ? "assets/media/explorer-ii-24-hour-diagram.svg" : null;
+    const gmtDiagram = isGMTMasterII ? data.familyContextImage : null;
+    const landDwellerContext = isLandDweller ? data.familyContextImage : null;
+    const oysterPerpetualDiagram = isOysterPerpetual && !data.image ? data.familyContextImage : null;
     const daytonaFamilyPhoto = isDaytona ? "assets/media/daytona-126528ln-hero.jpg" : null;
     const ladyDatejustFamilyPhoto = isLadyDatejust ? data.familyContextImage : null;
+    const explorerFamilyPhoto = isExplorer ? data.familyContextImage : null;
+    const explorerArchivePhoto = isExplorer ? data.archiveImage : null;
     if (imgTeaser) {
-        const teaserMedia = data.image || daytonaDiagram;
+        const teaserMedia = data.image || daytonaDiagram || explorerIIDiagram || gmtDiagram || landDwellerContext || oysterPerpetualDiagram;
         if (teaserMedia) {
             imgTeaser.src = teaserMedia;
             imgTeaser.style.display = "";
@@ -179,13 +200,13 @@ function initWatchDetailPage() {
             imgTeaser.removeAttribute("src");
             imgTeaser.style.display = "none";
         }
-        imgTeaser.alt = daytonaDiagram ? "Generic three-counter chronograph diagram; not product photography or a specific model configuration" : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
+        imgTeaser.alt = oysterPerpetualDiagram ? "Original date-free three-hand schematic; not product photography" : explorerIIDiagram ? "Original Explorer II 24-hour function schematic; not product photography" : daytonaDiagram ? "Generic three-counter chronograph diagram; not product photography or a specific model configuration" : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
     }
 
     const heroImg = document.getElementById("watchHeroImg");
     const referencePlaceholder = document.getElementById("watchReferencePlaceholder");
     if (heroImg) {
-        const heroMedia = data.image || daytonaFamilyPhoto || ladyDatejustFamilyPhoto || daytonaDiagram;
+        const heroMedia = data.image || daytonaFamilyPhoto || ladyDatejustFamilyPhoto || explorerFamilyPhoto || explorerArchivePhoto || daytonaDiagram || explorerIIDiagram || gmtDiagram || landDwellerContext || oysterPerpetualDiagram;
         if (heroMedia) {
             heroImg.src = heroMedia;
             heroImg.hidden = false;
@@ -193,10 +214,14 @@ function initWatchDetailPage() {
             heroImg.removeAttribute("src");
             heroImg.hidden = true;
         }
-        heroImg.alt = isDaytona
+        heroImg.alt = isOysterPerpetual ? "Original date-free three-hand function schematic; not Rolex product photography" : isLandDweller ? "Family-context Land-Dweller dial close-up; exact model reference is not verified and this is not the selected model image" : isGMTMasterII ? data.image ? `Rolex GMT-Master II reference 126713GRNR, photo by EMore98, Wikimedia Commons, CC BY-SA 4.0` : "Original two-time-zone function schematic; not Rolex product photography or a specific configuration" : isExplorerII
+            ? "Original schematic explaining a fixed 24-hour scale and separate orange 24-hour hand; not Rolex product photography"
+            : isDaytona
             ? `Rolex Cosmograph Daytona reference 126528LN in a motorsport-context photograph. The selected reference is ${data.exactReference}; this image does not depict that exact reference.`
             : isLadyDatejust
                 ? "Rolex Lady-Datejust"
+                : isExplorer
+                    ? `User-supplied Rolex Explorer family image; exact model/reference is unverified. Selected reference ${data.exactReference} is not confirmed by this photo.`
                 : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
     }
     if (referencePlaceholder) {
@@ -204,7 +229,7 @@ function initWatchDetailPage() {
     }
 
     const heroSource = document.getElementById("watchHeroSource");
-    if (heroSource) heroSource.srcset = data.image || daytonaFamilyPhoto || ladyDatejustFamilyPhoto || daytonaDiagram || "";
+    if (heroSource) heroSource.srcset = data.image || daytonaFamilyPhoto || ladyDatejustFamilyPhoto || explorerFamilyPhoto || explorerArchivePhoto || daytonaDiagram || explorerIIDiagram || gmtDiagram || landDwellerContext || oysterPerpetualDiagram || "";
 
     const heroAttribution = document.getElementById("watchHeroAttribution");
     if (heroAttribution) {
@@ -213,6 +238,21 @@ function initWatchDetailPage() {
             heroAttribution.hidden = false;
         } else if (isLadyDatejust) {
             heroAttribution.textContent = "Lady-Datejust";
+            heroAttribution.hidden = false;
+        } else if (isExplorer) {
+            heroAttribution.textContent = "User-supplied Explorer family image · exact model/reference not verified";
+            heroAttribution.hidden = false;
+        } else if (isExplorerII) {
+            heroAttribution.textContent = "Original function schematic · fixed 24-hour scale and separate hand · not product photography";
+            heroAttribution.hidden = false;
+        } else if (isGMTMasterII) {
+            heroAttribution.innerHTML = data.image ? `Rolex GMT-Master II ref. 126713GRNR · photo by EMore98, Wikimedia Commons, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_II_ref._126713GRNR.jpg" target="_blank" rel="noopener noreferrer">Source and licence</a>` : "Original explanatory schematic · not product photography";
+            heroAttribution.hidden = false;
+        } else if (isOysterPerpetual) {
+            heroAttribution.innerHTML = data.image ? `Rolex ref. 124200 · earlier Oyster Perpetual 34 · photo EMore98, Wikimedia Commons, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_34_ref._124200_con_bracciale_Oyster_e_lunetta_liscia.jpg" target="_blank" rel="noopener noreferrer">Source and licence</a>` : "Original date-free function schematic · not product photography";
+            heroAttribution.hidden = false;
+        } else if (isLandDweller) {
+            heroAttribution.innerHTML = `Land-Dweller family-context dial detail · exact reference unverified; image unchanged. Photo by Verygoodlord, Wikimedia Commons, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Cadran_d%27une_Rolex_Land_Dweller_blanche.jpg" target="_blank" rel="noopener noreferrer">Source and licence</a>`;
             heroAttribution.hidden = false;
         } else {
             heroAttribution.textContent = "";
@@ -233,6 +273,10 @@ function initWatchDetailPage() {
 
     const storyHeadline = document.getElementById("watchStoryHeadline");
     if (storyHeadline) storyHeadline.textContent = data.storyHeadline || "A refined watch story";
+    const storyTag = document.getElementById("watchStoryTag");
+    if (storyTag && isLandDweller) storyTag.textContent = "ROLEX REFERENCE CONTEXT";
+    const storyOverlay = document.getElementById("watchStoryOverlay");
+    if (storyOverlay && isLandDweller) storyOverlay.setAttribute("aria-label", `Rolex Land-Dweller reference ${data.exactReference} story`);
 
     const storyLead = document.getElementById("watchStoryLead");
     if (storyLead) storyLead.textContent = data.storyLead || description;
@@ -260,31 +304,56 @@ function initWatchDetailPage() {
     const specBracelet = document.getElementById("specBracelet");
     if (specBracelet) specBracelet.textContent = data.bracelet;
 
+    const hideFeaturedHeroActions = ["datejust", "daydate", "datejust-rose", "airking"].includes(data.canonicalId);
     const heroBtn = document.getElementById("heroConfigureBtn");
     if (heroBtn) {
         heroBtn.setAttribute("data-id", data.canonicalId);
         heroBtn.setAttribute("aria-label", `Add ${data.variant} to Cart`);
         const unavailable = data.saleStatus === "unavailable";
         heroBtn.disabled = unavailable;
-        heroBtn.hidden = unavailable;
+        heroBtn.hidden = unavailable || hideFeaturedHeroActions;
+        heroBtn.style.display = hideFeaturedHeroActions ? "none" : "";
         heroBtn.textContent = unavailable ? "Reference only" : "Add to saved cart";
     }
 
     const referenceConfigLink = document.getElementById("referenceConfigLink");
     if (referenceConfigLink) {
-        referenceConfigLink.hidden = !isDaytona && !isLadyDatejust;
+        referenceConfigLink.hidden = hideFeaturedHeroActions || !isDaytona && !isLadyDatejust && !isExplorer && !isExplorerII && !isGMTMasterII && !isLandDweller && !isOysterPerpetual;
+        referenceConfigLink.style.display = hideFeaturedHeroActions ? "none" : "";
         if (isLadyDatejust) {
             referenceConfigLink.href = `configure.html?family=lady-datejust&product=${data.canonicalId}`;
             referenceConfigLink.textContent = "Explore Lady-Datejust references";
         }
+        if (isExplorer) {
+            referenceConfigLink.href = `configure.html?family=explorer&product=${data.canonicalId}`;
+            referenceConfigLink.textContent = "Explore Explorer references";
+        }
+        if (isExplorerII) {
+            referenceConfigLink.href = `configure.html?family=explorer-ii&product=${data.canonicalId}`;
+            referenceConfigLink.textContent = "Explore Explorer II references";
+        }
+        if (isGMTMasterII) { referenceConfigLink.href = `configure.html?family=gmt-master-ii&product=${data.canonicalId}`; referenceConfigLink.textContent = "Explore GMT-Master II references"; }
+        if (isOysterPerpetual) { referenceConfigLink.href = `configure.html?family=oyster-perpetual&product=${data.canonicalId}`; referenceConfigLink.textContent = "Explore Oyster Perpetual sizes"; }
+        if (isLandDweller) { referenceConfigLink.href = `configure.html?family=land-dweller&product=${data.canonicalId}`; referenceConfigLink.textContent = "Explore Land-Dweller references"; }
     }
     const finderLink = document.getElementById("watchFinderLink");
     if (finderLink) {
-        finderLink.hidden = !isDaytona && !isLadyDatejust;
+        finderLink.hidden = !isDaytona && !isLadyDatejust && !isExplorer && !isExplorerII && !isGMTMasterII && !isLandDweller && !isOysterPerpetual;
         if (isLadyDatejust) {
             finderLink.href = "finder.html?family=Lady-Datejust";
             finderLink.querySelector("span").textContent = "Find Lady-Datejust references";
         }
+        if (isExplorer) {
+            finderLink.href = "finder.html?family=Explorer";
+            finderLink.querySelector("span").textContent = "Find Explorer references";
+        }
+        if (isExplorerII) {
+            finderLink.href = "finder.html?family=Explorer%20II";
+            finderLink.querySelector("span").textContent = "Find Explorer II references";
+        }
+        if (isGMTMasterII) { finderLink.href = "finder.html?family=GMT-Master%20II"; finderLink.querySelector("span").textContent = "Find GMT-Master II references"; }
+        if (isOysterPerpetual) { finderLink.href = "finder.html?family=Oyster%20Perpetual"; finderLink.querySelector("span").textContent = "Find Oyster Perpetual references"; }
+        if (isLandDweller) { finderLink.href = "finder.html?family=Land-Dweller"; finderLink.querySelector("span").textContent = "Find Land-Dweller references"; }
     }
     const enquiryLink = document.getElementById("watchEnquiryLink");
     if (enquiryLink) enquiryLink.hidden = data.saleStatus === "unavailable";
@@ -293,6 +362,16 @@ function initWatchDetailPage() {
     if (price && isDaytona) price.textContent = "Not offered";
     if (priceLabel && isLadyDatejust) priceLabel.textContent = "Venturo price";
     if (price && isLadyDatejust) price.textContent = "Not offered";
+    if (priceLabel && isExplorer) priceLabel.textContent = "Venturo price";
+    if (price && isExplorer) price.textContent = "Not offered";
+    if (priceLabel && isExplorerII) priceLabel.textContent = "Venturo price";
+    if (price && isExplorerII) price.textContent = "Not offered";
+    if (priceLabel && isGMTMasterII) priceLabel.textContent = "Venturo price";
+    if (priceLabel && isLandDweller) priceLabel.textContent = "Venturo price";
+    if (priceLabel && isOysterPerpetual) priceLabel.textContent = "Venturo price";
+    if (price && isGMTMasterII) price.textContent = "Not offered";
+    if (price && isLandDweller) price.textContent = "Not offered";
+    if (price && isOysterPerpetual) price.textContent = "Not offered";
 
     const specsCartBtn = document.getElementById("specsAddToCartBtn");
     if (specsCartBtn) {
@@ -318,7 +397,7 @@ function initWatchDetailPage() {
 
     const galleryImage = document.getElementById("galleryImage");
     if (galleryImage) {
-        const galleryMedia = data.image || (isLadyDatejust ? null : daytonaDiagram);
+        const galleryMedia = data.image || (isLandDweller ? landDwellerContext : (isLadyDatejust ? null : (isExplorer ? explorerArchivePhoto : daytonaDiagram || explorerIIDiagram || gmtDiagram || oysterPerpetualDiagram)));
         if (galleryMedia) {
             galleryImage.src = galleryMedia;
             galleryImage.hidden = false;
@@ -326,15 +405,21 @@ function initWatchDetailPage() {
             galleryImage.removeAttribute("src");
             galleryImage.hidden = true;
         }
-        galleryImage.alt = daytonaDiagram ? "Original three-counter chronograph schematic; not product photography and not a specific variant" : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
+        galleryImage.alt = isOysterPerpetual ? "Original date-free three-hand function schematic; not Rolex product photography or selected variant imagery" : isLandDweller ? "Licensed white Land-Dweller dial close-up used as family context; exact selected model reference not verified" : isGMTMasterII ? data.image ? `Rolex GMT-Master II reference ${data.exactReference}, exact matching photograph` : "Original GMT-Master II two-time-zone function schematic; not product photography" : isExplorerII ? "Original 24-hour function schematic; not product photography and not a specific variant" : isExplorer ? `Older Rolex Explorer reference 114270, family history only; selected reference ${data.exactReference} is not pictured` : daytonaDiagram ? "Original three-counter chronograph schematic; not product photography and not a specific variant" : `Reference photograph used for ${data.variant}; depicted watch attribution and exact match unverified`;
     }
 
     const galleryCaption = document.getElementById("galleryCaption");
-    if (galleryCaption) galleryCaption.textContent = isLadyDatejust ? "Exact-model photography is unavailable; no substitute image is shown." : daytonaDiagram ? "Original Venturo schematic for chronograph orientation only; it is not a Rolex product image and does not show this model’s configuration." : (data.galleryCaption || "Reference photograph; exact identity and reuse permission remain unverified.");
+    if (galleryCaption) galleryCaption.textContent = isLandDweller ? data.galleryCaption : isGMTMasterII ? data.galleryCaption : isExplorerII ? data.galleryCaption : isExplorer ? data.galleryCaption : isLadyDatejust ? "Exact-model photography is unavailable; no substitute image is shown." : daytonaDiagram ? "Original Venturo schematic for chronograph orientation only; it is not a Rolex product image and does not show this model’s configuration." : (data.galleryCaption || "Reference photograph; exact identity and reuse permission remain unverified.");
     const galleryEyebrow = document.getElementById("galleryEyebrow");
-    if (galleryEyebrow && daytonaDiagram) galleryEyebrow.textContent = "SCHEMATIC · NOT PRODUCT PHOTOGRAPHY";
+    if (galleryEyebrow && (daytonaDiagram || explorerIIDiagram || gmtDiagram || isLandDweller || oysterPerpetualDiagram)) galleryEyebrow.textContent = isOysterPerpetual ? "DATE-FREE FUNCTION · SCHEMATIC" : isLandDweller ? "LICENSED FAMILY-CONTEXT DETAIL · EXACT REFERENCE UNVERIFIED" : isGMTMasterII ? (data.image ? "LICENSED REFERENCE PHOTOGRAPH · 126713GRNR" : "TWO-TIME-ZONE FUNCTION · SCHEMATIC") : isExplorerII ? "24-HOUR FUNCTION · SCHEMATIC" : "SCHEMATIC · NOT PRODUCT PHOTOGRAPHY";
     const gallerySection = document.getElementById("gallery");
     if (gallerySection && isLadyDatejust) gallerySection.hidden = true;
+    if (galleryEyebrow && isOysterPerpetual) galleryEyebrow.textContent = data.image ? "LICENSED EARLIER REFERENCE PHOTO · 124200" : "DATE-FREE FUNCTION · SCHEMATIC";
+
+    if (isLandDweller) {
+        const notes = { specCalibre: "Rolex model page · calibre 7135", specReserve: "Rolex model page · approximately 66 hours", specCase: `Rolex ref. ${data.exactReference} · ${data.size} · ${data.material}`, specWater: "Rolex model page · 100 m", specDial: `Rolex model page · ${data.dial}`, specBracelet: "Rolex model page · Flat Jubilee" };
+        Object.entries(notes).forEach(([id, note]) => { const el = document.getElementById(id)?.closest(".spec-card")?.querySelector(".spec-note"); if (el) el.textContent = note; });
+    }
 
     ["1", "2", "3"].forEach(index => {
         const featureTitle = document.getElementById(`featureTitle${index}`);
@@ -429,6 +514,140 @@ function initWatchDetailPage() {
         if (cartDrawer) cartDrawer.hidden = true;
         const cartButton = document.getElementById("cartBtn");
         if (cartButton) cartButton.hidden = true;
+    }
+
+    if (isExplorer) {
+        const notes = {
+            specCalibre: "Rolex Explorer model page; calibre 3230",
+            specReserve: "Approximately 70 hours; Rolex model-page specification",
+            specCase: `Reference ${data.exactReference} · ${data.size} · ${data.material}`,
+            specWater: "100 m; Rolex model-page specification",
+            specDial: "3-6-9 black dial with Chromalight; Rolex reference description",
+            specBracelet: "Oyster bracelet; Rolex model-page specification"
+        };
+        Object.entries(notes).forEach(([id, note]) => {
+            const noteElement = document.getElementById(id)?.closest(".spec-card")?.querySelector(".spec-note");
+            if (noteElement) noteElement.textContent = note;
+        });
+        const storyTag = document.getElementById("watchStoryTag");
+        if (storyTag) storyTag.textContent = "ROLEX REFERENCE CONTEXT";
+        const storyOverlay = document.getElementById("watchStoryOverlay");
+        if (storyOverlay) storyOverlay.setAttribute("aria-label", `Rolex Explorer reference story ${data.exactReference}`);
+        const related = document.getElementById("watchRelatedLinks");
+        if (related) related.innerHTML = `
+            <a href="explorer.html">Explorer family <span aria-hidden="true">→</span></a>
+            <a href="finder.html?family=Explorer">Find Explorer references <span aria-hidden="true">→</span></a>
+            <a href="configure.html?family=explorer&amp;product=${data.canonicalId}">Explore reference options <span aria-hidden="true">→</span></a>
+            <a href="https://www.rolex.com/en-in/watches/explorer/features" target="_blank" rel="noopener noreferrer">Rolex Explorer features <span aria-hidden="true">↗</span></a>
+            <a href="https://www.rolex.com/en-in/watches/explorer/real-world-laboratory" target="_blank" rel="noopener noreferrer">Rolex exploration story <span aria-hidden="true">↗</span></a>
+            <a href="https://www.rolex.com/en-in/watches/explorer-ii" target="_blank" rel="noopener noreferrer">Explorer II, a separate family <span aria-hidden="true">↗</span></a>
+            <a href="${data.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex reference ${data.exactReference} <span aria-hidden="true">↗</span></a>`;
+        const legal = document.getElementById("watchLegalText");
+        if (legal) legal.textContent = `Rolex Explorer reference ${data.exactReference}, source pages checked 9 October 2026. Reference research only: Venturo does not manufacture, certify, stock or sell this watch. No Venturo price or exact-current-reference photo match is claimed.`;
+        const disclaimer = document.getElementById("watchContextDisclaimer");
+        if (disclaimer) disclaimer.textContent = `This detail state identifies Rolex Explorer ${data.exactReference}. The user-supplied hero image is family context and does not verify the exact model/reference. The gallery shows older Explorer reference 114270 as history only. Exact current-reference photography is unavailable. Venturo does not manufacture, certify, stock or sell Rolex watches.`;
+        if (document.getElementById("cartDrawer")) document.getElementById("cartDrawer").hidden = true;
+        if (document.getElementById("cartBtn")) document.getElementById("cartBtn").hidden = true;
+    }
+
+    if (isExplorerII) {
+        const technicalGrid = document.querySelector(".specs-grid");
+        if (technicalGrid) {
+            document.getElementById("explorerIITechnical")?.remove();
+            const details = document.createElement("details");
+            details.className = "explorer-ii-technical-details";
+            details.id = "explorerIITechnical";
+            const summary = document.createElement("summary");
+            summary.textContent = "Full Rolex model-page technical details";
+            details.append(summary);
+            const list = document.createElement("dl");
+            [["Functions", data.functions], ["Bezel", data.bezel], ["Case construction", data.caseConstruction], ["Winding crown", data.crown], ["Crystal", data.crystal], ["Precision", data.precision], ["Oscillator", data.oscillator], ["Winding", data.winding], ["Certification", data.certification]].forEach(([label, value]) => {
+                if (!value) return;
+                const group = document.createElement("div");
+                const term = document.createElement("dt"); term.textContent = label;
+                const description = document.createElement("dd"); description.textContent = value;
+                group.append(term, description); list.append(group);
+            });
+            details.append(list);
+            technicalGrid.insertAdjacentElement("afterend", details);
+        }
+        const notes = {
+            specCalibre: "Rolex model-page specification; calibre 3285",
+            specReserve: "Approximately 70 hours; Rolex model-page specification",
+            specCase: `Reference 226570 · ${data.size} · ${data.material}`,
+            specWater: "100 m; Rolex model-page specification",
+            specDial: `Rolex-listed ${data.dial.split(" ")[0].toLowerCase()} dial; diagram is not this watch`,
+            specBracelet: "Oyster bracelet with Oysterlock and Easylink; Rolex model-page data"
+        };
+        Object.entries(notes).forEach(([id, note]) => {
+            const noteElement = document.getElementById(id)?.closest(".spec-card")?.querySelector(".spec-note");
+            if (noteElement) noteElement.textContent = note;
+        });
+        const storyTag = document.getElementById("watchStoryTag");
+        if (storyTag) storyTag.textContent = "ROLEX REFERENCE CONTEXT";
+        const storyOverlay = document.getElementById("watchStoryOverlay");
+        if (storyOverlay) storyOverlay.setAttribute("aria-label", `Rolex Explorer II reference story ${data.exactReference}, ${data.dial.split(" ")[0]} dial`);
+        const related = document.getElementById("watchRelatedLinks");
+        if (related) related.innerHTML = `
+            <a href="explorer-ii.html">Explorer II family <span aria-hidden="true">→</span></a>
+            <a href="finder.html?family=Explorer%20II">Find Explorer II references <span aria-hidden="true">→</span></a>
+            <a href="configure.html?family=explorer-ii&amp;product=${data.canonicalId}">Explore reference options <span aria-hidden="true">→</span></a>
+            <a href="https://www.rolex.com/en-in/watches/explorer-ii/features" target="_blank" rel="noopener noreferrer">Rolex 24-hour display and features <span aria-hidden="true">↗</span></a>
+            <a href="https://www.rolex.com/en-in/watches/explorer-ii/real-world-laboratory" target="_blank" rel="noopener noreferrer">Rolex exploration story <span aria-hidden="true">↗</span></a>
+            <a href="explorer.html">Explorer, a separate family <span aria-hidden="true">→</span></a>
+            <a href="${data.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex reference ${data.exactReference} · ${data.dial.split(" ")[0]} dial <span aria-hidden="true">↗</span></a>`;
+        const legal = document.getElementById("watchLegalText");
+        if (legal) legal.textContent = `Rolex Explorer II reference 226570, ${data.dial.split(" ")[0]} dial, source pages checked 9 October 2026. Reference research only: Venturo does not manufacture, certify, stock or sell this watch. No Venturo price or exact-reference product photograph is supplied.`;
+        const disclaimer = document.getElementById("watchContextDisclaimer");
+        if (disclaimer) disclaimer.textContent = `This detail state identifies Rolex Explorer II reference 226570 with a ${data.dial.split(" ")[0].toLowerCase()} dial. The displayed 24-hour diagram explains the function only and is not product photography or a variant image. Venturo does not manufacture, certify, stock or sell Rolex watches.`;
+        if (document.getElementById("cartDrawer")) document.getElementById("cartDrawer").hidden = true;
+        if (document.getElementById("cartBtn")) document.getElementById("cartBtn").hidden = true;
+    }
+
+    if (isGMTMasterII) {
+        const technicalGrid = document.querySelector(".specs-grid");
+        if (technicalGrid) {
+            document.getElementById("gmtMasterIITechnical")?.remove();
+            const details = document.createElement("details"); details.className = "explorer-ii-technical-details"; details.id = "gmtMasterIITechnical";
+            const summary = document.createElement("summary"); summary.textContent = "Rolex model-page function and construction details"; details.append(summary);
+            const list = document.createElement("dl");
+            [["Functions", data.functions], ["Bezel", data.bezel], ["Bracelet", data.bracelet], ["Movement", data.movement], ["Water resistance", data.waterResistance], ["Power reserve", data.powerReserve]].forEach(([label, value]) => { if (!value) return; const group = document.createElement("div"); const term = document.createElement("dt"); term.textContent = label; const description = document.createElement("dd"); description.textContent = value; group.append(term, description); list.append(group); });
+            details.append(list); technicalGrid.insertAdjacentElement("afterend", details);
+        }
+        const notes = { specCalibre: "Rolex model-page specification; calibre 3285", specReserve: "Approximately 70 hours; Rolex model-page specification", specCase: `Reference ${data.exactReference} · ${data.size} · ${data.material}`, specWater: "100 m; Rolex model-page specification", specDial: `Black dial · Rolex model-page specification`, specBracelet: `${data.bracelet} · Rolex model-page specification` };
+        Object.entries(notes).forEach(([id, note]) => { const el = document.getElementById(id)?.closest(".spec-card")?.querySelector(".spec-note"); if (el) el.textContent = note; });
+        const related = document.getElementById("watchRelatedLinks");
+        if (related) related.innerHTML = `<a href="gmt-master-ii.html">GMT-Master II family →</a><a href="finder.html?family=GMT-Master%20II">Find GMT-Master II references →</a><a href="configure.html?family=gmt-master-ii&amp;product=${data.canonicalId}">Explore reference options →</a><a href="https://www.rolex.com/en-in/watches/gmt-master-ii/features" target="_blank" rel="noopener noreferrer">Rolex GMT-Master II features ↗</a><a href="https://www.rolex.com/en-in/watches/gmt-master-ii/time-zone-to-time-zone" target="_blank" rel="noopener noreferrer">Rolex time-zone story ↗</a><a href="explorer-ii.html">Compare the Explorer II 24-hour display →</a><a href="${data.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex ref. ${data.exactReference} model page ↗</a>`;
+        const legal = document.getElementById("watchLegalText"); if (legal) legal.textContent = `Rolex GMT-Master II ref. ${data.exactReference}; official model and family pages checked 9 October 2026. Reference research only: Venturo does not manufacture, certify, stock or sell this watch. No Venturo price is represented.`;
+        const disclaimer = document.getElementById("watchContextDisclaimer"); if (disclaimer) disclaimer.textContent = `This page records Rolex GMT-Master II reference ${data.exactReference}. ${data.image ? "The image is the exact reference, shared under the linked CC BY-SA 4.0 licence." : "The diagram explains the function and is not a product image."} Venturo does not manufacture, certify, stock or sell Rolex watches.`;
+        if (document.getElementById("cartDrawer")) document.getElementById("cartDrawer").hidden = true;
+        if (document.getElementById("cartBtn")) document.getElementById("cartBtn").hidden = true;
+    }
+
+    if (isLandDweller) {
+        const technicalGrid = document.querySelector(".specs-grid");
+        if (technicalGrid) {
+            const details = document.createElement("details"); details.className = "explorer-ii-technical-details"; details.id = "landDwellerTechnical";
+            const summary = document.createElement("summary"); summary.textContent = "Rolex model-page technical details"; details.append(summary);
+            const list = document.createElement("dl");
+            [["Reference", data.exactReference], ["Case", `${data.size} · ${data.material}`], ["Bezel", data.bezel], ["Dial", data.dial], ["Bracelet", data.bracelet], ["Functions", data.functions], ["Movement", "Calibre 7135 · 5 Hz · Dynapulse escapement"], ["Power reserve", data.powerReserve], ["Water resistance", data.waterResistance], ["Precision", data.precision], ["Certification", data.certification]].forEach(([label, value]) => { const group = document.createElement("div"); const term = document.createElement("dt"); term.textContent = label; const description = document.createElement("dd"); description.textContent = value; group.append(term, description); list.append(group); });
+            details.append(list); technicalGrid.insertAdjacentElement("afterend", details);
+        }
+        const related = document.getElementById("watchRelatedLinks");
+        if (related) related.innerHTML = `<a href="land-dweller.html">Land-Dweller family →</a><a href="finder.html?family=Land-Dweller">Find Land-Dweller references →</a><a href="configure.html?family=land-dweller&amp;product=${data.canonicalId}">Explore reference options →</a><a href="https://www.rolex.com/en-in/watches/land-dweller/features" target="_blank" rel="noopener noreferrer">Rolex Land-Dweller features ↗</a><a href="https://www.rolex.com/en-in/oyster-story/collection-shaped-by-innovation" target="_blank" rel="noopener noreferrer">Rolex collection history ↗</a><a href="gmt-master-ii.html">Related: GMT-Master II →</a><a href="${data.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex ref. ${data.exactReference} model page ↗</a>`;
+        const legal = document.getElementById("watchLegalText"); if (legal) legal.textContent = `Rolex Land-Dweller reference ${data.exactReference}; official model and family pages checked 10 October 2026. This is reference research only; Venturo does not manufacture, certify, stock or sell this watch. No Venturo price or exact-reference photograph is represented.`;
+        const disclaimer = document.getElementById("watchContextDisclaimer"); if (disclaimer) disclaimer.textContent = `The image is a licensed Land-Dweller family-context dial detail; the exact selected reference is not verified by the image. Reference specifications are attributed to Rolex. Venturo does not manufacture, certify, stock or sell Rolex watches.`;
+        if (document.getElementById("cartDrawer")) document.getElementById("cartDrawer").hidden = true;
+        if (document.getElementById("cartBtn")) document.getElementById("cartBtn").hidden = true;
+    }
+
+    if (isOysterPerpetual) {
+        const related = document.getElementById("watchRelatedLinks");
+        if (related) related.innerHTML = `<a href="oyster-perpetual.html">Oyster Perpetual family →</a><a href="finder.html?family=Oyster%20Perpetual">Find size references →</a><a href="configure.html?family=oyster-perpetual&amp;product=${data.canonicalId}">Explore sizes →</a><a href="https://www.rolex.com/en-in/watches/oyster-perpetual/features" target="_blank" rel="noopener noreferrer">Rolex features ↗</a><a href="https://www.rolex.com/en-in/watches/oyster-perpetual/fulfilment-of-vision" target="_blank" rel="noopener noreferrer">Rolex history ↗</a><a href="${data.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex ref. ${data.exactReference} model page ↗</a><a href="watch.html?product=datejust">Related: Datejust →</a>`;
+        const legal = document.getElementById("watchLegalText"); if (legal) legal.textContent = `Rolex Oyster Perpetual reference ${data.exactReference}; official family, features, story and model pages checked 10 October 2026. Attributed reference research only: Venturo does not manufacture, certify, stock or sell this watch. No Venturo price is represented.`;
+        const disclaimer = document.getElementById("watchContextDisclaimer"); if (disclaimer) disclaimer.textContent = `Selected identity: Rolex Oyster Perpetual ref. ${data.exactReference}, ${data.size}, ${data.dial} dial. Displayed schematic explains the date-free three-hand layout and is not product photography or a variant image. Venturo does not manufacture, certify, stock or sell Rolex watches.`;
+        if (document.getElementById("cartDrawer")) document.getElementById("cartDrawer").hidden = true;
+        if (document.getElementById("cartBtn")) document.getElementById("cartBtn").hidden = true;
     }
 
     if (["datejust", "daydate", "datejust-rose", "airking"].includes(data.canonicalId) || data.canonicalId.startsWith("lady-datejust-")) {

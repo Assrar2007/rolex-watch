@@ -111,7 +111,7 @@
     function initFamilyCards() {
         const target = document.querySelector("[data-family-grid]");
         if (!target) return;
-        target.innerHTML = catalog.families.map(family => `<a class="family-card ${family.status}" href="${family.id === "air-king" ? "air-king.html" : family.id === "cosmograph-daytona" ? "cosmograph-daytona.html" : family.id === "lady-datejust" ? "lady-datejust.html" : `finder.html?family=${encodeURIComponent(family.name)}`}">
+        target.innerHTML = catalog.families.map(family => `<a class="family-card ${family.status}" href="${family.id === "air-king" ? "air-king.html" : family.id === "cosmograph-daytona" ? "cosmograph-daytona.html" : family.id === "lady-datejust" ? "lady-datejust.html" : family.id === "explorer" ? "explorer.html" : family.id === "explorer-ii" ? "explorer-ii.html" : family.id === "gmt-master-ii" ? "gmt-master-ii.html" : family.id === "land-dweller" ? "land-dweller.html" : family.id === "oyster-perpetual" ? "oyster-perpetual.html" : `finder.html?family=${encodeURIComponent(family.name)}`}">
             <span>${family.status === "reference-only" ? "Reference only" : "Project records"}</span>
             <h3>${family.name}</h3><p>${family.attribution}</p>
         </a>`).join("");
@@ -149,6 +149,71 @@
         </article>`).join("");
     }
 
+    function initExplorerFamily() {
+        const target = document.querySelector("[data-explorer-models]");
+        if (!target) return;
+        const records = catalog.records.filter(record => record.family === "Explorer");
+        target.innerHTML = records.map(record => `<article class="browse-model-card explorer-model-card">
+            <div class="browse-media-unavailable" role="img" aria-label="Exact current Rolex Explorer reference ${record.exactReference} photograph unavailable">Exact current model photo unavailable</div>
+            <div><button type="button" class="explorer-favourite wishlist-btn" data-id="${record.canonicalId}" aria-label="Save Rolex Explorer reference ${record.exactReference} to Venturo favourites"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save to favourites</span></button>
+            <span>${record.eyebrow}</span><h3>${record.variant}</h3>
+            <p>${record.size} · ${record.material} · ${record.dial} · ${record.bracelet}</p>
+            <p class="browse-source-date">Rolex model page checked ${record.sourceAccessed}</p>
+            <strong>Reference only · no Venturo inventory or price</strong>
+            <a href="watch.html?product=${record.canonicalId}">Open attributed reference detail</a>
+            <a href="${record.referenceUrl}" target="_blank" rel="noopener noreferrer">Check the Rolex model page <span aria-hidden="true">↗</span></a></div>
+        </article>`).join("");
+    }
+
+    function initExplorerIIFamily() {
+        const target = document.querySelector("[data-explorer-ii-models]");
+        if (!target) return;
+        const records = catalog.records.filter(record => record.family === "Explorer II");
+        target.innerHTML = records.map(record => `<article class="browse-model-card explorer-ii-model-card">
+            <div class="explorer-ii-card-dial" role="img" aria-label="Generic schematic illustration of the 24-hour display, not product photography or a specific dial"><span>24</span><span>06</span><span>12</span><span>18</span><i aria-hidden="true"></i></div><p class="explorer-ii-card-caption">24-hour function schematic · not a variant image</p>
+            <div><button type="button" class="explorer-ii-favourite wishlist-btn" data-id="${record.canonicalId}" aria-label="Save Rolex Explorer II reference ${record.exactReference}, ${record.dial.split(" ")[0]} dial, to Venturo favourites"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save to favourites</span></button>
+            <span>${record.eyebrow}</span><h3>${record.variant}</h3>
+            <p>${record.size} · ${record.material} · ${record.dial} · ${record.bracelet}</p>
+            <p class="browse-source-date">Rolex model page checked ${record.sourceAccessed}</p>
+            <strong>Reference only · no Venturo inventory or price</strong>
+            <a href="watch.html?product=${record.canonicalId}">Open ${record.dial.split(" ")[0].toLowerCase()}-dial reference detail</a>
+            <a href="${record.referenceUrl}" target="_blank" rel="noopener noreferrer">Check the Rolex model page <span aria-hidden="true">↗</span></a></div>
+        </article>`).join("");
+    }
+
+    function initGMTMasterIIFamily() {
+        const target = document.querySelector("[data-gmt-master-ii-models]");
+        if (!target) return;
+        const records = catalog.records.filter(record => record.family === "GMT-Master II");
+        target.innerHTML = records.map(record => `<article class="browse-model-card gmt-model-card">
+            ${record.image ? `<img class="gmt-model-photo" src="${record.image}" alt="Rolex GMT-Master II reference ${record.exactReference}, ${record.material}, ${record.bezel}, ${record.bracelet}; photo by EMore98, CC BY-SA 4.0" loading="lazy">` : `<img class="gmt-model-diagram" src="${record.familyContextImage}" alt="Original two-time-zone function diagram, not product photography or a specific variant" loading="lazy">`}<p class="gmt-media-note">${record.image ? `Exact reference photo · ${record.exactReference} · CC BY-SA 4.0` : "24-hour function schematic · not a variant image"}</p>
+            <div><button type="button" class="gmt-favourite wishlist-btn" data-id="${record.canonicalId}" aria-label="Save Rolex GMT-Master II reference ${record.exactReference}, ${record.bracelet} bracelet, to Venturo favourites"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save to favourites</span></button>
+            <span>${record.eyebrow}</span><h3>${record.variant}</h3><p>${record.size} · ${record.material} · ${record.bezel} · ${record.bracelet}</p>
+            <p class="browse-source-date">Rolex model page checked ${record.sourceAccessed}</p><strong>Reference only · no Venturo inventory or price</strong>
+            <a href="watch.html?product=${record.canonicalId}">Open attributed reference detail</a><a href="${record.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex model page ↗</a></div></article>`).join("");
+    }
+
+    function initLandDwellerFamily() {
+        const target = document.querySelector("[data-land-dweller-models]");
+        if (!target) return;
+        const records = catalog.records.filter(record => record.family === "Land-Dweller");
+        target.innerHTML = records.map(record => `<article class="browse-model-card land-dweller-model-card">
+            <div class="land-dweller-card-art" role="img" aria-label="Abstract honeycomb function motif, not product photography or a model configuration"><span>LD</span><i></i></div><p class="land-dweller-card-caption">Abstract family motif · not a variant image</p>
+            <div><button type="button" class="gmt-favourite wishlist-btn" data-id="${record.canonicalId}" aria-label="Save Rolex Land-Dweller reference ${record.exactReference} to Venturo favourites"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Save to favourites</span></button>
+            <span>${record.eyebrow}</span><h3>${record.variant}</h3><p>${record.material} · ${record.dial} · ${record.bezel} · Flat Jubilee</p>
+            <p class="browse-source-date">Rolex model page checked ${record.sourceAccessed}</p><strong>Reference only · no Venturo inventory or price</strong>
+            <a href="watch.html?product=${record.canonicalId}">Open attributed reference detail</a><a href="${record.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex model page ↗</a></div></article>`).join("");
+    }
+
+    function initOysterPerpetualFamily() {
+        const target = document.querySelector("[data-oyster-perpetual-models]");
+        if (!target) return;
+        const records = catalog.records.filter(record => record.family === "Oyster Perpetual");
+        target.innerHTML = records.map(record => `<article class="op-model-card">
+            ${record.image ? `<img src="${record.image}" alt="Rolex Oyster Perpetual ref. 124200, earlier 34 mm model; photo by EMore98, CC BY-SA 4.0" loading="lazy"><p class="op-media-note">Earlier exact reference photo · not current 2026 model</p>` : `<img class="op-schematic" src="${record.familyContextImage}" alt="Original date-free three-hand schematic, not product photography or a model configuration" loading="lazy"><p class="op-media-note">Function schematic · not a variant image</p>`}
+            <div><button type="button" class="wishlist-btn" data-id="${record.canonicalId}" aria-label="Save Rolex Oyster Perpetual reference ${record.exactReference} to Venturo favourites">♡ Save reference</button><span>${record.eyebrow}</span><h3>${record.variant}</h3><p>${record.material} · ${record.dial} dial · ${record.bracelet}</p><p>${record.movement} · ${record.powerReserve}</p><p>Rolex model page checked ${record.sourceAccessed}</p><strong>Reference only · no Venturo inventory or price</strong><p><a href="watch.html?product=${record.canonicalId}">Open selected reference details</a></p><a href="${record.referenceUrl}" target="_blank" rel="noopener noreferrer">Rolex model page ↗</a></div></article>`).join("");
+    }
+
     function initStandalone() {
         const target = document.querySelector("[data-browse-page]");
         if (!target) return;
@@ -173,6 +238,11 @@
         }
         if (type === "daytona-family") initDaytonaFamily();
         if (type === "lady-datejust-family") initLadyDatejustFamily();
+        if (type === "explorer-family") initExplorerFamily();
+        if (type === "explorer-ii-family") initExplorerIIFamily();
+        if (type === "gmt-master-ii-family") initGMTMasterIIFamily();
+        if (type === "land-dweller-family") initLandDwellerFamily();
+        if (type === "oyster-perpetual-family") initOysterPerpetualFamily();
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -181,5 +251,10 @@
         initStandalone();
         initDaytonaFamily();
         initLadyDatejustFamily();
+        initExplorerFamily();
+        initExplorerIIFamily();
+        initGMTMasterIIFamily();
+        initLandDwellerFamily();
+        initOysterPerpetualFamily();
     });
 })();

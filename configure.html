@@ -39,6 +39,38 @@
         </div>
         <p class="browse-empty">Exact-current-variant photographs are unavailable. The separate 1987 family photograph is historical context only.</p>
     </section>
+    <section class="browse-page-hero explorer-config-section" id="explorerConfig" hidden>
+        <span>LOCAL REFERENCE EXPLORER · NO ORDER OR QUOTE</span>
+        <h1>Explorer reference options</h1>
+        <p>Choose a verified Rolex Explorer reference to open its detail state. This text-only explorer does not switch imagery or imply Venturo inventory.</p>
+        <div class="daytona-config-controls"><label for="explorerReferenceSelect">Rolex reference</label><select id="explorerReferenceSelect"></select><p id="explorerReferenceSummary" aria-live="polite"></p><a class="action-btn" id="explorerReferenceOpen" href="watch.html?product=explorer-224270">Open attributed detail</a></div>
+        <p class="browse-empty">Exact current-reference photographs are unavailable. The separately credited 114270 image is older family history only.</p>
+    </section>
+    <section class="browse-page-hero explorer-ii-config-section" id="explorerIIConfig" hidden>
+        <span>LOCAL REFERENCE EXPLORER · NO ORDER OR QUOTE</span>
+        <h1>Explorer II reference options</h1>
+        <p>Choose between the two verified Rolex-listed 226570 dial references. This text-only selector does not switch product photography, quote a price or imply Venturo inventory.</p>
+        <div class="daytona-config-controls"><label for="explorerIIReferenceSelect">Rolex reference and dial</label><select id="explorerIIReferenceSelect"></select><p id="explorerIIReferenceSummary" aria-live="polite"></p><a class="action-btn" id="explorerIIReferenceOpen" href="watch.html?product=explorer-ii-226570-white">Open attributed detail</a></div>
+        <p class="browse-empty">Exact-reference images are unavailable. The family page's 24-hour diagram is functional illustration only, not variant imagery.</p>
+    </section>
+    <section class="browse-page-hero daytona-config-section" id="landDwellerConfig" hidden>
+        <span>LOCAL REFERENCE EXPLORER · NO ORDER OR QUOTE</span><h1>Land-Dweller reference options</h1>
+        <p>Select an attributed Rolex model record. This text-only selector does not change imagery, quote a price or imply Venturo inventory.</p>
+        <div class="daytona-config-controls"><label for="landDwellerReferenceSelect">Rolex reference and configuration</label><select id="landDwellerReferenceSelect"></select><p id="landDwellerReferenceSummary" aria-live="polite"></p><a class="action-btn" id="landDwellerReferenceOpen" href="land-dweller.html">Open attributed detail</a></div>
+        <p class="browse-empty">Exact-current-reference photographs are unavailable. The family-context dial close-up is not used as selectable model imagery.</p>
+    </section>
+    <section class="browse-page-hero daytona-config-section" id="gmtMasterIIConfig" hidden>
+        <span>LOCAL REFERENCE EXPLORER · NO ORDER OR QUOTE</span><h1>GMT-Master II reference options</h1>
+        <p>Select an attributed Rolex reference. This selector is text-only and does not change unavailable variant photography, quote a price or imply Venturo inventory.</p>
+        <div class="daytona-config-controls"><label for="gmtMasterIIReferenceSelect">Rolex reference and bracelet</label><select id="gmtMasterIIReferenceSelect"></select><p id="gmtMasterIIReferenceSummary" aria-live="polite"></p><a class="action-btn" id="gmtMasterIIReferenceOpen" href="gmt-master-ii.html">Open attributed detail</a></div>
+        <p class="browse-empty">Only the exact 126713GRNR model has a matching licensed photograph. Other selections use no substitute watch image.</p>
+    </section>
+    <section class="browse-page-hero daytona-config-section" id="oysterPerpetualConfig" hidden>
+        <span>LOCAL REFERENCE EXPLORER · NO ORDER OR QUOTE</span><h1>Oyster Perpetual size and dial references</h1>
+        <p>Choose an observed Rolex reference. This text-only selector does not switch model imagery, quote a price or imply Venturo inventory.</p>
+        <div class="daytona-config-controls"><label for="oysterPerpetualReferenceSelect">Rolex reference and size</label><select id="oysterPerpetualReferenceSelect"></select><p id="oysterPerpetualReferenceSummary" aria-live="polite"></p><a class="action-btn" id="oysterPerpetualReferenceOpen" href="oyster-perpetual.html">Open attributed detail</a></div>
+        <p class="browse-empty">Current-reference photography is not available for every selection. The older 124200 image is never changed with this control.</p>
+    </section>
     <section class="watch-editorial-section" id="genericConfig">
         <div class="watch-editorial-inner">
             <label for="airKingMaterial">Material reference</label>
@@ -54,8 +86,84 @@
 <script>
 (() => {
     const params = new URLSearchParams(location.search);
+    const isOysterPerpetual = params.get("family") === "oyster-perpetual" || (params.get("product") || "").startsWith("oyster-perpetual-");
     const isDaytona = params.get("family") === "cosmograph-daytona" || (params.get("product") || "").startsWith("daytona-");
     const isLadyDatejust = params.get("family") === "lady-datejust" || (params.get("product") || "").startsWith("lady-datejust-");
+    const requestedProduct = params.get("product") || "";
+    const isExplorerII = params.get("family") === "explorer-ii" || requestedProduct.startsWith("explorer-ii-");
+    const isExplorer = params.get("family") === "explorer" || (requestedProduct.startsWith("explorer-") && !requestedProduct.startsWith("explorer-ii-"));
+    const isLandDweller = params.get("family") === "land-dweller" || requestedProduct.startsWith("land-dweller-");
+    const isGMTMasterII = params.get("family") === "gmt-master-ii" || requestedProduct.startsWith("gmt-master-ii-");
+    if (isOysterPerpetual) {
+        ["airKingConfig", "genericConfig", "daytonaConfig", "ladyDatejustConfig", "explorerConfig", "explorerIIConfig", "landDwellerConfig", "gmtMasterIIConfig"].forEach(id => { const el = document.getElementById(id); if (el) el.hidden = true; });
+        document.getElementById("oysterPerpetualConfig").hidden = false;
+        const familyLink = document.getElementById("configureFamilyLink"); familyLink.href = "oyster-perpetual.html"; familyLink.textContent = "Oyster Perpetual";
+        const models = window.VenturoCatalog.records.filter(record => record.family === "Oyster Perpetual");
+        const select = document.getElementById("oysterPerpetualReferenceSelect"), openLink = document.getElementById("oysterPerpetualReferenceOpen"), summary = document.getElementById("oysterPerpetualReferenceSummary");
+        models.forEach(record => { const item = document.createElement("option"); item.value = record.canonicalId; item.textContent = `Rolex ref. ${record.exactReference} · ${record.size} · ${record.dial}`; select.append(item); });
+        if (models.some(record => record.canonicalId === requestedProduct)) select.value = requestedProduct;
+        function updateOP() { const record = window.VenturoCatalog.get(select.value); summary.textContent = `Rolex ref. ${record.exactReference}: ${record.size}, ${record.material}, ${record.dial} dial, date-free three-hand display. No image configuration, price or Venturo inventory is represented.`; openLink.href = `watch.html?product=${record.canonicalId}`; }
+        select.addEventListener("change", updateOP); updateOP(); document.title = "Venturo Chronométrie | Oyster Perpetual reference explorer"; return;
+    }
+    if (isLandDweller) {
+        ["airKingConfig", "genericConfig", "daytonaConfig", "ladyDatejustConfig", "explorerConfig", "explorerIIConfig", "gmtMasterIIConfig"].forEach(id => { const el = document.getElementById(id); if (el) el.hidden = true; });
+        document.getElementById("landDwellerConfig").hidden = false;
+        const familyLink = document.getElementById("configureFamilyLink"); familyLink.href = "land-dweller.html"; familyLink.textContent = "Land-Dweller";
+        const models = window.VenturoCatalog.records.filter(record => record.family === "Land-Dweller");
+        const select = document.getElementById("landDwellerReferenceSelect"), openLink = document.getElementById("landDwellerReferenceOpen"), summary = document.getElementById("landDwellerReferenceSummary");
+        models.forEach(record => { const item = document.createElement("option"); item.value = record.canonicalId; item.textContent = `Rolex ${record.exactReference} · ${record.size} · ${record.material}`; select.append(item); });
+        if (models.some(record => record.canonicalId === requestedProduct)) select.value = requestedProduct;
+        function updateLandDweller() { const record = window.VenturoCatalog.get(select.value); summary.textContent = `Rolex ref. ${record.exactReference}: ${record.size}, ${record.material}, ${record.dial}, ${record.bezel}, Flat Jubilee bracelet. No image configuration, price or Venturo inventory is represented.`; openLink.href = `watch.html?product=${record.canonicalId}`; }
+        select.addEventListener("change", updateLandDweller); updateLandDweller(); document.title = "Venturo Chronométrie | Land-Dweller reference explorer"; return;
+    }
+    if (isGMTMasterII) {
+        ["airKingConfig", "genericConfig", "daytonaConfig", "ladyDatejustConfig", "explorerConfig", "explorerIIConfig"].forEach(id => { document.getElementById(id).hidden = true; });
+        document.getElementById("gmtMasterIIConfig").hidden = false;
+        const familyLink = document.getElementById("configureFamilyLink"); familyLink.href = "gmt-master-ii.html"; familyLink.textContent = "GMT-Master II";
+        const models = window.VenturoCatalog.records.filter(record => record.family === "GMT-Master II");
+        const select = document.getElementById("gmtMasterIIReferenceSelect"), openLink = document.getElementById("gmtMasterIIReferenceOpen"), summary = document.getElementById("gmtMasterIIReferenceSummary");
+        models.forEach(record => { const item = document.createElement("option"); item.value = record.canonicalId; item.textContent = `Rolex ${record.exactReference} · ${record.bracelet}`; select.append(item); });
+        if (models.some(record => record.canonicalId === requestedProduct)) select.value = requestedProduct;
+        function updateGMT() { const record = window.VenturoCatalog.get(select.value); summary.textContent = `Rolex ref. ${record.exactReference}: ${record.material}, ${record.bezel}, ${record.bracelet}. No image configuration, price or Venturo inventory is represented.`; openLink.href = `watch.html?product=${record.canonicalId}`; }
+        select.addEventListener("change", updateGMT); updateGMT(); document.title = "Venturo Chronométrie | GMT-Master II reference explorer"; return;
+    }
+    if (isExplorerII) {
+        ["airKingConfig", "genericConfig", "daytonaConfig", "ladyDatejustConfig", "explorerConfig"].forEach(id => { document.getElementById(id).hidden = true; });
+        document.getElementById("explorerIIConfig").hidden = false;
+        const familyLink = document.getElementById("configureFamilyLink");
+        familyLink.href = "explorer-ii.html"; familyLink.textContent = "Explorer II";
+        const models = window.VenturoCatalog.records.filter(record => record.family === "Explorer II");
+        const select = document.getElementById("explorerIIReferenceSelect");
+        const openLink = document.getElementById("explorerIIReferenceOpen");
+        const summary = document.getElementById("explorerIIReferenceSummary");
+        models.forEach(record => { const item = document.createElement("option"); item.value = record.canonicalId; item.textContent = `Rolex ${record.exactReference} · ${record.dial.split(" ")[0]} dial`; select.append(item); });
+        if (models.some(record => record.canonicalId === requestedProduct)) select.value = requestedProduct;
+        function updateExplorerII() { const record = window.VenturoCatalog.get(select.value); summary.textContent = `Rolex Explorer II ref. ${record.exactReference}, ${record.dial.split(" ")[0]} dial: ${record.size}, ${record.material}, fixed 24-hour bezel and orange 24-hour hand. No product image switching, Venturo price or inventory is claimed.`; openLink.href = `watch.html?product=${record.canonicalId}`; }
+        select.addEventListener("change", updateExplorerII); updateExplorerII();
+        document.title = "Venturo Chronométrie | Explorer II reference explorer";
+        return;
+    }
+    if (isExplorer) {
+        document.getElementById("airKingConfig").hidden = true;
+        document.getElementById("genericConfig").hidden = true;
+        document.getElementById("daytonaConfig").hidden = true;
+        document.getElementById("ladyDatejustConfig").hidden = true;
+        document.getElementById("explorerConfig").hidden = false;
+        const familyLink = document.getElementById("configureFamilyLink");
+        familyLink.href = "explorer.html";
+        familyLink.textContent = "Explorer";
+        const models = window.VenturoCatalog.records.filter(record => record.family === "Explorer");
+        const select = document.getElementById("explorerReferenceSelect");
+        const openLink = document.getElementById("explorerReferenceOpen");
+        const summary = document.getElementById("explorerReferenceSummary");
+        models.forEach(record => { const option = document.createElement("option"); option.value = record.canonicalId; option.textContent = `Rolex ${record.exactReference} · ${record.size} · ${record.material}`; select.append(option); });
+        const requested = params.get("product");
+        if (models.some(record => record.canonicalId === requested)) select.value = requested;
+        function updateExplorer() { const record = window.VenturoCatalog.get(select.value); summary.textContent = `Rolex Explorer ${record.exactReference}: ${record.size}, ${record.material}, black 3-6-9 dial and Oyster bracelet. No image switching, Venturo price or inventory is claimed.`; openLink.href = `watch.html?product=${record.canonicalId}`; }
+        select.addEventListener("change", updateExplorer); updateExplorer();
+        document.title = "Venturo Chronométrie | Explorer reference explorer";
+        return;
+    }
     if (!isDaytona) return;
     document.getElementById("airKingConfig").hidden = true;
     document.getElementById("genericConfig").hidden = true;

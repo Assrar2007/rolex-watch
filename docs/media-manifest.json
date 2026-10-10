@@ -1,7 +1,47 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-08",
+  "generatedAt": "2026-10-10",
   "assets": [
+    {
+      "id": "explorer-ii-user-supplied",
+      "localPaths": [
+        "assets/media/explorer-ii-user-supplied.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "User supplied image; creator not verified",
+      "license": "Unknown",
+      "permissionBasis": "User requested use of the attached image in the local Explorer II family page; original authorship and broader reuse rights are not independently verified",
+      "attribution": "User-supplied Explorer II family image; exact model/reference and dial variant not verified",
+      "subject": "Explorer II white-dial appearance in a studio-style image",
+      "productReference": null,
+      "dimensions": {
+        "png": "952x755"
+      },
+      "focalPoint": "center",
+      "intendedSection": "Explorer II family hero as family-level context only; not mapped to either model card or detail variant",
+      "status": "integrated"
+    },
+    {
+      "id": "explorer-ii-24-hour-diagram",
+      "localPaths": [
+        "assets/media/explorer-ii-24-hour-diagram.svg"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Venturo project original vector illustration",
+      "license": "Original project artwork",
+      "permissionBasis": "Created in this repository for this reference guide; contains no Rolex product photograph or logo",
+      "attribution": "Venturo function schematic; not product photography",
+      "subject": "Fixed 24-hour scale and dedicated 24-hour hand function diagram",
+      "productReference": null,
+      "dimensions": {
+        "svg": "800x800 viewBox"
+      },
+      "focalPoint": "center",
+      "intendedSection": "Explorer II 24-hour function explanation and selected-reference detail gallery",
+      "status": "integrated"
+    },
     {
       "id": "watchmaker-cc0",
       "localPaths": [
@@ -220,7 +260,7 @@
         "detailHeroCrop": "960x910"
       },
       "focalPoint": "Original: centered; detail crop: source y=260-1170, centered on the watch",
-      "intendedSection": "Family page and opening hero on Daytona detail routes as family context only; caption identifies 126528LN and states that the selected reference is not shown; never used as a model-card or exact-variant image",
+      "intendedSection": "Credited lower Daytona family-context figure; not the supplied opening hero or exact-variant image",
       "status": "integrated-licensed-editorial"
     },
     {
@@ -263,6 +303,239 @@
       "focalPoint": "Centered watch; full frame",
       "intendedSection": "Lady-Datejust family hero and shared detail hero as family-level context only; not used on model cards or as verified selected-model imagery.",
       "status": "integrated-user-supplied-family-context"
+    },
+    {
+      "id": "explorer-114270-archive",
+      "localPaths": [
+        "assets/media/explorer-114270-archive.png"
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_Explorer_Ref._114270_Cal._3130.png",
+      "sourceFile": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Rolex_Oyster_Perpetual_Explorer_Ref._114270_Cal._3130.png?width=960",
+      "creator": "Max3351",
+      "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "permissionBasis": "Wikimedia Commons file page identifies uploader own work and CC BY-SA 4.0 license.",
+      "attribution": "Archive reference: Rolex Explorer 114270 (older generation), photo by Max3351, Wikimedia Commons, CC BY-SA 4.0.",
+      "subject": "Rolex Explorer reference 114270, previous generation",
+      "productReference": "114270; not one of the selected current model references",
+      "dimensions": {
+        "png": "960x1275",
+        "fileBytes": 1517218,
+        "sourceOriginal": "3072x4080"
+      },
+      "focalPoint": "Centered watch; full portrait source",
+      "intendedSection": "Explorer family-history context and shared detail context only; never a current model card or visual configuration.",
+      "status": "integrated-licensed-historical-context"
+    },
+    {
+      "id": "explorer-user-supplied",
+      "localPaths": [
+        "assets/media/explorer-user-supplied.png"
+      ],
+      "sourcePage": "User-provided chat attachment",
+      "sourceFile": "User-provided chat attachment",
+      "creator": "User supplied; creator not identified",
+      "license": "User directly requested use in the website; separate license terms were not provided",
+      "permissionBasis": "Image supplied by the user in this conversation with a direct request to make the Explorer page use it.",
+      "attribution": "User-supplied Explorer family image; exact model and reference are not verified.",
+      "subject": "Rolex Explorer family visual; model/reference identity unverified",
+      "productReference": "Not established; not mapped to a selectable current reference",
+      "dimensions": {
+        "png": "1671x941",
+        "fileBytes": 1969787
+      },
+      "focalPoint": "Centered watch; full frame",
+      "intendedSection": "Explorer family landing hero and shared detail hero as family-level context only; not used on model cards or as verified selected-model imagery.",
+      "status": "integrated-user-supplied-family-context"
+    },
+    {
+      "id": "gmt-master-ii-two-time-zones",
+      "localPaths": [
+        "assets/media/gmt-master-ii-two-time-zones.svg"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "creator": "Venturo project illustration",
+      "license": "Original project schematic",
+      "permissionBasis": "Created as code-native explanatory art; not a product rendering.",
+      "attribution": "Original GMT-Master II function schematic; not Rolex product photography or a specific configuration.",
+      "subject": "Local-hour hand, 24-hour hand and rotatable graduated bezel function",
+      "productReference": null,
+      "dimensions": {
+        "svg": "800x800 viewBox"
+      },
+      "focalPoint": "center",
+      "intendedSection": "GMT-Master II family and unphotographed reference states as explanatory art",
+      "status": "integrated-original-illustration"
+    },
+    {
+      "id": "gmt-master-ii-126713grnr-commons",
+      "localPaths": [
+        "assets/media/gmt-master-ii-126713grnr-commons.jpg"
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_II_ref._126713GRNR.jpg",
+      "sourceFile": "https://upload.wikimedia.org/wikipedia/commons/9/91/Rolex_GMT-Master_II_ref._126713GRNR.jpg",
+      "creator": "EMore98",
+      "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "permissionBasis": "Wikimedia Commons file page lists CC BY-SA 4.0; attribution, source link and license link are included.",
+      "attribution": "Rolex GMT-Master II ref. 126713GRNR, photo by EMore98, Wikimedia Commons, CC BY-SA 4.0.",
+      "subject": "Rolex GMT-Master II ref. 126713GRNR",
+      "productReference": "126713GRNR",
+      "dimensions": {
+        "jpg": "1200x1600"
+      },
+      "focalPoint": "center; portrait source",
+      "intendedSection": "Matching 126713GRNR card and detail only; never reused for another bezel/bracelet variant.",
+      "status": "integrated-licensed-reference"
+    },
+    {
+      "id": "land-dweller-white-dial-commons",
+      "localPaths": [
+        "assets/media/land-dweller-white-dial-commons.jpg"
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cadran_d%27une_Rolex_Land_Dweller_blanche.jpg",
+      "sourceFile": "https://upload.wikimedia.org/wikipedia/commons/4/41/Cadran_d%27une_Rolex_Land_Dweller_blanche.jpg",
+      "creator": "Verygoodlord",
+      "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "permissionBasis": "Wikimedia Commons file page lists creator, own-work source and CC BY-SA 4.0; local pages show attribution and license link.",
+      "attribution": "Land-Dweller white dial close-up, photo by Verygoodlord, Wikimedia Commons, CC BY-SA 4.0; exact model reference not verified.",
+      "subject": "White Land-Dweller honeycomb dial detail",
+      "productReference": "Not verified; family-context only, not mapped to a selectable model",
+      "dimensions": {
+        "jpg": "3000x3726",
+        "fileBytes": 1764044
+      },
+      "focalPoint": "Center dial; close-up landscape crop responsive",
+      "intendedSection": "Credited lower Land-Dweller family-context figure; not the supplied opening hero or model card",
+      "status": "integrated-licensed-family-context"
+    },
+    {
+      "id": "oyster-perpetual-124200-commons",
+      "localPaths": [
+        "assets/media/oyster-perpetual-124200-commons.jpg"
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_34_ref._124200_con_bracciale_Oyster_e_lunetta_liscia.jpg",
+      "sourceFile": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Rolex_Oyster_Perpetual_34_ref._124200_con_bracciale_Oyster_e_lunetta_liscia.jpg",
+      "creator": "EMore98",
+      "license": "Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+      "permissionBasis": "Commons file page lists own-work image and CC BY-SA 4.0; creator, source page and licence linked in the landing-page caption.",
+      "attribution": "Rolex Oyster Perpetual 34 ref. 124200, black dial; photo by EMore98, Wikimedia Commons, CC BY-SA 4.0.",
+      "subject": "Rolex Oyster Perpetual ref. 124200 black dial",
+      "productReference": "124200 (dial from photograph; selected 124200 beige-dial model state is not depicted)",
+      "dimensions": {
+        "jpg": "840x1298",
+        "fileBytes": 159513
+      },
+      "focalPoint": "center; portrait image",
+      "intendedSection": "Credited lower Oyster Perpetual family-context figure; not the supplied opening hero or selected variant",
+      "status": "integrated-licensed-family-context"
+    },
+    {
+      "id": "oyster-perpetual-date-free",
+      "localPaths": [
+        "assets/media/oyster-perpetual-date-free.svg"
+      ],
+      "sourcePage": "Original Venturo project vector illustration",
+      "sourceFile": null,
+      "creator": "Venturo project",
+      "license": "Original project artwork",
+      "permissionBasis": "Created in this workspace; function schematic only.",
+      "attribution": "Original date-free three-hand function schematic; not Rolex product imagery.",
+      "subject": "Date-free three-hand layout concept",
+      "productReference": "Not a Rolex product image or model configuration",
+      "dimensions": {
+        "svg": "900x900 viewBox"
+      },
+      "focalPoint": "center",
+      "intendedSection": "Oyster Perpetual model cards and detail states without exact model media.",
+      "status": "integrated-original-illustration"
+    },
+    {
+      "id": "oyster-perpetual-user-hero",
+      "localPaths": [
+        "assets/media/oyster-perpetual-user-hero.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "sourceAttachment": "codex-clipboard-4b83d264-9259-4a17-bd74-d5878e883b64.png",
+      "creator": "User supplied; creator not verified",
+      "license": "Unknown",
+      "permissionBasis": "User explicitly requested use of this attachment on the corresponding local family page; broader reuse rights are not independently verified",
+      "attribution": "User-supplied Oyster Perpetual family presentation image; exact model/reference unverified",
+      "subject": "Oyster Perpetual watch in a wide editorial scene",
+      "productReference": null,
+      "dimensions": {
+        "png": "1672x941"
+      },
+      "sha256": "8714f2860a99bde47e1a6b65cd72da2f5cbdb820b377ee310b12c148f2111754",
+      "focalPoint": "center",
+      "intendedSection": "Oyster Perpetual family landing hero and scroll scene only; not a selected model or variant image",
+      "status": "integrated"
+    },
+    {
+      "id": "land-dweller-user-hero",
+      "localPaths": [
+        "assets/media/land-dweller-user-hero.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "sourceAttachment": "codex-clipboard-6be9254b-3eb9-4c20-b6d7-71cb5512d3c5.png",
+      "creator": "User supplied; creator not verified",
+      "license": "Unknown",
+      "permissionBasis": "User explicitly requested use of this attachment on the corresponding local family page; broader reuse rights are not independently verified",
+      "attribution": "User-supplied Land-Dweller family presentation image; exact model/reference unverified",
+      "subject": "Land-Dweller watch in a wide editorial scene",
+      "productReference": null,
+      "dimensions": {
+        "png": "1672x941"
+      },
+      "sha256": "3c9b2d71b229e92381912e6c50c2622785038063fc95d03aa4436caec492f079",
+      "focalPoint": "center",
+      "intendedSection": "Land-Dweller family landing hero and scroll scene only; not a selected model or variant image",
+      "status": "integrated"
+    },
+    {
+      "id": "gmt-master-ii-user-hero",
+      "localPaths": [
+        "assets/media/gmt-master-ii-user-hero.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "sourceAttachment": "codex-clipboard-9e97d3ee-f21a-4d7a-93eb-63e7afa52d95.png",
+      "creator": "User supplied; creator not verified",
+      "license": "Unknown",
+      "permissionBasis": "User explicitly requested use of this attachment on the corresponding local family page; broader reuse rights are not independently verified",
+      "attribution": "User-supplied GMT-Master II family presentation image; exact model/reference unverified",
+      "subject": "GMT-Master II watch in a wide editorial scene",
+      "productReference": null,
+      "dimensions": {
+        "png": "1672x941"
+      },
+      "sha256": "aa3f2fce37c441f58d74847ff8526bfeb6e47c2ee7f74a253c764eba69178a37",
+      "focalPoint": "center",
+      "intendedSection": "GMT-Master II family landing hero and scroll scene only; not a selected model or variant image",
+      "status": "integrated"
+    },
+    {
+      "id": "cosmograph-daytona-user-hero",
+      "localPaths": [
+        "assets/media/cosmograph-daytona-user-hero.png"
+      ],
+      "sourcePage": null,
+      "sourceFile": null,
+      "sourceAttachment": "codex-clipboard-a7f85be7-635d-4fe7-acb5-f115e74094e9.png",
+      "creator": "User supplied; creator not verified",
+      "license": "Unknown",
+      "permissionBasis": "User explicitly requested use of this attachment on the corresponding local family page; broader reuse rights are not independently verified",
+      "attribution": "User-supplied Cosmograph Daytona family presentation image; exact model/reference unverified",
+      "subject": "Cosmograph Daytona watch in a wide editorial scene",
+      "productReference": null,
+      "dimensions": {
+        "png": "1671x941"
+      },
+      "sha256": "2dbe2996d0304a2b162d613d6da522290db1bcb3bf900f532f490b0927e9ff2d",
+      "focalPoint": "center",
+      "intendedSection": "Cosmograph Daytona family landing hero and scroll scene only; not a selected model or variant image",
+      "status": "integrated"
     }
   ]
 }

@@ -133,4 +133,66 @@ Retired contextual photograph: `assets/media/lady-datejust-1987-commons.jpg` is 
 Exact-current-reference Rolex photographs were not cleared for reuse. The user supplied a separate Lady-Datejust family image now used on family and detail heroes; its precise model/reference is unverified, so model cards and configuration states remain text-led. Prices remain omitted.
 
 
-User-supplied Lady-Datejust family image: `assets/media/lady-datejust-user-supplied.png`, 1672×941, copied unchanged from the image attachment in the user request on 9 October 2026. It is used only as family-level hero context; no exact reference is identified, and it is not shown as a configured variant.
+User-supplied Lady-Datejust family image: `assets/media/lady-datejust-user-supplied.png`, 1671×941, copied unchanged from the image attachment in the user request on 9 October 2026. It is used only as family-level hero context; no exact reference is identified, and it is not shown as a configured variant.
+
+
+### Explorer family research and image sourcing (9 October 2026)
+
+Rolex India routes followed from <https://www.rolex.com/en-in/watches>: <https://www.rolex.com/en-in/watches/explorer>, /features, /real-world-laboratory, /all-models, and model pages m224270-0001, m124270-0001, m124273-0001. The current sample identifies references 224270 (40 mm Oystersteel), 124270 (36 mm Oystersteel), and 124273 (36 mm Yellow Rolesor). Specs and family history remain attributed to Rolex; prices are not reproduced. Accessed 9 October 2026.
+
+The family context image is the older Explorer 114270 by Max3351, dated 23 April 2024 on the file page and licensed CC BY-SA 4.0: <https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_Explorer_Ref._114270_Cal._3130.png>. Local 960×1275 derivative: ssets/media/explorer-114270-archive.png; visible attribution and a direct license link are present. It is explicitly labelled older-generation family context and never mapped to a current model.
+
+Exact current-reference photos for 224270, 124270 and 124273 were not cleared. Cards use visible photo-unavailable states; the licensed archive photo is not presented as a selected model. Explorer II photos and mixed-watch photos were excluded. The Explorer / Explorer II distinction is linked to Rolex’s separate Explorer II overview.
+
+User-supplied Explorer family image: `assets/media/explorer-user-supplied.png`, 1671×941, copied unchanged from the user attachment on 9 October 2026. The user requested it for the Explorer page. The exact model/reference and creator are unverified; visible copy identifies it as family context only, and it is not mapped to any current reference card/configuration. The licensed 114270 Commons photo remains separately labelled archive history in the lower story section.
+
+
+### Explorer II family research and media (9 October 2026)
+
+Rolex India pages were followed from <https://www.rolex.com/en-in/watches>: family overview <https://www.rolex.com/en-in/watches/explorer-ii>, Features <https://www.rolex.com/en-in/watches/explorer-ii/features>, the “A real-world laboratory” story <https://www.rolex.com/en-in/watches/explorer-ii/real-world-laboratory>, and All models <https://www.rolex.com/en-in/watches/explorer-ii/all-models>. The model-card routes were opened directly: white dial m226570-0001 and black dial m226570-0002. Both identify Rolex reference 226570, Explorer II Oyster, 42 mm, Oystersteel. The model accordions were checked for case, movement, bracelet, dial and certification on both routes, accessed 9 October 2026.
+
+Rolex model pages list a fixed 24-hour graduated bezel, Twinlock crown, sapphire crystal with Cyclops date lens, 100 m water resistance, calibre 3285 with GMT function and independent rapid-setting hour hand, approximately 70-hour power reserve, Oystersteel Oyster bracelet with Oysterlock/Easylink, and Superlative Chronometer certification. White and black are the verified dial descriptions. Rolex's family overview connects the orange 24-hour hand and bezel to distinguishing day from night and dates the Explorer II to 1971. All product identity and specifications remain Rolex-attributed research content; local records have no price or inventory.
+
+No exact-current-reference photograph with verified reuse permission was found in the external image search. Official Rolex product images are research-only and were not downloaded, hotlinked or integrated. `assets/media/explorer-ii-24-hour-diagram.svg` is original Venturo project vector artwork: a functional explanation of the fixed 24-hour scale and dedicated hand, explicitly captioned as schematic rather than Rolex product photography or a variant image. It is used for family and detail context only. Exact product gallery photography remains blocked.
+
+User-supplied Explorer II family image: `assets/media/explorer-ii-user-supplied.png`, 952×755, copied unchanged from the attachment supplied on 9 October 2026. It is now the landing-page hero context and is explicitly captioned as user-supplied family imagery; its exact model/reference and dial variant are not verified. It is not mapped to either current 226570 dial card, detail state or text-only selector. Creator/license remain unknown; integration is based on the user's request for local project use, and broader reuse rights are not claimed. The separate original 24-hour schematic remains in the lower explanatory section and shared detail gallery.
+
+## GMT-Master II family (Prompt 12-06; reviewed 9 October 2026)
+
+Official Rolex India source pages inspected in browser: [family overview](https://www.rolex.com/en-in/watches/gmt-master-ii), [features](https://www.rolex.com/en-in/watches/gmt-master-ii/features), [time-zone story](https://www.rolex.com/en-in/watches/gmt-master-ii/time-zone-to-time-zone), [all models](https://www.rolex.com/en-in/watches/gmt-master-ii/all-models), and representative model pages for references 126710BLNR, 126713GRNR, 126711CHNR and 126720VTNR. Five local model-page records include the two bracelet configurations listed under 126710BLNR. Source access date: 2026-10-09.
+
+### Media evidence
+
+- `assets/media/gmt-master-ii-two-time-zones.svg` is an original Venturo function diagram (local hour hand, 24-hour hand and rotatable 24-hour scale). It is not a product rendering or variant image.
+- `assets/media/gmt-master-ii-126713grnr-commons.jpg` is the exact Rolex 126713GRNR reference photographed by EMore98 on Wikimedia Commons. The Commons file page lists CC BY-SA 4.0. The detail and matching card include attribution plus the source/license link. It is not reused for other variants.
+- Matching, permission-cleared photographs for 126710BLNR, 126711CHNR and 126720VTNR were not established. Those cards and details therefore show the function diagram and explicitly label it as non-product schematic media.
+
+Source record: https://commons.wikimedia.org/wiki/File:Rolex_GMT-Master_II_ref._126713GRNR.jpg
+
+## Land-Dweller family (Prompt 12-07; reviewed 10 October 2026)
+
+Rolex India pages followed from the watches hub: [family overview](https://www.rolex.com/en-in/watches/land-dweller), [features](https://www.rolex.com/en-in/watches/land-dweller/features), [all models](https://www.rolex.com/en-in/watches/land-dweller/all-models), and representative model routes 127334 and 127234. The overview and feature content identify the 2025 launch, Flat Jubilee bracelet, integrated Oyster case, calibre 7135, honeycomb dial and available 36/40 mm sizes. The ten currently listed model routes and exact references are recorded in the catalog, each linked to its source route. Rolex's Oyster Story links the contemporary design to the earlier Datejust ref. 1630 (1974).
+
+### Media evidence
+
+- `assets/media/land-dweller-white-dial-commons.jpg` is an unchanged 3000×3726 Wikimedia Commons image by Verygoodlord, own work, dated 3 April 2025 and licensed CC BY-SA 4.0. The source page confirms attribution and share-alike terms: https://commons.wikimedia.org/wiki/File:Cadran_d%27une_Rolex_Land_Dweller_blanche.jpg. The landing and detail states use it only as family-context dial detail with visible creator/license attribution and a notice that the exact reference is unverified. It is never assigned to a selected model, card, or selectable configuration.
+- Model cards use an original abstract honeycomb motif, explicitly captioned as not product photography or a variant image. No exact-current-reference Rolex image is integrated because official Rolex photography is not cleared for reuse and no other exact-route image with a compatible license was established.
+
+### Source notes
+
+Rolex model sources describe calibre 7135, 5 Hz / 36,000 vibrations per hour, the Dynapulse escapement, approximately 66-hour reserve, 100 m water resistance, Flat Jubilee and concealed folding Crownclasp. The family overview's prices are intentionally omitted; no Venturo price or inventory is represented. Source access date: 2026-10-10.
+
+
+## Oyster Perpetual family (Prompt 12-08; reviewed 10 October 2026)
+
+Rolex India pages followed from its watches hub: [Oyster Perpetual overview](https://www.rolex.com/en-in/watches/oyster-perpetual), [features](https://www.rolex.com/en-in/watches/oyster-perpetual/features), [fulfilment of a vision story](https://www.rolex.com/en-in/watches/oyster-perpetual/fulfilment-of-vision), and [all models](https://www.rolex.com/en-in/watches/oyster-perpetual/all-models). Representative model pages verified in browser: 124200 (34 mm, Oystersteel, beige dial), 126000 (36 mm, Oystersteel, multicoloured Jubilee motif dial), 277200 (31 mm, Oystersteel, pistachio dial), and 276200 (28 mm, Oystersteel, lavender dial). The family overview and Features page list sizes 28, 31, 34, 36 and 41 mm; reference 134303 (41 mm, Oystersteel and yellow gold, slate dial) appeared in the live All Models list, and its linked route is used for the fifth size record. Source access date: 2026-10-10.
+
+`assets/media/oyster-perpetual-124200-commons.jpg` is an unchanged 840×1298 Commons photograph by EMore98, dated 31 October 2024 and licensed CC BY-SA 4.0. Source page: https://commons.wikimedia.org/wiki/File:Rolex_Oyster_Perpetual_34_ref._124200_con_bracciale_Oyster_e_lunetta_liscia.jpg. The photo shows ref. 124200 with a black dial, while the sampled model route m124200-0007 shows beige. To avoid suggesting a dial match, this photo is family-context only on the landing page; it is not on that model card, selected detail or configurator.
+
+`assets/media/oyster-perpetual-date-free.svg` is original Venturo project artwork showing the date-free three-hand concept; it is labelled schematic and not product imagery. Exact-current-reference photos with cleared reuse permission were not established for the selected five records. No model photos are substituted.
+
+## User-supplied family hero images (10 October 2026)
+
+The user supplied four images in this order for local use: Oyster Perpetual, Land-Dweller, GMT-Master II and Cosmograph Daytona. They were copied unchanged to `assets/media/oyster-perpetual-user-hero.png` (1672×941), `assets/media/land-dweller-user-hero.png` (1672×941), `assets/media/gmt-master-ii-user-hero.png` (1672×941) and `assets/media/cosmograph-daytona-user-hero.png` (1671×941). These images lead the corresponding family landing pages and their scroll scenes. Their creator, licence and exact model/reference identity were not supplied or independently verified. They are family presentation images only: no selected model card, detail variant, finder result or configurator option claims to show the exact reference using them. Local project use follows the user's explicit request; broader reuse rights are not claimed.
+
+The existing licensed Commons images remain in lower, visibly attributed family context sections. Their source links and licences remain beside the pictures. The exact-reference photo and original diagrams in cards/details keep their existing, limited roles.
